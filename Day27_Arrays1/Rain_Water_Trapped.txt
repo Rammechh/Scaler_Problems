@@ -82,3 +82,26 @@ class Solution:
                 Sum += min(leftMax[i-1], rightMax[i+1]) -A[i]
             
         return Sum
+		
+__________________________________________________________Given Solution__________________________________________________________________
+class Solution:
+    # @param A : tuple of integers
+    # @return an integer
+    def trap(self, A):
+        stack = []
+        curr = 0
+        n = len(A)
+        if n == 0:
+            return 0
+        while curr < n and A[curr] == 0:
+            curr += 1
+        retVol = 0
+        while curr < n:
+            while len(stack) != 0 and A[curr] >= A[stack[-1]]:
+                bar = stack.pop()
+                if (len(stack) == 0):
+                    break
+                retVol += (curr - stack[-1] - 1)*(min(A[curr], A[stack[-1]])-A[bar])
+            stack.append(curr)
+            curr += 1
+        return retVol
