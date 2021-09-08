@@ -1,0 +1,68 @@
+Excel Column Number
+Problem Description
+
+Given a column title as appears in an Excel sheet, return its corresponding column number.
+
+
+
+Problem Constraints
+1 <= length of the column title <= 5
+
+
+
+Input Format
+Input a string which represents the column title in excel sheet.
+
+
+
+Output Format
+Return a single integer which represents the corresponding column number.
+
+
+
+Example Input
+Input 1:
+
+ AB
+Input 2:
+
+ ABCD
+
+
+Example Output
+Output 1:
+
+ 28
+Output 2:
+
+ 19010
+
+
+Example Explanation
+Explanation 1:
+
+ A -> 1
+ B -> 2
+ C -> 3
+ ...
+ Z -> 26
+ AA -> 27
+ AB -> 28
+
+
+
+×
+You only need to implement the given function. Do not read input, instead use the arguments to the function. Do not print the output, instead return values as specified. Still have a doubt? Checkout Sample Codes for more details.
+
+___________________________________________________________________Solution_____________________________________________________
+class Solution:
+	# @param A : string
+	# @return an integer
+	def titleToNumber(self, A):
+	    
+        ans = 0
+        for i in A:
+            ans *= 26
+            ans += ord(i) - ord('A') + 1 
+        
+        return ans
