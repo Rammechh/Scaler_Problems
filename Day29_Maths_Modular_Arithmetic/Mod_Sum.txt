@@ -1,0 +1,95 @@
+Mod Sum
+Problem Description
+
+Given an array of integers A, calculate the sum of A [ i ] % A [ j ] for all possible i, j pairs. Return sum % (109 + 7) as an output.
+
+
+
+Problem Constraints
+1 <= length of the array A <= 105
+
+1 <= A[i] <= 103
+
+
+
+Input Format
+The only argument given is the integer array A.
+
+
+
+Output Format
+Return a single integer denoting sum % (109 + 7).
+
+
+
+Example Input
+Input 1:
+
+ A = [1, 2, 3]
+Input 2:
+
+ A = [17, 100, 11]
+
+
+Example Output
+Output 1:
+
+ 5
+Output 2:
+
+ 61
+
+
+Example Explanation
+Explanation 1:
+
+ (1 % 1) + (1 % 2) + (1 % 3) + (2 % 1) + (2 % 2) + (2 % 3) + (3 % 1) + (3 % 2) + (3 % 3) = 5
+ 
+__________________________________________________________________Solution_____________________________________________________________
+ 
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self, A):
+        
+        #Optimized Approach
+        n = len(A)
+        freqArr =  [0] * 1001
+        for i in range(n):
+            freqArr[A[i]] += 1
+        Sum = 0
+        for i in range(1, 1001):
+            for j in range(1, 1001):
+                Sum += ((i%j) * freqArr[i] * freqArr[j])
+        return Sum % ((10 ** 9)+7)
+        
+        #Brute force
+        """n = len(A)
+        Sum = 0
+        for i in range(n):
+            for j in range(n):
+                Sum += (A[i] % A[j])
+        return Sum"""
+		
+__________________________________________________________________Given_Solution_____________________________________________________________
+class Solution:
+    def solve(self, A):
+        n = len(A)
+        lst = [0] * 1009
+        for a in A:
+            lst[a] += 1
+        ans = 0
+        mod = 1000000007
+        for i in range(1, 1001):
+            if(lst[i] == 0):
+                continue
+            a = lst[i]
+            for j in range(1, 1001):
+                if(lst[j] == 0):
+                    continue
+                b = lst[j]
+                val = j % i
+                temp = a * b * val
+                ans = ((ans % mod) + (temp % mod)) % mod
+        return ans
+                
