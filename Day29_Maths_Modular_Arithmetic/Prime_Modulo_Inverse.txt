@@ -1,0 +1,116 @@
+Prime Modulo Inverse
+Problem Description
+
+Given two integers A and B. Find the value of A-1 mod B where B is a prime number and gcd(A, B) = 1.
+
+A-1 mod B is also known as modular multiplicative inverse of A under modulo B.
+
+
+
+Problem Constraints
+1 <= A <= 109
+1<= B <= 109
+B is a prime number
+
+
+
+Input Format
+First argument is an integer A.
+Second argument is an integer B.
+
+
+
+Output Format
+Return an integer denoting the modulor inverse
+
+
+
+Example Input
+Input 1:
+
+ A = 3
+ B = 5
+Input 2:
+
+ A = 6
+ B = 23
+
+
+Example Output
+Output 1:
+
+ 2
+Output 2:
+
+ 4
+
+
+Example Explanation
+Explanation 1:
+
+ Let's say A-1 mod B = X, then (A * X) % B = 1.
+ 3 * 2 = 6, 6 % 5 = 1.
+Explanation 2:
+
+ Similarly, (6 * 4) % 23 = 1.
+ 
+________________________________________________________Solution____________________________________________________________
+ 
+class Solution:
+    # @param A : integer
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        #Property - (A*A^-1) % B = 1
+        
+        # Brute force TC = O(B) and SC = O(1)
+        """for i in range(1, B):
+            if (A * i) % B == 1:
+                return i"""
+        
+        #Optimized version of power is below
+        """ return pow(A, B-2) % B"""
+            
+        #Optimized - FERMAT'S LITTLE THEOREM (A^B = A mod B) => (A^B-1 % B = 1) => A^B-2 = A^-1
+        # So A^B-2 % B will give A^-1
+        # Optimized power
+        def power(a, b, m):
+            if b == 0:
+                return 1
+            if b & 1 == 0:
+                return power((a*a) % m, (b//2), m)
+            else:
+                return a * power((a*a) % m, ((b-1)//2) , m)
+                
+        return(power(A, B-2, B) % B)
+        
+        #Optimized version of power is below
+        """ return pow(A, B-2) % B"""
+
+________________________________________________________Given_Solution____________________________________________________________
+
+def power(x, y, p): 
+    
+    res = 1        # Initialize result 
+  
+    x = x % p      # Update x if it is more than or equal to p 
+  
+    while (y > 0): 
+        # If y is odd, multiply x with result 
+        if (y & 1): 
+            res = (res * x) % p 
+   
+        y = y >> 1 
+        x = (x * x) % p
+    return res
+
+class Solution:
+    # @param A : integer
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        
+        # Modular inverse of A Modulo B = pow(A, B - 2, B)
+        return power(A, B - 2, B)
+        
+        
