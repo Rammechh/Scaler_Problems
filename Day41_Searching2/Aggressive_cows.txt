@@ -70,13 +70,15 @@ class Solution:
         
         while (low <= high):
             mid = low + (high - low) // 2
+            # find mid (maximum min distance b/w 2 cows) and go thro the array if A[i] - prev distance is greater than or equal to expected mid, then increase count by 1
+            # if count >= Bcows then low = mid + 1 (since need to find max of min distance we are increasing the distance range) else: high = mid - 1
             
             Count = 1
-            curr = A[0]
+            prev = A[0]
             for i in range(1, len(A)):
-                if A[i] - curr >= mid:
+                if A[i] - prev >= mid:
                     Count += 1
-                    curr = A[i]
+                    prev = A[i]
             
             if Count >= B:
                 low = mid + 1
@@ -86,6 +88,7 @@ class Solution:
                 high = mid - 1
                 
         return Max
+            
 		
 ________________________________________________________________________Given_Solution______________________________________________________________________
 
