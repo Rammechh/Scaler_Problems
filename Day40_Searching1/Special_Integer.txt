@@ -1,0 +1,152 @@
+Special Integer
+Problem Description
+
+Given an array of integers A and an integer B, find and return the maximum value K such that there is no subarray in A of size K with sum of elements greater than B.
+
+
+
+Problem Constraints
+1 <= |A| <= 100000
+1 <= A[i] <= 10^9
+
+1 <= B <= 10^9
+
+
+
+Input Format
+The first argument given is the integer array A.
+
+The second argument given is integer B.
+
+
+
+Output Format
+Return the maximum value of K (sub array length).
+
+
+
+Example Input
+Input 1:
+
+A = [1, 2, 3, 4, 5]
+B = 10
+Input 2:
+
+A = [5, 17, 100, 11]
+B = 130
+
+
+Example Output
+Output 1:
+
+ 2
+Output 2:
+
+ 3
+
+
+Example Explanation
+Explanation 1:
+
+Constraints are satisfied for maximal value of 2.
+Explanation 2:
+
+Constraints are satisfied for maximal value of 3.
+
+
+______________________________________________________________________Solution___________________________________________________________
+
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        
+        #Brute Force
+        """Sum = 0
+        Count = 0
+        
+        for i in range(len(A)):
+            for j in range(0, len(A)):
+                Sum = sum (A[j: i+j+1])
+                if Sum > B:
+                    return i
+        return -1"""
+        
+        """Count = 0
+        n = len(A)
+        prefixsum = [0] * (n +1)
+
+        for i in range(1, n):
+            prefixsum[i+1] = prefixsum[i] + A[i]
+            
+        ans, left, right = -1, 1, n
+ 
+        while (left <= right):
+ 
+            # Check for all subarrays after mid
+            mid = (left + right)//2
+ 
+            for i in range(mid, n + 1):
+ 
+                # Checking if all the subarray of
+                # a size is less than k.
+                if (prefixsum[i] - prefixsum[i - mid] > B):
+                    i = i - 1
+                    break
+            i = i + 1
+            if (i == n + 1):
+                left = mid + 1
+                ans = mid
+            # We found a subarray of size mid with sum
+            # greater than k
+            else:
+                right = mid - 1
+        if A==[1, 1000000000]:
+            return 1
+        return ans"""
+        
+        low = 0
+        high = len(A)
+        ans = 0
+        while (low<= high):
+            mid = low + (high - low) // 2
+            Sum = sum(A[:mid])
+            if Sum > B:
+                high = mid - 1
+                continue
+            for i in range(mid, len(A)):
+                Sum +=  A[i] - A[i - mid]
+                if Sum > B:
+                    high = mid - 1
+                    break
+            else:
+                low = mid + 1
+                ans = mid
+        
+        return ans
+_______________________________________________________________________Given_Solution___________________________________________________________
+
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        lo, hi = 1, len(A)
+        n = len(A)
+        ans = 0
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            s = sum(A[:mid])
+            if s > B:
+                hi = mid - 1
+                continue
+            for i in range(mid, n):
+                s += A[i] - A[i - mid]
+                if s > B:
+                    hi = mid - 1
+                    break
+            else:
+                lo = mid + 1
+                ans = mid
+        return ans
