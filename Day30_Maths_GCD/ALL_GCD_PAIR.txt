@@ -1,0 +1,140 @@
+ALL GCD PAIR
+Problem Description
+
+Given an array of integers A of size N containing GCD of every possible pair of elements of another array.
+
+Find and return the original numbers which are used to calculate the GCD array in any order. For example, if original numbers are {2, 8, 10} then the given array will be {2, 2, 2, 2, 8, 2, 2, 2, 10}.
+
+
+
+Problem Constraints
+1 <= N <= 10000
+
+1 <= A[i] <= 109
+
+
+
+Input Format
+The first and only argument given is the integer array A.
+
+
+
+Output Format
+Find and return the original numbers which are used to calculate the GCD array in any order.
+
+
+
+Example Input
+Input 1:
+
+ A = [2, 2, 2, 2, 8, 2, 2, 2, 10]
+Input 2:
+
+ A = [5, 5, 5, 15]
+
+
+Example Output
+Output 1:
+
+ [2, 8, 10]
+Output 2:
+
+ [5, 15]
+
+
+Example Explanation
+Explanation 1:
+
+ Initially, array A = [2, 2, 2, 2, 8, 2, 2, 2, 10].
+ 2 is the gcd between 2 and 8, 2 and 10.
+ 8 and 10 are the gcds pair with itself.
+ Therefore, [2, 8, 10] is the original array.
+Explanation 2:
+
+ Initially, array A = [5, 5, 5, 15].
+ 5 is the gcd between 5 and 15.
+ 15 is the gcds pair with itself.
+ Therefore, [5, 15] is the original array.
+ 
+ 
+_______________________________________________________________________Solution___________________________________________________________
+
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a%b)
+class Solution:
+    # @param A : list of integers
+    # @return a list of integers
+    def solve(self, A):
+
+        """hashMap = {}
+        n = len(A)
+        for i in A:
+            if i in hashMap:
+                hashMap[i] += 1
+            else:
+                hashMap[i] = 1
+        res = []
+        #size = int(sqrt(n))
+ 
+        for key in sorted(hashMap, reverse = True):
+            if hashMap[key] > 0:
+                res.append(key)
+                for j in range(len(res)):
+
+                    x = gcd(key, res[j])
+                    if x in hashMap:
+                        hashMap[x] -= 2                
+        return res"""
+		
+		
+        n = len(A)
+        A.sort(reverse = True)
+        occurrence = [0 for i in range(A[0] + 1)]
+        for i in range(n):
+            occurrence[A[i]] += 1
+        size = int(sqrt(n))
+        res = [0 for i in range(len(A))]
+        l = 0
+        for i in range(n):
+            if (occurrence[A[i]] > 0):
+                res[l] = A[i]
+                occurrence[res[l]] -= 1
+                l += 1
+                for j in range(l):
+                    if (i != j):
+                        g = gcd(A[i], res[j])
+                        occurrence[g] -= 2
+        return res[:size]
+        
+
+_______________________________________________________________________Given_Solution___________________________________________________________
+
+
+def GCD(a,b):
+    if a==0:
+        return b
+    return GCD(b%a,a)
+
+class Solution:
+    # @param A : list of integers
+    # @return a list of integers
+    def solve(self, A):
+        A.sort(reverse = True)
+        n = len(A)
+        vec = []
+        cnt = {}
+        for i in range(n):
+            if (cnt.get(A[i]) != None and cnt[A[i]] > 0):
+                cnt[A[i]] = cnt[A[i]] - 1
+            else:
+                for j in range(len(vec)):
+                    gcd = GCD(vec[j], A[i]);
+                    if cnt.get(gcd) == None:
+                        cnt[gcd] = 2
+                    else: 
+                        cnt[gcd] = cnt[gcd] + 2
+                
+                vec.append(A[i]);
+        return vec;
