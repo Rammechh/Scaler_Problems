@@ -1,0 +1,155 @@
+Reverse pairs
+Problem Description
+
+Given an array of integers A, we call (i, j) an important reverse pair if i < j and A[i] > 2*A[j].
+Return the number of important reverse pairs in the given array A.
+
+
+
+Problem Constraints
+1 <= length of the array <= 105
+
+-2 * 109 <= A[i] <= 2 * 109
+
+
+
+Input Format
+The only argument given is the integer array A.
+
+
+
+Output Format
+Return the number of important reverse pairs in the given array A.
+
+
+
+Example Input
+Input 1:
+
+ A = [1, 3, 2, 3, 1]
+Input 2:
+
+ A = [4, 1, 2]
+
+
+Example Output
+Output 1:
+
+ 2
+Output 2:
+
+ 1
+
+
+Example Explanation
+Explanation 1:
+
+ There are two pairs which are important reverse i.e (3, 1) and (3, 1).
+Explanation 2:
+
+ There is only one pair i.e (4, 1).
+ 
+_______________________________________________________________________Given_Solution___________________________________________________________
+
+import bisect
+ans = [0]
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self, A):
+        
+        # Brute force
+        """n = len(A)
+        ans = 0
+        for i in range(n):
+            for j in range(n):
+                if (2 * A[j]) < A[i] and i < j:
+                    ans += 1
+        return ans"""
+        
+        #Optimised
+        """res = 0
+        arr = []
+        n = len(A)
+        for j in range(n):
+            index = bisect.bisect_right(arr, 2*A[j])
+            print(index)
+            res+=len(arr)-index
+            bisect.insort(arr, A[j])
+        return res"""
+        
+        # Optimised
+        if not A:
+            return 0
+        
+        return self.mergesort(A)[1]
+    
+    def mergesort(self, nums):
+        if len(nums)<=1:
+            return nums, 0
+        
+        mid = len(nums)//2
+        
+        left, countL = self.mergesort(nums[:mid])
+        right, countR = self.mergesort(nums[mid:])
+        count = countL + countR
+        
+        for r in right:
+            temp = len(left) - bisect.bisect(left, r*2)
+            if temp == 0:
+                break
+            count+=temp
+        return sorted(left+right), count
+
+_______________________________________________________________________Given_Solution___________________________________________________________
+
+def merge(a, start, mid, end):
+    n1 = mid - start + 1
+    n2 = end - mid
+    L = [0] * n1
+    R = [0] * n2
+    for i in range(n1):
+        L[i] = a[start + i]
+    for j in range(n2):
+        R[j] = a[mid + 1 + j]
+    i = 0
+    j = 0
+    for k in range(start, end + 1):
+        if j >= n2 or (i < n1 and L[i] <= R[j]):
+            a[k] = L[i]
+            i += 1
+        else:
+            a[k] = R[j]
+            j += 1
+
+def mergesort_and_count(a, start, end):
+    if start < end:
+        mid = (start + end) // 2
+        count = mergesort_and_count(a, start, mid) + mergesort_and_count(
+            a, mid + 1, end
+        )
+        j = mid + 1
+        for i in range(start, mid + 1):
+            while j <= end and a[i] > a[j] * 2:
+                j += 1
+            count += j - (mid + 1)
+        merge(a, start, mid, end)
+        return count
+    else:
+        return 0
+
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self, A):
+        n = len(A)
+        return mergesort_and_count(A, 0, n - 1)
+
+_______________________________________________________________________Approach___________________________________________________________
+
+We can use two loops and calculate the number of pairs that satisfies the condition but the time complexity for this will be O(N^2) and this will not work in worst case.
+
+So we can think of better solution i.e using merge sort.
+We will do a usual merge sort but before calling the merge function we will calculate the number of pairs by using two pointers considering that the two array are sorted individually.
+
+Likewise we will do this till the our mergesort ends i.e the array becomes sorted.
