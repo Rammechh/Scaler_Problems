@@ -1,0 +1,166 @@
+Very Large Power
+Problem Description
+
+Given two Integers A, B. You have to calculate (A ^ (B!)) % (1e9 + 7).
+
+"^" means power ,
+
+"%" means "mod", and
+
+"!" means factorial.
+
+
+
+Problem Constraints
+1 <= A, B <= 5e5
+
+
+
+Input Format
+First argument is the integer A
+
+Second argument is the integer B
+
+
+
+Output Format
+Return one integer, the answer to the problem
+
+
+
+Example Input
+Input 1:
+
+A = 1
+B = 1
+Input 2:
+
+A = 2
+B = 2
+
+
+Example Output
+Output 1:
+
+1
+Output 2:
+
+4
+
+
+Example Explanation
+Explanation 1:
+
+ 1! = 1. Hence 1^1 = 1.
+Explanation 2:
+
+ 2! = 2. Hence 2^2 = 4.
+
+_______________________________________________________________________Solution___________________________________________________________
+
+class Solution:
+    # @param A : integer
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        
+        base = 1
+        mod = (10 ** 9) + 7
+        
+        for i in range(1, B+1):
+            base = (base * i) % (mod-1)
+        return (pow(A, base, mod))
+    
+    def pow(A, B, mod):
+        #A = A % mod
+        while B > 0:
+            
+            if A & 1 == 1:
+                res = (res * A) % mod
+            
+            B = B >> 1
+            A = (A * A) % mod
+        
+		
+		
+		# try
+        """def fact(n):
+            if n == 0 or n == 1:
+                return 1
+            else:
+                return n * fact(n - 1)"""
+                
+        """def fact(n):
+            res = 1
+            for i in range(2, n+1):
+                res *= i
+            return res
+            
+        def power(x, y, p): 
+    
+            res = 1        # Initialize result 
+            x = x % p      # Update x if it is more than or equal to p 
+  
+            while (y > 0): 
+                # If y is odd, multiply x with result 
+                if (y & 1): 
+                    res = (res * x) % p 
+   
+                y = y >> 1 
+                x = (x * x) % p
+            return res
+            
+        def power(a, b, m):
+            
+            if b == 0:
+                return 1
+            if b % 2 == 0:
+                return power((a*a) % m, (b//2)  , m)
+            else:
+                return a * power((a*a) % m, (b-1)//2 , m)
+         
+        Pow = fact(B)
+        m = (10 ** 9) + 7
+        return (power(A , Pow, m)) % m"""
+_______________________________________________________________________Given_Solution___________________________________________________________
+
+def power(x, y, p) : 
+    res = 1     # Initialize result 
+  
+    # Update x if it is more 
+    # than or equal to p 
+    x = x % p  
+      
+    if (x == 0) : 
+        return 0
+  
+    while (y > 0) : 
+          
+        # If y is odd, multiply 
+        # x with result 
+        if ((y & 1) == 1) : 
+            res = (res * x) % p 
+  
+        # y must be even now 
+        y = y >> 1      # y = y/2 
+        x = (x * x) % p 
+          
+    return res
+class Solution:
+    # @param A : integer
+    # @param B : integer
+    # @return an integer
+    
+    def solve(self, A, B):
+        fact = 1
+        mod = 1000000007
+        for i in range(2, B + 1):
+            fact = (fact * i) % (mod - 1)
+        return power(A, fact, mod)
+________________________________________________________________________Approach___________________________________________________________
+
+This Problem is very simple if you know Fermat’s Little Theorem.
+
+Basic Approch to solve this problem is to find factorial of B by taking mod with (P-1), here P is a prime. In this problem 10007 is also a prime.
+
+After calculating factorial of B, you can calculate A ^ B!, by simply taking mod with P.
