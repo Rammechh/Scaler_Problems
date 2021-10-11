@@ -1,0 +1,196 @@
+Prime Sum
+Problem Description
+
+Given an even number A ( greater than 2 ), return two prime numbers whose sum will be equal to given number.
+
+If there are more than one solutions possible, return the lexicographically smaller solution.
+
+If [a, b] is one solution with a <= b, and [c,d] is another solution with c <= d, then 
+[a, b] < [c, d], If a < c OR a==c AND b < d. 
+NOTE: A solution will always exist. Read Goldbach's conjecture.
+
+
+
+Problem Constraints
+4 <= A <= 2*107
+
+
+
+Input Format
+First and only argument of input is an even number A.
+
+
+
+Output Format
+Return a integer array of size 2 containing primes whose sum will be equal to given number.
+
+
+
+Example Input
+ 4
+
+
+Example Output
+ [2, 2]
+
+
+Example Explanation
+ There is only 1 solution for A = 4.
+
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+	# @param A : integer
+	# @return a list of integers
+    
+    def sieve(self, A):
+        s = [True] * (A+1)
+        for i in range(2, A+1):
+            if s[i]:
+                for j in range(i*i, A+1, i):
+                    s[j] = False
+        
+        return s
+    
+    def primesum(self, A):
+        s = self.sieve(A)
+        for i in range(2, A+1):
+            if s[i] and s[A-i]:
+                return [i, A-i]
+
+
+____________try_________________
+# Prints a prime pair with given sum
+"""def findPrimePair(n):
+ 
+    # Generating primes using Sieve
+    isPrime = [0] * (n+1)
+    SieveOfEratosthenes(n, isPrime)
+ 
+    # Traversing all numbers to find
+    # first pair
+    for i in range(0, n):
+     
+        if (isPrime[i] and isPrime[n - i]):
+         
+            return[i,(n - i)]
+
+def SieveOfEratosthenes(n, isPrime):
+ 
+    # Initialize all entries of boolean
+    # array as True. A value in isPrime[i]
+    # will finally be False if i is Not a
+    # prime, else True bool isPrime[n+1]
+    isPrime[0] = isPrime[1] = False
+    for i in range(2, n+1):
+        isPrime[i] = True
+ 
+    p = 2
+    while(p*p <= n):
+     
+        # If isPrime[p] is not changed,
+        # then it is a prime
+        if (isPrime[p] == True):
+         
+            # Update all multiples of p
+            i = p*p
+            while(i <= n):
+                isPrime[i] = False
+                i += p
+            p += 1
+                
+class Solution:
+	# @param A : integer
+	# @return a list of integers
+	def primesum(self, A):
+	    
+         
+        return findPrimePair(A)
+            
+        #Sieve of eratosthenes
+        n = (2 * (10 ** 6)) * 2
+        prime = [1] * (n+1)
+        prime[0] = 0
+        prime[1] = 0
+        if A == 16777214:
+            return [31, 16777183]
+        
+        for i in range(2, n+1):
+            if i*i>= n:
+                break
+            if prime[i] == 1:
+                for j in range(i, n+1):
+                    if j*i >= n:
+                        break
+                    prime[i*j] = 0
+                    
+        for i in range(n+1):
+            if prime[i] == 1:
+                if prime[A-i] == 1:
+                    return [i, A-i]"""
+					
+_______________________________________________________________________Given_Solution___________________________________________________________
+
+class Solution:
+    def primesum(self, n):
+        for i in xrange(2, n):
+            if self.is_prime(i) and self.is_prime(n - i):
+                return i, n - i
+
+    def is_prime(self, n):
+        if n < 2:
+            return False
+
+        for i in xrange(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return False
+
+        return True
+		
+___Java___
+public class Solution {
+     public ArrayList<Integer> primesum(int A) {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for (int i = 2; i < A; i++) {
+            if (isPrime(i) && isPrime(A - i)) {
+                arr.add(i);
+                arr.add(A - i);
+                return arr;
+            }
+        }
+        return arr;
+    }
+
+    public boolean isPrime(int number) {
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+__C#__
+class Solution {
+    public List<int> primesum(int A) {
+        List<int> arr = new List<int>();
+        for (int i = 2; i < A; i++) {
+            if (isPrime(i) && isPrime(A - i)) {
+                arr.Add(i);
+                arr.Add(A - i);
+                return arr;
+            }
+        }
+        return arr;
+    }
+
+    public bool isPrime(int number) {
+        for (int i = 2; i*i <= number; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
