@@ -1,0 +1,104 @@
+Single Number II
+Problem Description
+
+Given an array of integers, every element appears thrice except for one which occurs once.
+
+Find that element which does not appear thrice.
+
+NOTE: Your algorithm should have a linear runtime complexity.
+
+Could you implement it without using extra memory?
+
+
+
+
+Problem Constraints
+2 <= A <= 5*106
+
+0 <= A <= INTMAX
+
+
+
+Input Format
+First and only argument of input contains an integer array A.
+
+
+
+Output Format
+Return a single integer.
+
+
+
+Example Input
+Input 1:
+
+ A = [1, 2, 4, 3, 3, 2, 2, 3, 1, 1]
+Input 2:
+
+ A = [0, 0, 0, 1]
+
+
+Example Output
+Output 1:
+
+ 4
+Output 2:
+
+ 1
+
+
+Example Explanation
+Explanation 1:
+
+ 4 occurs exactly once in Input 1.
+ 1 occurs exactly once in Input 2.
+ 
+_______________________________________________________________________Solution___________________________________________________________
+
+class Solution:
+	# @param A : tuple of integers
+	# @return an integer
+	def singleNumber(self, A):
+	    # Brute force
+        """for i in range(len(A)):
+            if A.count(A[i]) == 1:
+                return A[i]"""
+                
+        #Optimised
+        res=0
+        for i in range(0,32):
+            sum=0
+            for x in A:
+                sum+=(1<<i)&x
+            if sum%3:
+                #res|=1<<i
+                res += (2 ** i)
+        return res if res < 2**31 else res-2**32
+        """res = int((3*sum(set(A)) - sum(A))/2) 
+        return res if res < 2**31 else res-2**32"""
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+    # @param A : tuple of integers
+    # @return an integer
+    def singleNumber(self, A):
+        ones = 0
+        twos = 0
+        common_mask = 0
+        for a in A:
+            twos |= ones & a
+            ones ^= a
+            common_mask = ~(ones & twos)
+            ones &= common_mask
+            twos &= common_mask
+        return ones
+_______________________________________________________________________Approach___________________________________________________________
+Having noticed that if X has 1 in that position, we will have 3x+1 number of 1s in that position. If X has 0 in that position, we will have 3x+1 number of 0 in that position.
+
+A straightforward implementation is to use an array of size 32 to keep track of the total count of ith bit.
+
+We can improve this based on the previous solution using three bitmask variables:
+
+ones as a bitmask to represent the ith bit had appeared once.
+twos as a bitmask to represent the ith bit had appeared twice.
+threes as a bitmask to represent the ith bit had appeared three times.
+When the ith bit had appeared for the third time, clear the ith bit of both ones and twos to 0. The final answer will be the value of ones.
