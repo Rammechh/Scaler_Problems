@@ -2,7 +2,7 @@
 Table of Contents
 =================
 
-  * [Day56 Hashing1](#Day56 Hashing1)
+  * [Day 56 Hashing1](#day56 Hashing1)
   * [Screenshot](#screenshot)
   * [Installation](#installation)
         * [OR using Pathogen:](#or-using-pathogen)
