@@ -3,7 +3,7 @@ Table of Contents
 =================
 
   * [Day56_Hashing1](#day56_Hashing1)
-         * Sub-array with 0 sum
+     * Sub-array with 0 sum
   * [Screenshot](#screenshot)
   * [Installation](#installation)
         * [OR using Pathogen:](#or-using-pathogen)
