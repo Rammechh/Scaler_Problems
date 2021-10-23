@@ -1,3 +1,4 @@
+<!--ts-->
 Table of Contents
 =================
 
@@ -7,6 +8,7 @@ Table of Contents
         * [OR using Pathogen:](#or-using-pathogen)
         * [OR using Vundle:](#or-using-vundle)
   * [License](#license)
+<!--te-->
 
 # Day56 Hashing1
  * Sub-array with 0 sum
