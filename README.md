@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/ekalinin/github-markdown-toc.svg?branch=master)](https://travis-ci.org/ekalinin/github-markdown-toc)
 <!--ts-->
 Table of Contents
 =================
