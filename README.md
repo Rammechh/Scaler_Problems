@@ -8,6 +8,9 @@ Table of Contents
 
 Day34_Recursion
 =================
+### 4) Combinations:
+ + For every element, you have 2 options. 
+ + You may either include the element in your subset or you will not include the element in your subset. Make the call for both the cases.Make sure the return array contain the combinations in sorted order.
 
 Day56_Hashing1
 =================
