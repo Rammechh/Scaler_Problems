@@ -25,4 +25,4 @@ Day56_Hashing1
  + If curr -1 not in A it cannot be the start 
  + So, we can proceed and run a loop to check if consecutive curr + 1 in A
  + Inner loop runs only once for every element =>TC = O(n+n) = O(n)
- + (tutor)[https://pythontutor.com/visualize.html#mode=display]
+ + [tutor](https://pythontutor.com/visualize.html#mode=display)
