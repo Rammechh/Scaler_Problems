@@ -1,0 +1,110 @@
+
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+	# @param A : tuple of integers
+	# @return an integer
+	def longestConsecutive(self, A):
+	    """nums=set(A)
+        longest=0
+        for x in nums:
+            if x-1 not in nums:
+                y=x+1
+                while y in nums:
+                    y+=1
+                longest=max(longest,y-x)
+        return longest"""
+        
+        # Brute Force
+	    """A = list(set(A))
+        A.sort()
+        Max = 1
+        for i in range(len(A) -1):
+            Count = 1
+            while i < len(A)-1 and (A[i+1] - A[i] == 1)  :
+                Count += 1
+                Max = max(Count, Max)
+                i+= 1
+        
+        return Max"""
+        
+        # Optimized
+        
+        # If curr -1 not in A it cannot be the start 
+        # So, we can proceed and run a loop to check if consecutive curr + 1 in A
+        # Inner loop runs only once for every element =>TC = O(n+n) = O(n)
+        
+        A = set(A)
+        Max = 0
+        for num in A:
+            if num-1 not in A:
+                x = num + 1
+                Count = 1
+                while x in A:
+                    x += 1
+                    Count += 1
+                #Max = max(Max, x-num)
+                Max = max(Max, Count)
+        return Max
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+	# @param A : tuple of integers
+	# @return an integer
+	def longestConsecutive(self, A):
+        hMap = {}
+        maxCount = 0
+        for ele in A:
+            if(hMap.get(ele) == None):
+                lCount = 0
+                rCount = 0
+                if(hMap.get(ele - 1) != None):
+                    lCount = hMap[ele - 1]
+                if(hMap.get(ele + 1) != None):
+                    rCount = hMap[ele + 1]
+                hMap[ele] = lCount + 1 + rCount
+                hMap[ele - lCount] = hMap[ele]
+                hMap[ele + rCount] = hMap[ele]
+                if(maxCount < lCount + 1 + rCount):
+                    maxCount = lCount + 1 + rCount
+        return maxCount
+		
+--Java--
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int longestConsecutive(final int[] A) {
+        HashMap < Integer, Integer > hMap = new HashMap < Integer, Integer > ();
+        int maxCount = 0;
+        for (int ele: A) {
+            if (hMap.get(ele) == null) {
+                int lCount = 0;
+                int rCount = 0;
+                if (hMap.get(ele - 1) != null) {
+                    lCount = hMap.get(ele - 1);
+                }
+                if (hMap.get(ele + 1) != null) {
+                    rCount = hMap.get(ele + 1);
+                }
+                hMap.put(ele, lCount + 1 + rCount);
+                hMap.put(ele - lCount, hMap.get(ele));
+                hMap.put(ele + rCount, hMap.get(ele));
+                if (maxCount < lCount + 1 + rCount) 
+                    maxCount = lCount + 1 + rCount;
+            }
+        }
+        return maxCount;
+    }
+}
+
+_______________________________________________________________________Approach___________________________________________________________
+One solution is to sort the elements and then find longest subarray with consecutive elements. But this will take O(NlogN).
+
+Efficient way is to use hashing.
+
+First create an empty hash and for each element we insert, update the hash table and maxCount.
+
+We only insert the element which are not yet inserted.
+Calculate the lcount i.e the longest consecutive element till the current element - 1.
+Calculate the rcount i.e the longest consecutive element from the current element + 1.
+
+Update hMap[ele] (current element) = lcount + 1 + rcount.
+
+Also update the maxCount.
