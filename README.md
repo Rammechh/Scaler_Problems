@@ -7,6 +7,7 @@ Table of Contents
   * [Day56_Hashing1](#day56_Hashing1)
      * Sub-array with 0 sum
      * Longest Consecutive Sequence
+     * Shaggy and Distance
 <!--te-->
 
 Day34_Recursion
@@ -25,3 +26,7 @@ Day56_Hashing1
  + If curr -1 not in A it cannot be the start 
  + So, we can proceed and run a loop to check if consecutive curr + 1 in A
  + Inner loop runs only once for every element =>TC = O(n+n) = O(n)
+ ### 1) Shaggy and Distance
+ + Since we are checking for same element again we can use hashmap to check if element already in hashMap
+ + else we update the key, value = ele, index
+ + if present in hashMap we subtract the curr index with stored index (hashMap.get(ele))
