@@ -3,6 +3,7 @@ Table of Contents
 =================
   * [Day34_Recursion](#Day34_Recursion)
      * Combinations
+     * Letter Phone
   * [Day56_Hashing1](#day56_Hashing1)
      * Sub-array with 0 sum
 <!--te-->
@@ -12,6 +13,8 @@ Day34_Recursion
 ### 4) Combinations:
  + For every element, you have 2 options. 
  + You may either include the element in your subset or you will not include the element in your subset. Make the call for both the cases.Make sure the return array contain the combinations in sorted order.
+### 1) Letter Phone
+ + For every integer, you have 1 or 3 or 4 options. Try appending every letter in the option to the string and move forward. For digit 0 and 1: there is only one possibility. For digit 7 and 9: there are 4 possibility. For all others: there are 3 possibility.
 
 Day56_Hashing1
 =================
