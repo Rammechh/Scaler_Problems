@@ -20,7 +20,7 @@ Day34_Recursion
 ### 1) Letter Phone
  + For every integer, you have 1 or 3 or 4 options. Try appending every letter in the option to the string and move forward. For digit 0 and 1: there is only one possibility. For digit 7 and 9: there are 4 possibility. For all others: there are 3 possibility.
 
-Day 35_BackTracking
+Day35_BackTracking
 ================
 
 ### HW3) Combination Sum II
