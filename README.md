@@ -8,6 +8,8 @@ Table of Contents
      * Sub-array with 0 sum
      * Longest Consecutive Sequence
      * Shaggy and Distance
+  * [Day35_BackTracking](#day35_BackTracking)
+     * Combination Sum II
 <!--te-->
 
 Day34_Recursion
@@ -17,6 +19,14 @@ Day34_Recursion
  + You may either include the element in your subset or you will not include the element in your subset. Make the call for both the cases.Make sure the return array contain the combinations in sorted order.
 ### 1) Letter Phone
  + For every integer, you have 1 or 3 or 4 options. Try appending every letter in the option to the string and move forward. For digit 0 and 1: there is only one possibility. For digit 7 and 9: there are 4 possibility. For all others: there are 3 possibility.
+
+Day 35_BackTracking
+================
+
+### HW3) Combination Sum II
+ + Sort the given array
+ + Generate all combinations (Subsequence) 
+ + Check if sum of generated subseq is equal to given sum and subseq not in ans (check for duplicates in return list)
 
 Day56_Hashing1
 =================
