@@ -11,7 +11,7 @@ Table of Contents
      * Longest Consecutive Sequence
      * Shaggy and Distance
    * [Day55_TwoPointers](#Day55_TwoPointers)
-     * 
+     * Another Count Rectangles
 
 <!--te-->
 
