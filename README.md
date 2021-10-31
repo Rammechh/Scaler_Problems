@@ -6,12 +6,13 @@ Table of Contents
      * Letter Phone
   * [Day35_BackTracking](#Day35_BackTracking)
      * Combination Sum II
+  * [Day55_TwoPointers](#Day55_TwoPointers)
+     * Another Count Rectangles
   * [Day56_Hashing1](#day56_Hashing1)
      * Sub-array with 0 sum
      * Longest Consecutive Sequence
      * Shaggy and Distance
-   * [Day55_TwoPointers](#Day55_TwoPointers)
-     * Another Count Rectangles
+
 
 <!--te-->
 
