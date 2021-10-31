@@ -4,12 +4,15 @@ Table of Contents
   * [Day34_Recursion](#Day34_Recursion)
      * Combinations
      * Letter Phone
+  * [Day35_BackTracking](#Day35_BackTracking)
+     * Combination Sum II
   * [Day56_Hashing1](#day56_Hashing1)
      * Sub-array with 0 sum
      * Longest Consecutive Sequence
      * Shaggy and Distance
-  * [Day35_BackTracking](#Day35_BackTracking)
-     * Combination Sum II
+   * [Day55_TwoPointers](#Day55_TwoPointers)
+     * 
+
 <!--te-->
 
 Day34_Recursion
@@ -27,6 +30,14 @@ Day35_BackTracking
  + Sort the given array
  + Generate all combinations (Subsequence) 
  + Check if sum of generated subseq is equal to given sum and subseq not in ans (check for duplicates in return list)
+
+Day55_TwoPointers
+================
+
+### 6) Another Count Rectangles
+ + Since given array is in sorted order we multiply 1st and last element if ans < B then add all elements before that
+ + if ans > B -> j-- 
+ + if ans < B: i++
 
 Day56_Hashing1
 =================
