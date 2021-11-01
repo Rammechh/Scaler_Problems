@@ -12,6 +12,8 @@ Table of Contents
      * Sub-array with 0 sum
      * Longest Consecutive Sequence
      * Shaggy and Distance
+  * [Day58_Hashing2](#day58_Hashing2)
+     * Count Rectangles
 
 
 <!--te-->
@@ -54,4 +56,12 @@ Day56_Hashing1
  + If curr -1 not in A it cannot be the start 
  + So, we can proceed and run a loop to check if consecutive curr + 1 in A
  + Inner loop runs only once for every element =>TC = O(n+n) = O(n)
+
+Day58_Hashing2
+=================
+### 3) Count Rectangles
+ + Run two loops by fixing the two diagonally opposite ends of the rectangle. We have fixed the one diagonal of the rectangle and two corner points, from this we can easily find the other two points of the rectangle.
+ + Suppose we have two diagonally opposite points: (x1, y1) and (x2, y2). Then the other two points of the rectangle must be (x1, y2) and (x2, y1).
+ + We just have to check if these two points (x1, y2) and (x2, y1) are given or not. If present increment the answer.
+ + For every rectangle, we have incremented the answer twice because every rectangle has two diagonals. So, our real answer will be half of the answer obtained after running two loops.
  
