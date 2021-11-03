@@ -6,7 +6,7 @@ Table of Contents
   * [Day34_Recursion](#Day34_Recursion)
      * Combinations
      * Letter Phone
-  * [Day35_BackTracking](#Day35_BackTracking)
+  + [Day35_BackTracking](#Day35_BackTracking)
      * Combination Sum II
   * [Day55_TwoPointers](#Day55_TwoPointers)
      * Another Count Rectangles
