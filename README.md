@@ -1,7 +1,7 @@
 <!--ts-->
 Table of Contents
 =================
-  * [Day32_Maths_Combinatorics](#Day32_Combinatorics)
+  * [Day32_Maths_Combinatorics](#Day32_Maths_Combinatorics)
      * Sorted Permutation Rank with Repeats
   * [Day34_Recursion](#Day34_Recursion)
      * Combinations
