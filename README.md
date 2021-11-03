@@ -1,22 +1,22 @@
 <!--ts-->
 Table of Contents
 =================
-  * [Day32_Maths_Combinatorics](#Day32_Maths_Combinatorics)
+  + [Day32_Maths_Combinatorics](#Day32_Maths_Combinatorics)
      * Sorted Permutation Rank with Repeats
-  * [Day34_Recursion](#Day34_Recursion)
+  + [Day34_Recursion](#Day34_Recursion)
      * Combinations
      * Letter Phone
   + [Day35_BackTracking](#Day35_BackTracking)
      * Combination Sum II
-  * [Day55_TwoPointers](#Day55_TwoPointers)
+  + [Day55_TwoPointers](#Day55_TwoPointers)
      * Another Count Rectangles
-  * [Day56_Hashing1](#day56_Hashing1)
+  + [Day56_Hashing1](#day56_Hashing1)
      * Sub-array with 0 sum
      * Longest Consecutive Sequence
      * Shaggy and Distance
-  * [Day58_Hashing2](#day58_Hashing2)
+  + [Day58_Hashing2](#day58_Hashing2)
      * Count Rectangles
-  * [Day61_Stacks](#Day61_Stacks)
+  + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
 
    
