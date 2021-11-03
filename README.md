@@ -1,6 +1,8 @@
 <!--ts-->
 Table of Contents
 =================
+  * [Day32_Maths_Combinatorics](#Day32_Combinatorics)
+     * Sorted Permutation Rank with Repeats
   * [Day34_Recursion](#Day34_Recursion)
      * Combinations
      * Letter Phone
@@ -14,9 +16,21 @@ Table of Contents
      * Shaggy and Distance
   * [Day58_Hashing2](#day58_Hashing2)
      * Count Rectangles
+   
 
 
 <!--te-->
+
+Day32_Maths_Combinatorics
+=================
+### 1)Sorted Permutation Rank with Repeats
+ + Take counter of give string
+ + for i -> n-1
+   * take denominator count -> dem = 1 for k in counter.values(): dem * = factorial(k) // Since we divide by their fac of common characters in combinations, then reduce that counter value
+   * Now, for every charc -> for j in counter.keys(): if ord(A[i]) > ord(j) (finding the smaller characters on right than the current one, since it will come before in order) 
+letter rank += 1 
+       * rank += (letter_rank * self.fact(n-i-1) // denominator)
+   * return the rank after all pass
 
 Day34_Recursion
 =================
