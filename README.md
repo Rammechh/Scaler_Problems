@@ -16,6 +16,9 @@ Table of Contents
      * Shaggy and Distance
   * [Day58_Hashing2](#day58_Hashing2)
      * Count Rectangles
+  * [Day61_Stacks](#Day61_Stacks)
+     * Count Rectangles
+
    
 
 
@@ -79,3 +82,7 @@ Day58_Hashing2
  + We just have to check if these two points (x1, y2) and (x2, y1) are given or not. If present increment the answer.
  + For every rectangle, we have incremented the answer twice because every rectangle has two diagonals. So, our real answer will be half of the answer obtained after running two loops.
  
+Day61_Stacks
+================
+### 1) Min Stack
+ + push(x) -- Push element x onto stack. pop() -- Removes the element on top of the stack. top() -- Get the top element. getMin() -- Retrieve the minimum element in the stack.(refer attached)
