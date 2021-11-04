@@ -10,6 +10,7 @@ Table of Contents
      * Combination Sum II
   + [Day55_TwoPointers](#Day55_TwoPointers)
      * Another Count Rectangles
+     * Pairs with Given Difference
   + [Day56_Hashing1](#day56_Hashing1)
      * Sub-array with 0 sum
      * Longest Consecutive Sequence
@@ -58,6 +59,9 @@ Day55_TwoPointers
  + Since given array is in sorted order we multiply 1st and last element if ans < B then add all elements before that
  + if ans > B -> j-- 
  + if ans < B: i++
+### 2) Pairs with Given Difference
+  + i, j = 0, 1 while (i< n && j < n): find diff and add those pair in set
+  + len(set) will give ans
 
 Day56_Hashing1
 =================
