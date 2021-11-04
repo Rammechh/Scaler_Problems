@@ -1,0 +1,191 @@
+Pairs with Given Difference
+Problem Description
+
+Given an one-dimensional integer array A of size N and an integer B.
+
+Count all distinct pairs with difference equal to B.
+
+Here a pair is defined as an integer pair (x, y), where x and y are both numbers in the array and their absolute difference is B.
+
+
+
+Problem Constraints
+1 <= N <= 104
+
+0 <= A[i], B <= 105
+
+
+
+Input Format
+First argument is an one-dimensional integer array A of size N.
+
+Second argument is an integer B.
+
+
+
+Output Format
+Return an integer denoting the count of all distinct pairs with difference equal to B.
+
+
+
+Example Input
+Input 1:
+
+ A = [1, 5, 3, 4, 2]
+ B = 3
+Input 2:
+
+ A = [8, 12, 16, 4, 0, 20]
+ B = 4
+Input 3:
+
+ A = [1, 1, 1, 2, 2]
+ B = 0
+
+
+Example Output
+Output 1:
+
+ 2
+Output 2:
+
+ 5
+Output 3:
+
+ 2
+
+
+Example Explanation
+Explanation 1:
+
+ There are 2 unique pairs with difference 3, the pairs are {1, 4} and {5, 2} 
+Explanation 2:
+
+ There are 5 unique pairs with difference 4, the pairs are {0, 4}, {4, 8}, {8, 12}, {12, 16} and {16, 20} 
+Explanation 3:
+
+ There are 2 unique pairs with difference 0, the pairs are {1, 1} and {2, 2}.
+ 
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        n = len(A)
+        unique = set()
+        if not A:
+            return 0
+            
+        A.sort()
+        i, j =0, 0
+        Count = 0
+        
+        while(i < n and j < n):
+            k = A[j] - A[i]
+            if (k == B and i != j):
+                unique.add((A[j], A[i]))
+                j += 1
+            elif k < B:
+                j += 1
+            else:
+                i += 1
+        return len(unique)
+        
+        """size = len(arr)
+        arr.sort()
+        # Initialize positions of two elements
+        i,j = 0,1
+        Count = 0
+ 
+        # Search for a pair
+        while i < size and j < size:
+ 
+            if i != j and arr[j]-arr[i] == k:
+                Count += 1
+                
+                i += 1
+                j += 1
+ 
+            elif arr[j] - arr[i] < k:
+                j+=1
+            else:
+                i+=1
+        return Count"""
+        """A.sort()
+        res = 0
+        i, j = 0, 0
+        while j < len(A):
+            Sum = abs(A[j] - A[i])
+            
+            if Sum == B:
+                res += 1
+                i += 1
+                j += 1
+                
+            elif Sum > B:
+                i += 1
+            else:
+                j += 1
+        return res"""
+_______________________________________________________________________Given_Solution___________________________________________________________
+def findPairs(nums, k):
+    # special case
+    if k == 0:
+        d = {}
+        for e in nums:
+            if e not in d:
+                d[e] = 1
+            else:
+                d[e] += 1
+        return len([v for v in d.values() if v >= 2])
+
+    d = {}
+    s = set()
+    for e in nums:
+        if e not in d:
+            d[e] =class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        from collections import Counter
+
+        count = Counter(A)
+        cnt = 0
+        for val in A:
+            cnt += count[B - val]
+            if B - val == val:
+                cnt -= 1
+
+        return int(cnt / 2) % (10 ** 9 + 7)
+
+    for key in d.keys():
+        up, down = key + k, key - k
+        if up in d:
+            s.add((up, key))
+        if down in d:
+            s.add((key, down))
+    # print(s)
+    return len(s)
+
+
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        return findPairs(A, B)
+
+_______________________________________________________________________Approach___________________________________________________________
+Hashing)
+We can use hashing to achieve the average time complexity as O(n) for many cases.
+1) Initialize count as 0.
+2) Insert all elements into hashmap maintaing the occurences of each element.
+3) If B==0 then if then increment count for those elements whose occurences are greater than 2 and return
+4) If B!=0 then For each element in the array A
+a) Look for A[i] + B in the hash map, if found then increment count and add this pair to set.
+b) Look for A[i] - B in the hash map, if found then increment count and add this pair to set.
+5) Return size of set.
+
+Time Complexity: O(nlogn)
