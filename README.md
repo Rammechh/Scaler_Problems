@@ -17,6 +17,7 @@ Table of Contents
      * Shaggy and Distance
   + [Day58_Hashing2](#day58_Hashing2)
      * Count Rectangles
+     * Replicating Substring
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
      * Sort stack using another stack
@@ -82,6 +83,8 @@ Day56_Hashing1
 
 Day58_Hashing2
 =================
+### 1) Replicating Substring
+  + Take Counter of given string. check if all values in Counter % A == 0, if not return -1 
 ### 3) Count Rectangles
  + Run two loops by fixing the two diagonally opposite ends of the rectangle. We have fixed the one diagonal of the rectangle and two corner points, from this we can easily find the other two points of the rectangle.
  + Suppose we have two diagonally opposite points: (x1, y1) and (x2, y2). Then the other two points of the rectangle must be (x1, y2) and (x2, y1).
