@@ -20,6 +20,7 @@ Table of Contents
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
      * Sort stack using another stack
+     * Passing game
 
    
 
@@ -93,3 +94,5 @@ Day61_Stacks
  + push(x) -- Push element x onto stack. pop() -- Removes the element on top of the stack. top() -- Get the top element. getMin() -- Retrieve the minimum element in the stack.(refer attached)
 ### 2) Sort stack using another stack
   + Create a temporary stack say B. While input stack is not empty: 1. pop an element from input stack calls it x. 2. while the temporary stack is not empty and top of the temporary stack is greater than x pop from the temporary stack and push it into input stack. 3. push x in the temporary stack. The sorted numbers are in the temporary stack.
+### 4) Passing game
+  + Push the new id in the stack to keep track of the latest player who has the ball. Now you should pass the ball to the previous player who forwarded you the ball, so you can easily pop the last player from the stack.
