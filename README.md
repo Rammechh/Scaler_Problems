@@ -19,6 +19,7 @@ Table of Contents
      * Count Rectangles
      * Replicating Substring
      * Count Right Triangles
+     * Points on same line
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
      * Sort stack using another stack
@@ -86,6 +87,8 @@ Day58_Hashing2
 =================
 ### S1)1) Replicating Substring
   + Take Counter of given string. check if all values in Counter % A == 0, if not return -1
+### 1) Points on same line
+  + Refer attached doc (not practised)
 ### 2) Count Right Triangles
   + Try fixing each point as the intersection of perpendicular and base and try finding other points. Once it is fixed, for the other two points, one point will share the same x-coordinate and the other point will share the same y-coordinate with the selected point. For points sharing same x or y coordinate we can use map to store the points.
   + Mx and My are the maps (a= Mx[A[i]] & b= My[B[i]] ) Count += (a-1) * (b-1) will fetch the ans
