@@ -18,6 +18,7 @@ Table of Contents
   + [Day58_Hashing2](#day58_Hashing2)
      * Count Rectangles
      * Replicating Substring
+     * Count Right Triangles
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
      * Sort stack using another stack
@@ -84,7 +85,10 @@ Day56_Hashing1
 Day58_Hashing2
 =================
 ### S1)1) Replicating Substring
-  + Take Counter of given string. check if all values in Counter % A == 0, if not return -1 
+  + Take Counter of given string. check if all values in Counter % A == 0, if not return -1
+### 2) Count Right Triangles
+  + Try fixing each point as the intersection of perpendicular and base and try finding other points. Once it is fixed, for the other two points, one point will share the same x-coordinate and the other point will share the same y-coordinate with the selected point. For points sharing same x or y coordinate we can use map to store the points.
+  + Mx and My are the maps (a= Mx[A[i]] & b= My[B[i]] ) Count += (a-1) * (b-1) will fetch the ans
 ### 3) Count Rectangles
  + Run two loops by fixing the two diagonally opposite ends of the rectangle. We have fixed the one diagonal of the rectangle and two corner points, from this we can easily find the other two points of the rectangle.
  + Suppose we have two diagonally opposite points: (x1, y1) and (x2, y2). Then the other two points of the rectangle must be (x1, y2) and (x2, y1).
