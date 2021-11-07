@@ -1,0 +1,152 @@
+Points on same line
+Problem Description
+
+Given two array of integers A and B describing a pair of (A[i], B[i]) coordinates in 2D plane. A[i] describe x coordinates of the ith point in 2D plane whereas B[i] describes the y-coordinate of the ith point in 2D plane.
+
+Find and return the maximum number of points which lie on the same line.
+
+
+
+Problem Constraints
+1 <= (length of the array A = length of array B) <= 1000
+
+-105 <= A[i], B[i] <= 105
+
+
+
+Input Format
+First argument is an integer array A.
+Second argument is an integer array B.
+
+
+
+Output Format
+Return the maximum number of points which lie on the same line.
+
+
+
+Example Input
+Input 1:
+
+ A = [-1, 0, 1, 2, 3, 3]
+ B = [1, 0, 1, 2, 3, 4]
+Input 2:
+
+ A = [3, 1, 4, 5, 7, -9, -8, 6]
+ B = [4, -8, -3, -2, -1, 5, 7, -4]
+
+
+Example Output
+Output 1:
+
+ 4
+Output 2:
+
+ 2
+
+
+Example Explanation
+Explanation 1:
+
+ The maximum number of point which lie on same line are 4, those points are {0, 0}, {1, 1}, {2, 2}, {3, 3}.
+Explanation 2:
+
+ Any 2 points lie on a same line.
+ 
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+    # @param A : list of integers
+    # @param B : list of integers
+    # @return an integer
+    def solve(self, A, B):
+        if len(A) < 3:
+                return len(A)
+        global_max = 0
+        for i in range(len(A)):
+            # Keeping track of slopes for a given fixed point
+            local_slope_dict = {}
+            # Each point by itself is a vertical line.
+            vertical = 1
+            # overlapping points are added in the end in additional to local max.
+            overlap = 0
+                
+            for j in range(i+1, len(A)):
+                   
+                if A[i] == A[j] and B[i]==B[j]:
+                    overlap += 1
+                elif A[i] == A[j]:
+                    vertical += 1
+                else:
+                    # In python 2 make sure to use float for high precision
+                    # and to avoid to rounding down.
+                    slope = (B[i]-B[j])/float(A[i]-A[j])
+                    if slope in local_slope_dict:
+                        local_slope_dict[slope] = local_slope_dict[slope] + 1
+                    else:
+                        local_slope_dict[slope] = 2
+                
+            local_max = 0
+                
+            for x in local_slope_dict.values():
+                local_max = max(local_max,x)
+                
+            local_max = max(local_max,vertical)
+            # Add any overlapping points
+            local_max = local_max + overlap
+                
+            global_max = max(local_max,global_max)
+                
+        return global_max
+_______________________________________________________________________Given_Solution___________________________________________________________
+def gcd(x, y):
+    while y:
+        x, y = y, x % y
+    return x
+
+def maxpointsonsameline(x, y):
+    n = len(x)
+    if n < 3:
+        return n
+    ans = 0
+    curmax = 0
+    overlap = 0
+    vertical = 0
+    for i in range(n):
+        mp = {}
+        curmax = 0
+        overlap = 0
+        vertical = 0
+        for j in range(i + 1, n):
+            if x[i] == x[j] and y[i] == y[j]:
+                overlap += 1
+            elif x[i] == x[j]:
+                vertical += 1
+            else:
+                xdiff = x[j] - x[i]
+                ydiff = y[j] - y[i]
+                z = gcd(xdiff, ydiff)
+                xdiff /= z
+                ydiff /= z
+                if mp.get((xdiff, ydiff)) == None:
+                    mp[(xdiff, ydiff)] = 1
+                else:
+                    mp[(xdiff, ydiff)] += 1
+                curmax = max(curmax, mp[(xdiff, ydiff)])
+            curmax = max(curmax, vertical)
+        ans = max(ans, curmax + overlap + 1)
+    return ans
+
+class Solution:
+    # @param A : list of integers
+    # @param B : list of integers
+    # @return an integer
+    def solve(self, A, B):
+        return maxpointsonsameline(A, B)
+_______________________________________________________________________Approach___________________________________________________________
+If two point are (x1, y1) and (x2, y2) then their slope will be (y2 – y1) / (x2 – x1) which can be a double value and can cause precision problems.
+
+To get rid of the precision problems, we treat slope as pair ((y2 – y1), (x2 – x1)) instead of ratio and reduce pair by their gcd before inserting into map.
+
+Points which are vertical or repeated are treated separately.
+
+Note: If we use map in c++ or HashMap in Java for storing the slope pair, then total time complexity of solution will be O(n^2 logn)
