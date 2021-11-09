@@ -20,6 +20,8 @@ Table of Contents
      * Replicating Substring
      * Count Right Triangles
      * Points on same line
+  + [Day59_String_Algorithms](#day59_String_Algorithms)
+     * Boring substring
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
      * Sort stack using another stack
@@ -97,7 +99,18 @@ Day58_Hashing2
  + Suppose we have two diagonally opposite points: (x1, y1) and (x2, y2). Then the other two points of the rectangle must be (x1, y2) and (x2, y1).
  + We just have to check if these two points (x1, y2) and (x2, y1) are given or not. If present increment the answer.
  + For every rectangle, we have incremented the answer twice because every rectangle has two diagonals. So, our real answer will be half of the answer obtained after running two loops.
- 
+
+Day59_String_Algorithms
+================
+### Boring substring
+  + No specific knowledge is requires to solve this question you just need to observe and find an existing pattern hidden in the parities of ASCII value of characters.
+  + ‘a’ must be present near ‘c’ ,similarly ‘c’ must be near ‘e’ as we can see odd characters can be put aside each other and there will be no boring substring in it.
+  + Like: “acegik…” No boring substring present in this string. Similarly for even characters.
+  + Now just traverse in the string and form two strings one containing the odd characters and other even characters.
+  + Sort both of them and check if placing them together doesn’t make a boring substring at their join point.
+  + For example: A = “abcdefg” So , odd = “aceg” even= “bdf”
+  + Check the string s= odd+even or s=even+odd doesn’t contain any boring substring. Time Complexity : O(A)
+
 Day61_Stacks
 ================
 ### 1) Min Stack
