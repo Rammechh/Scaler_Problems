@@ -1,0 +1,171 @@
+Boring substring
+Problem Description
+
+Given a string A of lowercase English alphabets. Rearrange the characters of the given string A such that there is no boring substring in A.
+
+A boring substring has the following properties:
+
+Its length is 2.
+Both the characters are consecutive, for example - "ab", "cd", "dc", "zy" etc.(If the first character is C then the next character can be either (C+1) or (C-1)).
+Return 1 if it possible to rearrange the letters of A such that there are no boring substring in A, else return 0.
+
+
+
+Problem Constraints
+1 <= |A| <= 105
+
+
+
+Input Format
+The only argument given is string A.
+
+
+
+Output Format
+Return 1 if it possible to rearrange the letters of A such that there are no boring substring in A, else return 0.
+
+
+
+Example Input
+Input 1:
+
+ A ="abcd"
+Input 2:
+
+ A = "aab"
+
+
+Example Output
+Output 1:
+
+ 1
+Output 2:
+
+ 0
+
+
+Example Explanation
+Explanation 1:
+
+ String A can be rearranged into "cadb" or "bdac" 
+Explanation 2:
+
+ No arrangement of string A can make it free of boring substrings.
+ 
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+    # @param A : string
+    # @return an integer
+    def solve(self, A):
+        def check(s):
+ 
+            for i in range(len(s) - 1):
+                if (abs(ord(s[i]) -
+                        ord(s[i + 1])) == 1):
+                    return False
+            return True
+ 
+        # Function to rearrange the characters
+        # of the such that no two neighbours
+        # in the English alphabets appear together
+        def Rearrange(Str):
+ 
+            # To store the odd and the
+            # even positioned characters
+            odd, even = "",""
+ 
+            # Traverse through the array
+            for i in range(len(Str)):
+                if (ord(Str[i]) % 2 == 0):
+                    even += Str[i]
+                else:
+                    odd += Str[i]
+ 
+            # Sort both the Strings
+            odd = sorted(odd)
+            even = sorted(even)
+ 
+            # Check possibilities
+            if (check(odd + even)):
+                return 1
+            elif (check(even + odd)):
+                return 1
+            else:
+                return 0
+        return Rearrange(A)
+        
+        """ans = []
+        def perm(a, s, k):
+            if len(a) == 0:
+                for j in range(1, len(s)):
+                    if ord(s[j]) - ord(s[j-1]) == 1:
+                        return 0
+                
+            
+            for i in range(len(a)):
+                newS = s + a[i]
+                newA = a[: i] + a[i+1 :]
+            
+                k = perm(newA, newS, k)
+            
+            if k == 1 :
+                return 1
+            
+            return k
+        
+        x = perm(A, '', 0)
+        if x == 1:
+            return x
+        else:
+            return 0"""
+_______________________________________________________________________Given_Solution___________________________________________________________
+def check(a, b):
+    c = a + b
+    for i in range(1, len(c)):
+        res = ord(c[i]) - ord(c[i - 1])
+        if res < 0:
+            res = (-1) * res
+        if res == 1:
+            return 0
+    return 1
+
+class Solution:
+    # @param A : string
+    # @return an integer
+    def solve(self, A):
+        odd = ""
+        even = ""
+        for a in A:
+            if ord(a) % 2:
+                odd += a
+            else:
+                even += a
+        o = sorted(odd)
+        e = sorted(even)
+        if check(o, e):
+            return 1
+        elif check(e, o):
+            return 1
+        else:
+            return 0
+_______________________________________________________________________Approach___________________________________________________________
+No specific knowledge is requires to solve this question you just need to observe and find an existing pattern hidden in the parities of ASCII value of characters.
+
+‘a’ must be present near ‘c’ ,similarly ‘c’ must be near ‘e’ as we can see odd characters can be put aside each other and there will be no boring substring in it.
+
+Like: “acegik…” No boring substring present in this string.
+
+Similarly for even characters.
+
+Now just traverse in the string and form two strings one containing the odd characters and other even characters.
+Sort both of them and check if placing them together doesn’t make a boring substring at their join point.
+
+For example:
+A = “abcdefg”
+So ,
+odd = “aceg”
+even= “bdf”
+
+Check the string s= odd+even or s=even+odd doesn’t contain any boring substring.
+
+Time Complexity : O(	A	)
