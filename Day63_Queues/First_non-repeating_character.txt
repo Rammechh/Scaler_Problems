@@ -1,0 +1,150 @@
+First non-repeating character
+Problem Description
+
+Given a string A denoting a stream of lowercase alphabets.
+
+You have to make new string B. B is formed such that we have to find first non-repeating character each time a character is inserted to the stream and append it at the end to B. if no non-repeating character is found then append '#' at the end of B.
+
+
+
+Problem Constraints
+1 <= |A| <= 100000
+
+
+
+Input Format
+The only argument given is string A.
+
+
+
+Output Format
+Return a string B after processing the stream of lowercase alphabets A.
+
+
+
+Example Input
+Input 1:
+
+ A = "abadbc"
+Input 2:
+
+ A = "abcabc"
+
+
+Example Output
+Output 1:
+
+"aabbdd"
+Output 2:
+
+"aaabc#"
+
+
+Example Explanation
+Explanation 1:
+
+"a"      -   first non repeating character 'a'
+"ab"     -   first non repeating character 'a'
+"aba"    -   first non repeating character 'b'
+"abad"   -   first non repeating character 'b'
+"abadb"  -   first non repeating character 'd'
+"abadbc" -   first non repeating character 'd'
+Explanation 2:
+
+"a"      -   first non repeating character 'a'
+"ab"     -   first non repeating character 'a'
+"abc"    -   first non repeating character 'a'
+"abca"   -   first non repeating character 'b'
+"abcab"  -   first non repeating character 'c'
+"abcabc" -   no non repeating character so '#'
+
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+    # @param A : string
+    # @return a strings
+    def solve(self, A):
+        Map = {}
+        B = ""
+        Q = []
+        for i in range(len(A)):
+            if A[i] in Map:
+                Map[A[i]] += 1
+            else:
+                Map[A[i]] = 1
+            
+            Q.append(A[i])
+            while ( Q  and Map[Q[0]] > 1):
+                Q.pop(0)
+            if Q:
+                B += Q[0]
+            else:
+                B += '#'
+            
+            
+        return B
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+    # @param A : string
+    # @return a strings
+    def solve(self, A):
+        if len(A) == 0:
+            return ""
+        ans = A[0]
+        d = {A[0]: 1}
+        start = 0
+        ans_len = 0
+        l = len(A)
+        for i in range(1, l):
+            ch = A[i]
+            if ch not in d:
+                d[ch] = 0
+            d[ch] += 1
+            while start <= i and d[A[start]] != 1:
+                start += 1
+            if start > i:
+                ans += "#"
+            else:
+                ans += A[start]
+
+            # print("i: " + str(i) + " start: " + str(start) + " ans: " + str(ans))
+
+        return ans
+--Java--
+public class Solution {
+    public String solve(String A) {
+        Queue < Character > q = new LinkedList < Character > ();
+        HashMap < Character, Integer > mp = new HashMap < Character, Integer > ();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < A.length(); i++) {
+            Character c = A.charAt(i);
+            if (mp.get(c) != null) {
+                mp.put(c, 2);
+            } else {
+                q.add(c);
+                mp.put(c, 1);
+            }
+            while (q.size() > 0 && mp.get(q.peek()) > 1) {
+                q.remove();
+            }
+            if (q.size() > 0)
+                sb.append(q.peek());
+            else
+                sb.append('#');
+        }
+        return sb.toString();
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+You need to maintain map for each character of the stream.
+After that you can also maintain a queue for extraction of information.
+Each character is inserted and removed from queue atmost 1 time
+hence time complexity is O(n).
+Code looks something like
+for (auto c : A)
+{
+mp[c]++;
+q.push(c);
+while (!q.empty() && mp[q.front()] > 1) q.pop();
+if (!q.empty()) ans.push_back(q.front());
+else ans.push_back(‘#’);
+}
