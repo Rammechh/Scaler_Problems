@@ -29,6 +29,7 @@ Table of Contents
      * Task Scheduling
   + [Day63_Queues](#Day63_Queues)
      * Task Scheduling
+     * First non-repeating character
 
 
    
@@ -128,3 +129,15 @@ Day63_Queues
 ===============
 ### 1) Task Scheduling
   + Till find the B[i] element in A[0] pop element at front of A and add it at back of A and increase count by 1
+### 3) First non-repeating character
+  + You need to maintain map for each character of the stream. After that you can also maintain a queue for extraction of information. Each character is inserted and removed from queue atmost 1 time hence time complexity is O(n).
+___________________________________________
+for (auto c : A)
+{
+mp[c]++;
+q.push(c);
+while (!q.empty() && mp[q.front()] > 1) q.pop();
+if (!q.empty()) ans.push_back(q.front());
+else ans.push_back(‘#’);
+}
+____________________________________________
