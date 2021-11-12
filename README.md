@@ -1,5 +1,5 @@
 <!--ts-->
-Table of Contents
+Problems
 =================
   + [Day32_Maths_Combinatorics](#Day32_Maths_Combinatorics)
      * Sorted Permutation Rank with Repeats
