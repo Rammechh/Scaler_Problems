@@ -27,6 +27,9 @@ Problems
      * Sort stack using another stack
      * Passing game
      * Task Scheduling
+     * Double Character Trouble
+  + [Day62_Stacks2](#Day62_Stacks2)
+     * Double Character Trouble
   + [Day63_Queues](#Day63_Queues)
      * Task Scheduling
      * First non-repeating character
@@ -124,6 +127,12 @@ Day61_Stacks
   + Create a temporary stack say B. While input stack is not empty: 1. pop an element from input stack calls it x. 2. while the temporary stack is not empty and top of the temporary stack is greater than x pop from the temporary stack and push it into input stack. 3. push x in the temporary stack. The sorted numbers are in the temporary stack.
 ### 4) Passing game
   + Push the new id in the stack to keep track of the latest player who has the ball. Now you should pass the ball to the previous player who forwarded you the ball, so you can easily pop the last player from the stack.
+
+Day62_Stacks2
+================
+### 2) Double Character Trouble
+  + Consider an example string abba. When we remove the “bb”, the remaining string is “aa” which has to be removed as well. So we need to keep track of the characters before the first occurrence of similar consecutive characters. We can do this using a stack.
+We keep pushing the characters in a stack, if the current character is equal to the top of the stack, we pop from the stack, since they represent a pair of similar characters.
 
 Day63_Queues
 ===============
