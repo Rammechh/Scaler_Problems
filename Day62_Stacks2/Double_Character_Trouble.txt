@@ -1,0 +1,119 @@
+Double Character Trouble
+Problem Description
+
+You are given a string A.
+
+An operation on the string is defined as follows:
+
+Remove the first occurrence of same consecutive characters. eg for a string "abbcd", the first occurrence of same consecutive characters is "bb".
+
+Therefore the string after this operation will be "acd".
+
+Keep performing this operation on the string until there are no more occurrences of same consecutive characters and return the final string.
+
+
+
+Problem Constraints
+1 <= |A| <= 100000
+
+
+
+Input Format
+First and only argument is string A.
+
+
+
+Output Format
+Return the final string.
+
+
+
+Example Input
+Input 1:
+
+ A = abccbc
+Input 2:
+
+ A = ab
+
+
+Example Output
+Output 1:
+
+ "ac"
+Output 2:
+
+ "ab"
+
+
+Example Explanation
+Explanation 1:
+
+Remove the first occurrence of same consecutive characters. eg for a string "abbc", the first occurrence of same consecutive characters is "bb".
+Therefore the string after this operation will be "ac".
+Explanation 2:
+
+ No removals are to be done.
+ 
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+    # @param A : string
+    # @return a strings
+    def solve(self, A):
+        stack = []
+        for char in A:
+            f=0
+            while stack and char == stack[-1]:
+                stack.pop()
+                f=1
+            if f==0:
+                stack.append(char)
+            
+        return "".join(stack)
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+    # @param A : string
+    # @return a strings
+    def solve(self, A):
+        stack = []
+        stack.append('#')
+        stack.append(A[0])
+        for i in range(1, len(A)):
+            if(A[i] == stack[len(stack) - 1]):
+                stack.pop()
+            else:
+                stack.append(A[i])
+        i = 1
+        ans = ""
+        while(i < len(stack)):
+            ans += stack[i]
+            i = i + 1
+        return ans
+		
+--Java--
+public class Solution {
+    public String solve(String A) {
+        Stack < Character > st = new Stack < Character > ();
+        for (int i = 0; i < A.length(); i++) {
+            if (!st.empty() && st.peek() == A.charAt(i)) {
+                st.pop();
+            } else st.push(A.charAt(i));
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!st.empty()) {
+            sb.append(st.peek());
+            st.pop();
+        }
+        sb.reverse();
+        return sb.toString();
+    }
+}
+
+_______________________________________________________________________Approach___________________________________________________________
+Consider an example string abba.
+When we remove the “bb”, the remaining string is “aa” which has to be removed as well.
+So we need to keep track of the characters before the first occurrence of similar consecutive characters.
+We can do this using a stack.
+We keep pushing the characters in a stack, if the current character is equal to the top of the stack, we pop from the stack, since they represent
+a pair of similar characters.
+Finally, we print the stack in reverse.
