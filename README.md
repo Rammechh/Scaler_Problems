@@ -30,6 +30,7 @@ Problems
      * Double Character Trouble
   + [Day62_Stacks2](#Day62_Stacks2)
      * Double Character Trouble
+     * Evaluate Expression
   + [Day63_Queues](#Day63_Queues)
      * Task Scheduling
      * First non-repeating character
@@ -133,6 +134,9 @@ Day62_Stacks2
 ### 2) Double Character Trouble
   + Consider an example string abba. When we remove the “bb”, the remaining string is “aa” which has to be removed as well. So we need to keep track of the characters before the first occurrence of similar consecutive characters. We can do this using a stack.
 We keep pushing the characters in a stack, if the current character is equal to the top of the stack, we pop from the stack, since they represent a pair of similar characters.
+
+### 3) Evaluate Expression
+  + Arithmetic expression in Reverse Polish Notation i.e., 2 3 / . whenever you encounter a operator pop 2 operands from stack and append the result again to stack.
 
 Day63_Queues
 ===============
