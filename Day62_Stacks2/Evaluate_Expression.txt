@@ -118,3 +118,8 @@ def evalRPN(self, A):
         else:
             return 0
 _______________________________________________________________________Approach___________________________________________________________
+
+This is pretty much a simulation problem.
+Think stack.
+
+When you encounter an operator is when you need the top 2 numbers on the stack, perform the operation on them and put them on the stack.
