@@ -134,6 +134,9 @@ Day61_Stacks
 Day62_Stacks2
 ================
 ### 1) Largest Rectangle in Histogram
+  + whenever we encounter a lower height we pop out from stack (h = A[stack.pop()] ) and width = i - stack[-1] -1 and cal the area continues still curr height greater than height stored in stack.
+  + In each loop we add index of curr to stack and maintain Max = max(Max, area)
+  + return Max
   + [Leetcode ans explanation](https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/452612/Thinking-Process-for-Stack-Solution)
 
 ### 2) Double Character Trouble
