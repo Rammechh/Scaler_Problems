@@ -31,6 +31,7 @@ Problems
   + [Day62_Stacks2](#Day62_Stacks2)
      * Double Character Trouble
      * Evaluate Expression
+     * Nearest Smaller Element
   + [Day63_Queues](#Day63_Queues)
      * Task Scheduling
      * First non-repeating character
@@ -137,6 +138,11 @@ We keep pushing the characters in a stack, if the current character is equal to 
 
 ### 3) Evaluate Expression
   + Arithmetic expression in Reverse Polish Notation i.e., 2 3 / . whenever you encounter a operator pop 2 operands from stack and append the result again to stack.
+
+### 4) Nearest Smaller Element
+  + To find the nearest smallest element on the left, create a stack and check the curr element with the top of the stack. 
+  + If top element of stack is larger pop out till you find smallest and store in ans. when we go right, if curr element small no need of tracking all elements to left of it.
+  + return ans list
 
 Day63_Queues
 ===============
