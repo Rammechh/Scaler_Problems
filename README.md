@@ -36,6 +36,8 @@ Problems
   + [Day63_Queues](#Day63_Queues)
      * Task Scheduling
      * First non-repeating character
+  + [Day66_LinkedList2](#Day66_LinkedList2)
+     * Palindrome List
 
 
    
@@ -167,3 +169,11 @@ if (!q.empty()) ans.push_back(q.front());
 else ans.push_back(‘#’);
 }
 ____________________________________________
+
+Day66_LinkedList2
+================
+### 1) Palindrome List
+  + Using fast and slow (2 pointer approach) find the mid element.
+  + from mid to end reverse the linked list (rev)
+  + if head.val != rev.val return -1 
+  + else 1 (palindrome)
