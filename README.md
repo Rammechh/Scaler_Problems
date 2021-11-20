@@ -38,6 +38,8 @@ Problems
      * First non-repeating character
   + [Day66_LinkedList2](#Day66_LinkedList2)
      * Palindrome List
+  + [Day68_Trees2](#Day66_LinkedList2)
+     * TOP VIEW
 
 
    
@@ -177,3 +179,9 @@ Day66_LinkedList2
   + from mid to end reverse the linked list (rev)
   + if head.val != rev.val return -1 
   + else 1 (palindrome)
+ 
+Day68_Trees2
+==================
+### 2)TOP VIEW
+  + Dont use dfs method as it always result in wrong ans
+  + use Queues -> You need to return every node such that it is visible from the top. In other words, it should be the leftmost or the rightmost till that level. This can be found using a queue and a modification of the level order traversal algorithm. You may need to maintain the level of each node along with the nodes themselves.
