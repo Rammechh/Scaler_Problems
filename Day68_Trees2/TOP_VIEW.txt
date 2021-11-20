@@ -1,0 +1,186 @@
+TOP VIEW
+Problem Description
+
+Given a binary tree of integers denoted by root A. Return an array of integers representing the top view of the Binary tree.
+
+Top view of a Binary Tree is a set of nodes visible when the tree is visited from top.
+
+Return the nodes in any order.
+
+
+
+Problem Constraints
+1 <= Number of nodes in binary tree <= 100000
+
+0 <= node values <= 10^9
+
+
+
+Input Format
+First and only argument is head of the binary tree A.
+
+
+
+Output Format
+Return an array, representing the top view of the binary tree.
+
+
+
+Example Input
+Input 1:
+
+ 
+            1
+          /   \
+         2    3
+        / \  / \
+       4   5 6  7
+      /
+     8 
+Input 2:
+
+ 
+            1
+           /  \
+          2    3
+           \
+            4
+             \
+              5
+
+
+Example Output
+Output 1:
+
+ [1, 2, 4, 8, 3, 7]
+Output 2:
+
+ [1, 2, 3]
+
+
+Example Explanation
+Explanation 1:
+
+Top view is described.
+Explanation 2:
+
+Top view is described.
+
+_______________________________________________________________________Solution___________________________________________________________
+# Definition for a  binary tree node
+# class TreeNode:
+#    def __init__(self, x):
+#        self.val = x
+#        self.left = None
+#        self.right = None
+from queue import Queue
+class Solution:
+    # @param A : root node of tree
+    # @return a list of integers
+	#Wrong - dont use dfs use only Queue
+    """def topViewLeft(self, root, dist, hMap):
+        
+        if not root:
+            return
+        
+        if dist not in hMap:
+            hMap[dist] = [root.val]
+            
+        self.topViewLeft(root.left, dist-1, hMap)
+        self.topViewLeft(root.right, dist+1, hMap)
+        return hMap
+        
+    def topViewRight(self, root, dist, hMap):
+        
+        if not root:
+            return
+        
+        if dist not in hMap:
+            hMap[dist] = [root.val]
+            
+        self.topViewRight(root.right, dist+1, hMap)
+        self.topViewRight(root.left, dist-1, hMap)
+   
+        return hMap
+        
+    def solve(self, A):
+        
+        Map = self.topViewLeft(A, 0, {})
+        hMap = self.topViewRight(A, 0, Map)
+        Min = min(hMap.keys())
+        Max = max(hMap.keys())
+        
+        ans = []
+        for i in range(Min, Max +1):
+            ans.append(hMap[i][0])
+            
+        return ans"""
+    def solve(self, A):    
+        q = Queue()
+        q.put([A,0])
+        res = []
+        hm = {}
+        minn, maxx = float("INF"), -float("INF")
+        while not q.empty():
+            n = q.qsize()
+            for i in range(n):
+                node, dist = q.get(0)
+                if dist not in hm:
+                    hm[dist] = node.val
+                    minn = min(minn, dist)
+                    maxx = max(maxx, dist)
+                if node.left:
+                    q.put([node.left, dist-1])
+                if node.right:
+                    q.put([node.right, dist+1])
+        
+        for i in range(minn, maxx+1):
+            res.append(hm[i])
+        
+        return res
+_______________________________________________________________________Given_Solution___________________________________________________________
+# Definition for a  binary tree node
+# class TreeNode:
+#    def __init__(self, x):
+#        self.val = x
+#        self.left = None
+#        self.right = None
+
+from collections import deque
+
+
+def topview(root):
+    ans = []
+    if root == None:
+        return ans
+    level = deque()
+    top = {}
+
+    level.append([root, 0])
+
+    # Using Level order traversal to find the top view
+    while len(level) != 0:
+        curr = level.popleft()
+        if top.get(curr[1]) == None:
+            top[curr[1]] = curr[0].val
+        if curr[0].left != None:
+            level.append([curr[0].left, curr[1] - 1])
+        if curr[0].right != None:
+            level.append([curr[0].right, curr[1] + 1])
+
+    for val in top.values():
+        ans.append(val)
+    return ans
+
+
+class Solution:
+    # @param A : root node of tree
+    # @return a list of integers
+    def solve(self, A):
+        return topview(A)
+_______________________________________________________________________Approach___________________________________________________________
+You need to return every node such that it is visible from the top.
+In other words, it should be the leftmost or the rightmodt till that level.
+This can be found using a queue and a modification of the level order
+traversal algorithm. You may need to maintain the level of each
+node along with the nodes themselves.
