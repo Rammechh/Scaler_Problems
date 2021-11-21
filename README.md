@@ -38,10 +38,10 @@ Problems
      * First non-repeating character
   + [Day66_LinkedList2](#Day66_LinkedList2)
      * Palindrome List
-  + [Day68_Trees2](#Day66_LinkedList2)
+  + [Day67_Trees](#Day67_Trees)
+     * Level Order
+  + [Day68_Trees2](#Day66_Trees2)
      * TOP VIEW
-
-
    
 
 
@@ -179,6 +179,13 @@ Day66_LinkedList2
   + from mid to end reverse the linked list (rev)
   + if head.val != rev.val return -1 
   + else 1 (palindrome)
+
+Day67_Trees
+===============
+### 3)Level Order
+  + using dfs may not give the correct ans
+  + use Bfs, Queues.
+  + Add node to Queue, While Queue: n = len(Queue) ans.append(Queue.get(0)) for i in range(n) add left and right childs. return ans
  
 Day68_Trees2
 ==================
