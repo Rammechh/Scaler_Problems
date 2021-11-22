@@ -42,6 +42,7 @@ Problems
      * Level Order
   + [Day68_Trees2](#Day66_Trees2)
      * TOP VIEW
+     * Balanced Binary Tree
    
 
 
@@ -189,6 +190,22 @@ Day67_Trees
  
 Day68_Trees2
 ==================
+### 1)Balanced Binary Tree
+  + use a global variable ans
+  + traverse thro the end of Tree and check if any point in time  if abs(lt_dt - rt_dt) > 1: update ans = 0 and return
+  + else: wo uisng global variable
+  _____________________________________________________
+            if abs(left[0] - right[0]) > 1:
+                return (max(left[0], right[0])+1, 0)
+            else:
+                b = left[1] * right[1]
+                return (max(left[0], right[0])+1, b)
+  _____________________________________________________
+
 ### 2)TOP VIEW
   + Dont use dfs method as it always result in wrong ans
   + use Queues -> You need to return every node such that it is visible from the top. In other words, it should be the leftmost or the rightmost till that level. This can be found using a queue and a modification of the level order traversal algorithm. You may need to maintain the level of each node along with the nodes themselves.
+
+### 3) Right view of Binary tree
+  + For each level whenever you encounters the last node on that level append it to the answer. try to Modify the level order traversal of tree for this problem. You should finally append the rightmost node for each level of the given binary tree and return the vector of the same.
+  + same as level order traversal but append only the right elements to ans
