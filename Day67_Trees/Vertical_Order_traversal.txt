@@ -1,0 +1,223 @@
+Vertical Order traversal
+Problem Description
+
+Given a binary tree, return a 2-D array with vertical order traversal of it. Go through the example and image for more details.
+
+
+NOTE: If 2 Tree Nodes shares the same vertical level then the one with lesser depth will come first.
+
+
+
+Problem Constraints
+0 <= number of nodes <= 105
+
+
+
+Input Format
+First and only arument is a pointer to the root node of binary tree, A.
+
+
+
+Output Format
+Return a 2D array denoting the vertical order traversal of tree as shown.
+
+
+
+Example Input
+Input 1:
+
+      6
+    /   \
+   3     7
+  / \     \
+ 2   5     9
+Input 2:
+
+      1
+    /   \
+   3     7
+  /       \
+ 2         9
+
+
+Example Output
+Output 1:
+
+ [
+    [2],
+    [3],
+    [6, 5],
+    [7],
+    [9]
+ ]
+Output 2:
+
+ [
+    [2],
+    [3],
+    [1],
+    [7],
+    [9]
+ ]
+
+
+Example Explanation
+Explanation 1:
+
+ First row represent the verical line 1 and so on.
+
+_______________________________________________________________________Solution___________________________________________________________
+# Definition for a  binary tree node
+# class TreeNode:
+#	def __init__(self, x):
+#		self.val = x
+#		self.left = None
+#		self.right = None
+
+class Solution:
+	# @param A : root node of tree
+	# @return a list of list of integers
+	def verticalOrderTraversal(self, A):
+        def vertical(node, dist, depth, hMap):
+            if node == None:
+                return
+            
+            try:
+                hMap[dist].append((node.val, depth))
+            except:
+                hMap[dist] = [(node.val, depth)]
+            
+            vertical(node.left, dist-1, depth+1, hMap)
+            vertical(node.right, dist+1,depth+1, hMap)
+            
+            return hMap
+            
+        Map = vertical(A, 0, 0, {})
+        Min = min(Map.keys())
+        Max = max(Map.keys())
+        
+        ans = []
+        
+        for i in range(Min, Max+1):
+            Map[i].sort(key = lambda x:x[1])
+            ans.append([k[0] for k in Map[i]])
+        
+        return ans
+_______________________________________________________________________Given_Solution___________________________________________________________
+from collections import deque
+# Definition for a  binary tree node
+# class TreeNode:
+#	def __init__(self, x):
+#		self.val = x
+#		self.left = None
+#		self.right = None
+
+class Solution:
+	# @param A : root node of tree
+	# @return a list of list of integers
+	def verticalOrderTraversal(self, A):
+        result = []
+        # Base case
+        if (A == None):
+            return result
+        # Create a dictionary of horizontalDistance, ListOfTreeNodes(at that horizontalDistance)
+        m = {}
+    
+        # Create queue to do level order traversal.
+        # Every item of queue contains node and horizontal distance.
+        q = deque()
+        q.append([A, 0]) # root's horizontalDistance is zero
+        min_dist = 0
+        max_dist = 0
+        while(len(q) != 0):
+            # get the queue front
+            front = q.popleft()
+                
+            currentHorizontalDistance = front[1]
+            currentTreeNode = front[0]
+            min_dist = min(min_dist, currentHorizontalDistance)
+            max_dist = max(max_dist, currentHorizontalDistance)
+            # insert current node to hash map
+            if(m.get(currentHorizontalDistance) == None):
+                m[currentHorizontalDistance] = [currentTreeNode.val]
+            else:    
+                m[currentHorizontalDistance].append(currentTreeNode.val)
+
+            if (currentTreeNode.left != None):
+                 q.append([currentTreeNode.left, currentHorizontalDistance - 1])
+                 
+            if (currentTreeNode.right != None):
+                q.append([currentTreeNode.right, currentHorizontalDistance + 1])
+				
+--Java--
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+  static class Pair {
+    TreeNode t;
+    int x;
+    Pair(TreeNode t, int x) {
+      this.t = t;
+      this.x = x;
+    }
+  }
+  public ArrayList < ArrayList < Integer >> verticalOrderTraversal(TreeNode root) {
+    ArrayList < ArrayList < Integer >> ans = new ArrayList < ArrayList < Integer >> ();
+
+    ArrayList < Integer > ar = new ArrayList < Integer > ();
+    if (root == null) {
+      return ans;
+    }
+
+    TreeMap < Integer, ArrayList < Integer >> tm = new TreeMap < > ();
+    Queue < Pair > q = new LinkedList < Pair > ();
+    q.add(new Pair(root, 0));
+
+    while (!q.isEmpty()) {
+      Pair p = q.poll();
+      int v = p.t.val;
+      int x = p.x;
+      ar = new ArrayList < Integer > ();
+      if (tm.containsKey(x)) {
+        ar = tm.get(x);
+        ar.add(v);
+      } else {
+        ar.add(v);
+      }
+
+      tm.put(x, ar);
+      if (p.t.left != null) {
+        q.add(new Pair(p.t.left, x - 1));
+      }
+      if (p.t.right != null) {
+        q.add(new Pair(p.t.right, x + 1));
+      }
+    }
+    for (int x: tm.keySet()) {
+      ArrayList < Integer > f = tm.get(x);
+      ans.add(f);
+    }
+    return ans;
+  }
+}
+_______________________________________________________________________Approach___________________________________________________________
+We have discussed a O(n^2) solution in the previous hint. An efficient solution based on hash map is discussed.
+
+We need to check the Horizontal Distances from root for all nodes. If two nodes have the same Horizontal Distance (HD), then they are on same vertical line. The idea of HD is simple. HD for root is 0, a right edge (edge connecting to right subtree) is considered as +1 horizontal distance and a left edge is considered as -1 horizontal distance. For example, in the above tree, HD for Node 2 is at -2, HD for Node 3 is -1, HD for 5 is 0, HD for node 7 is +1 and for node 9 is +2.
+
+We can do level order traversal of the given Binary Tree.
+While traversing the tree, we can maintain HDs.
+We initially pass the horizontal distance as 0 for root.
+For left subtree, we pass the Horizontal Distance as Horizontal distance of root minus 1.
+For right subtree, we pass the Horizontal Distance as Horizontal Distance of root plus 1.
+
+For every HD value, we maintain a list of nodes in a hasp map. Whenever we see a node in traversal, we go to the hash map entry and add the node to the hash map using HD as a key in map.
+
+Time Complexity of hashing based solution can be considered as O(n) under the assumption that we have good hashing function that allows insertion and retrieval operations in O(1) time.

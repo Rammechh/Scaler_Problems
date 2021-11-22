@@ -1,0 +1,166 @@
+Inorder Traversal
+Problem Description
+
+Given a binary tree, return the inorder traversal of its nodes values.
+
+NOTE: Using recursion is not allowed.
+
+
+
+Problem Constraints
+1 <= number of nodes <= 105
+
+
+
+Input Format
+First and only argument is root node of the binary tree, A.
+
+
+
+Output Format
+Return an integer array denoting the inorder traversal of the given binary tree.
+
+
+
+Example Input
+Input 1:
+
+   1
+    \
+     2
+    /
+   3
+Input 2:
+
+   1
+  / \
+ 6   2
+    /
+   3
+
+
+Example Output
+Output 1:
+
+ [1, 3, 2]
+Output 2:
+
+ [6, 1, 3, 2]
+
+
+Example Explanation
+Explanation 1:
+
+ The Inorder Traversal of the given tree is [1, 3, 2].
+Explanation 2:
+
+ The Inorder Traversal of the given tree is [6, 1, 3, 2].
+
+
+_______________________________________________________________________Solution___________________________________________________________
+# Definition for a  binary tree node
+# class TreeNode:
+#	def __init__(self, x):
+#		self.val = x
+#		self.left = None
+#		self.right = None
+
+class Solution:
+	# @param A : root node of tree
+	# @return a list of integers
+	def inorderTraversal(self, A):
+	    seen={}
+        out_li=[]
+        stack=[A]
+        while(stack!=[]):
+            if stack[-1].left and stack[-1].left.val not in seen:
+                stack.append(stack[-1].left)
+            
+            else:
+                temp=stack.pop()
+                out_li.append(temp.val)
+                if temp.right:
+                    stack.append(temp.right)
+                seen[temp.val]=1
+        return out_li
+
+_______________________________________________________________________Given_Solution___________________________________________________________
+# Definition for a  binary tree node
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # @param A : root node of tree
+    # @return a list of integers
+    def inorderTraversal(self, A):
+        stack = []
+        node = A
+        res = []
+        while len(stack) > 0 or node is not None:
+            if node is not None:
+                stack.append(node)
+                node = node.left
+                # stack.push(node)
+            else:
+                # ans.append(node.val)
+                node = stack.pop()
+                res.append(node.val)
+                node = node.right
+        return res
+		
+--Java--
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+	// Threaded binary tree Morris traversal
+	public ArrayList<Integer> inorderTraversal(TreeNode A) {
+	    TreeNode current, node;
+	    ArrayList<Integer> res = new ArrayList<>();
+	    current = A;
+	    while (current != null) {
+	        if (current.left == null) {
+	            res.add(current.val);
+	            current = current.right;
+	        } else {
+	            node = current.left;
+	            while (node.right != null && !current.equals(node.right))
+	                node = node.right;
+	            
+	            if (node.right == null) {
+	                node.right = current;
+	                current = current.left;
+	            } else {
+	                current = node.right;
+	                node.right = null;
+	                res.add(current.val);
+	                current = current.right;
+	            }
+	        }
+	    }
+	    return res;
+	}
+}
+_______________________________________________________________________Approach___________________________________________________________
+Think stack.
+
+Recursive call would look something like this :
+
+inorderprint(root->left);
+print(root->val);
+inorderprint(root->right);
+
+Instead of calling the functions, can you put the nodes on a stack and process them ?
+
+How would your solution work if you were allowed to change the original tree ?
+How would it work if you were not allowed to change the tree but use additional memory ( track the number of times a node has appeared in the tree ) ?
+How would it work if you were not even allowed the extra memory ?
