@@ -40,6 +40,9 @@ Problems
      * Palindrome List
   + [Day67_Trees](#Day67_Trees)
      * Level Order
+     * Inorder Traversal (pending)
+     * Vertical Order traversal (pending)
+     * Binary Tree From Inorder And Postorder (pending)
   + [Day68_Trees2](#Day68_Trees2)
      * TOP VIEW
      * Balanced Binary Tree
@@ -184,10 +187,16 @@ Day66_LinkedList2
 
 Day67_Trees
 ===============
-### 3)Level Order
+### 1)Inorder Traversal (pending)
+    
+### 2) Binary Tree From Inorder And Postorder (pending)
+
+### 3) Level Order
   + using dfs may not give the correct ans
   + use Bfs, Queues.
   + Add node to Queue, While Queue: n = len(Queue) ans.append(Queue.get(0)) for i in range(n) add left and right childs. return ans
+  
+### 4) Vertical Order traversal (pending)
  
 Day68_Trees2
 ==================
