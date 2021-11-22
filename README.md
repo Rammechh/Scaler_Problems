@@ -40,9 +40,10 @@ Problems
      * Palindrome List
   + [Day67_Trees](#Day67_Trees)
      * Level Order
-  + [Day68_Trees2](#Day66_Trees2)
+  + [Day68_Trees2](#Day68_Trees2)
      * TOP VIEW
      * Balanced Binary Tree
+     * Right view of Binary tree
    
 
 
@@ -191,8 +192,9 @@ Day67_Trees
 Day68_Trees2
 ==================
 ### 1)Balanced Binary Tree
-  + use a global variable ans
-  + traverse thro the end of Tree and check if any point in time  if abs(lt_dt - rt_dt) > 1: update ans = 0 and return
+  + A tree is balanced if : 1) Left subtree is balanced 2) Right subtree is balanced 3) And the difference is height of left and right subtree is atmost 1. 
+  + Note that depth of a tree can also be calculated recursively as max(depth(rightSubtree), depth(leftSubtree)) + 1.
+  + use a global variable ans, traverse thro the end of Tree and check if any point in time  if abs(lt_dt - rt_dt) > 1: update ans = 0 and return
   + else: wo uisng global variable
   _____________________________________________________
             if abs(left[0] - right[0]) > 1:
