@@ -50,6 +50,7 @@ Problems
   + [Day69_BST](#Day69_BST)
      * Kth Smallest Element In Tree
      * Valid Binary Search Tree
+     * Sorted Array To Balanced BST
    
 
 
@@ -226,6 +227,10 @@ Day68_Trees2
  
 Day69_BST
 ==============
+### 1) Sorted Array To Balanced BST
+  + For a BST, all values lower than the root go in the left part of root, and all values higher go in the right part of the root. For the tree to be balanced, we will need to make sure we distribute the elements almost equally in left and right part. So we choose the mid part of the array as root and divide the elements around it .
+  + if l <= r: mid = (l + r) // 2; root  = TreeNode(A[mid]); root.left = balanced(l, mid-1, A); root.right = balanced(mid+1, r, A); return root
+
 ### 2) Valid Binary Search Tree
   + Simply do inorder and store elements if elements in sorted order, it is Valid BST but O(N) space
   + In recursion: if root.val < Max and root.val > Min: l = check(root.left, Min, root.val) r = check(root.right,  root.val , Max) if l and r: return 1 (Since LST <= root < RST)
