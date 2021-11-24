@@ -1,0 +1,170 @@
+Valid Binary Search Tree
+Problem Description
+
+Given a binary tree represented by root A.
+
+Assume a BST is defined as follows:
+
+1) The left subtree of a node contains only nodes with keys less than the node's key.
+
+2) The right subtree of a node contains only nodes with keys greater than the node's key.
+
+3) Both the left and right subtrees must also be binary search trees.
+
+
+
+Problem Constraints
+1 <= Number of nodes in binary tree <= 100000
+
+0 <= node values <= 10^9
+
+
+
+Input Format
+First and only argument is head of the binary tree A.
+
+
+
+Output Format
+Return 0 if false and 1 if true.
+
+
+
+Example Input
+Input 1:
+
+ 
+   1
+  /  \
+ 2    3
+Input 2:
+
+ 
+  2
+ / \
+1   3
+
+
+Example Output
+Output 1:
+
+ 0
+Output 2:
+
+ 1
+
+
+Example Explanation
+Explanation 1:
+
+ 2 is not less than 1 but is in left subtree of 1.
+Explanation 2:
+
+Satisfies all conditions.
+
+_______________________________________________________________________Solution___________________________________________________________
+# Definition for a  binary tree node
+# class TreeNode:
+#	def __init__(self, x):
+#		self.val = x
+#		self.left = None
+#		self.right = None
+
+class Solution:
+	# @param A : root node of tree
+	# @return an integer
+	
+	# T.C = O(N) S.C = O(N)
+	"""def isValidBST(self, A):
+        def inOrder(root):
+            if not root:
+                return
+            inOrder(root.left)
+            ans.append(root.val)
+            inOrder(root.right)
+            
+        ans = []
+        inOrder(A)
+        for i in range(1, len(ans)):
+            if ans[i] <= ans[i-1]:
+                return 0
+        return 1"""
+    # TC = O(N) SC = O(1)   
+    def isValidBST(self, A):
+        def check(root, Min, Max):
+            if not root:
+                return 1
+            if root.val < Max and root.val > Min:
+                l = check(root.left, Min, root.val)
+                r = check(root.right,  root.val , Max)
+                if l and r:
+                    return 1
+                else:
+                    return 0
+            else:
+                return 0
+            
+            
+        Min = -float("INF")
+        Max = float("INF")
+        return check(A, Min, Max)
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+    def isValidBST(self, node):
+        return int(self.checkBST(node, float("-inf"), float("inf")))
+
+    def checkBST(self, node, lower, upper):
+        if node is None:
+            return True
+
+        return (
+            lower < node.val < upper
+            and self.checkBST(node.left, lower, node.val)
+            and self.checkBST(node.right, node.val, upper)
+        )
+--Java--
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public int isValidBST(TreeNode A) {
+        if (isValid(A, Integer.MIN_VALUE, Integer.MAX_VALUE))
+            return 1;
+        return 0;
+    }
+    public static boolean isValid(TreeNode A, int l, int r) {
+        if (A == null)
+            return true;
+        if (A.val > l && A.val < r) {
+            boolean left = isValid(A.left, l, A.val);
+            boolean right = isValid(A.right, A.val, r);
+            return (left && right);
+        } else
+            return false;
+    }
+}
+
+______________________________________________________________________Approach___________________________________________________________
+As mentioned in the hints, we can check two conditions for a valid Binary Search Tree.
+
+At each node, left subtree is also a Binary Search Tree and max value in left subtree is smaller than the node.
+At each node, right subtree is also Binary Search Tree and min value in right subtree greater than the node.
+The trick is when we trverse down the tree , maintain max and min allowed values for the subtree and check that the value
+of the node should lie between the allowed max and min. The initial values for min and max should be INT_MIN and INT_MAX.
+
+If at current node, allowed min is minn and allowed max is maxx.
+
+If we moves to the left, then max value in the left subtree should be smaller than the node. So, update maxx = min(maxx, value of node).
+Similarily, If we moves tot he right, the min value in right subtree should be greater than the node.So, update minn = max(minn, value of node).
+
+In this we are traversing each node only once. So, the time complexity is O(n).
