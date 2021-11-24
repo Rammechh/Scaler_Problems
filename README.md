@@ -49,6 +49,7 @@ Problems
      * Right view of Binary tree
   + [Day69_BST](#Day69_BST)
      * Kth Smallest Element In Tree
+     * Valid Binary Search Tree
    
 
 
@@ -225,9 +226,15 @@ Day68_Trees2
  
 Day69_BST
 ==============
+### 2) Valid Binary Search Tree
+  + Simply do inorder and store elements if elements in sorted order, it is Valid BST but O(N) space
+  + In recursion: if root.val < Max and root.val > Min: l = check(root.left, Min, root.val) r = check(root.right,  root.val , Max) if l and r: return 1 (Since LST <= root < RST)
+ 
 ### 4) Kth Smallest Element In Tree
   + Can follow two approach iterative or recursion
   + Iterative: store curr elements in stack and find ans
   + if curr: add to stack and curr = curr.left
   + else: curr = stack.pop and k-= 1 if k == 0: return curr.val else: curr = curr.right
-  + Recursion: 1) set a global variable k = given val, in inorder traversal k-=1 if k==0: return root.val 2) or store in ans array and return kth A[k-1] since inorder is sorted
+  + Recursion: 1) set a global variable k = given val, in inorder traversal k-=1 if k==0: return root.val 2) or store in ans array and return kth A[k-1] since inorder is sorted.
+
+
