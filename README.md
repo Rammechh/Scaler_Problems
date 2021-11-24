@@ -47,6 +47,8 @@ Problems
      * TOP VIEW
      * Balanced Binary Tree
      * Right view of Binary tree
+  + [Day69_BST](#Day69_BST)
+     * Kth Smallest Element In Tree
    
 
 
@@ -220,3 +222,12 @@ Day68_Trees2
 ### 3) Right view of Binary tree
   + For each level whenever you encounters the last node on that level append it to the answer. try to Modify the level order traversal of tree for this problem. You should finally append the rightmost node for each level of the given binary tree and return the vector of the same.
   + same as level order traversal but append only the right elements to ans
+ 
+Day69_BST
+==============
+### 4) Kth Smallest Element In Tree
+  + Can follow two approach iterative or recursion
+  + Iterative: store curr elements in stack and find ans
+  + if curr: add to stack and curr = curr.left
+  + else: curr = stack.pop and k-= 1 if k == 0: return curr.val else: curr = curr.right
+  + Recursion: 1) set a global variable k = given val, in inorder traversal k-=1 if k==0: return root.val 2) or store in ans array and return kth A[k-1] since inorder is sorted
