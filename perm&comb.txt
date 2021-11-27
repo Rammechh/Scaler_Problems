@@ -1,0 +1,28 @@
+Permuatation:
+
+def permute(self, A):
+	    #return list(permutations(A))
+	    
+	    def dfs(nums, path, res):
+	        if not nums:
+	            res.append(path)
+	        for i in range(len(nums)):
+	            dfs(nums[:i]+nums[i+1:], path + [nums[i]], res)
+	    
+	    res = []
+	    dfs(A, [], res)
+	    return res
+
+Combinations:
+
+def dfs(temp, idx):
+    rslt.append(temp[:])
+    for i in range(idx, len(nums)):
+        temp.append(nums[i])
+        dfs(temp,i+1)
+        temp.pop()
+
+rslt = []
+nums  = [1,2,3]
+dfs([], 0)
+print(rslt)
