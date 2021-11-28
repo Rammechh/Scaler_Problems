@@ -1,0 +1,170 @@
+SUMMATION
+Problem Description
+
+Given an integer A.
+
+Calculate the sum = (ACr) * (r) * (r - 1) * (2r-2) for all r from 0 to A.
+
+Return sum % 109 + 7.
+
+
+
+Problem Constraints
+2 <= A <= 106
+
+
+
+Input Format
+The first and only argument given is the integer A.
+
+
+
+Output Format
+Return a single integer denoting sum % 109 + 7.
+
+
+
+Example Input
+Input 1:
+
+ A = 3
+Input 2:
+
+ A = 4
+
+
+Example Output
+Output 1:
+
+ 18
+Output 2:
+
+ 108
+
+
+Example Explanation
+Explaination 1:
+
+ (ACr) * (r) * (r - 1) * (2r-2)
+ r = 0, (1) * (0) * (1) * (1/4) = 0
+ r = 1, (3) * (1) * (0) * (1/2) = 0
+ r = 2, (3) * (2) * (1) * (1) = 6
+ r = 3, (1) * (3) * (2) * (2) = 12
+ sum = 18
+ 
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+    # @param A : integer
+    # @return an integer
+    def solve(self, A):
+		#Brute Force
+        """def fac(n):
+            tot = 1
+            for i in range(1, n+1):
+                tot *= i
+            return tot
+        
+        Mod = (10 ** 9) + 7
+        Sum = 0  
+        for i in range(A+1):
+            r = i
+            ncr = fac(A)/ (fac(r) * fac(A-r))
+            
+            Sum += (ncr * r * (r-1) * (2 ** (r-2))) % Mod
+        
+        return int(Sum % Mod)"""
+		
+		#Cal power in logn
+		
+        """def power(x, y):
+            res = 1
+            while(y):
+                if(y % 2):
+                    res = (x * res) % Mod
+                y = y // 2
+                x = (x * x) % Mod
+            return res"""
+			
+        """def power(x, y):
+ 
+            if (y == 0): return 1
+            elif (int(y % 2) == 0):
+                return (power(x, int(y / 2)) * power(x, int(y / 2)))
+            else:
+                return (x * power(x, int(y / 2)) * power(x, int(y / 2)))"""
+                
+        def power(x,y):
+            temp = 0
+            if(y == 0):
+                return 1
+            temp = power(x, y//2) % Mod
+            if (y % 2 == 0):
+                return (temp * temp) % Mod
+            else:
+                return (x * temp * temp) % Mod
+                
+            
+        Mod = (10 ** 9) + 7
+        ans = A * (A-1) * power(3,(A-2)) 
+        return ans % Mod
+_______________________________________________________________________Given_Solution___________________________________________________________
+mod = 1000000007
+def powe(a, b):
+    res = 1
+    while(b):
+        if(b % 2):
+            res = (res * a) % mod
+            b -= 1
+        else:
+            a = (a * a) % mod
+            b = b // 2
+    return res % mod
+class Solution:
+    # @param A : integer
+    # @return an integer
+    def solve(self, A):
+        ans = powe(3, A - 2)
+        ans = (ans * A) % mod
+        return int((ans * (A - 1)) % mod)
+		
+--Java--
+public class Solution {
+    
+    public long pow(long x, int y, int k){
+        long result = 1;
+        while(y > 0){
+            if(y % 2 == 1){
+                result = (result * x) % k;
+                y--;
+            }
+            y >>= 1;
+            x = (x * x) % k;
+        }
+        return result;
+    }
+    
+    public int solve(int A) {
+        int mod =  1000 * 1000 * 1000 + 7;
+        long ans = pow(3, A - 2, mod);
+        ans = (ans * A) % mod;
+        return (int)((ans * (A - 1)) % mod);
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+(1+x)A = 1 + AC1 x + AC2 x2 + AC3 x3 + …. + xA
+
+Differentiating w.r.t x both sides we get:
+
+A(1+x)(A-1) = AC1 + 2AC2 x + 3AC3 x2 +…. + AxA-1
+
+Differentiating w.r.t x again both sides we get:
+
+A(A-1)(1+x)A-2 = 2AC2 + 6 AC3 x + …. + A(A-1)xA-2
+
+Putting x=2 we get:
+
+A(A-1)3A-2 = 2AC2 + 12AC3+…. + A(A-1)3A-2
+
+So the right term is what we have to find so just calculate:
+
+A(A-1)3A-2 using modulo exponentiation and multiplication.
