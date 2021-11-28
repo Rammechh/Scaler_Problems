@@ -13,6 +13,7 @@ Problems
      * Letter Phone
   + [Day35_BackTracking](#Day35_BackTracking)
      * Combination Sum II
+     * Palindrome Partitioning
   + [Day55_TwoPointers](#Day55_TwoPointers)
      * Another Count Rectangles
      * Pairs with Given Difference
@@ -116,6 +117,9 @@ Day35_BackTracking
  + Generate all combinations (Subsequence) 
  + Check if sum of generated subseq is equal to given sum and subseq not in ans (check for duplicates in return list)
 
+### Palindrome Partitioning
+  + We can use recursion to generate all possible palindrome partitioning of s. When on index i, you incrementally check all substring starting from i for being palindromic. If found, you recursively solve the problem for the remaining string and add it to your solution. Start this recursion from starting position of the string.
+ 
 Day55_TwoPointers
 ================
 
