@@ -14,6 +14,7 @@ Problems
   + [Day35_BackTracking](#Day35_BackTracking)
      * Combination Sum II
      * Palindrome Partitioning
+     * Word Break II
   + [Day55_TwoPointers](#Day55_TwoPointers)
      * Another Count Rectangles
      * Pairs with Given Difference
@@ -119,7 +120,10 @@ Day35_BackTracking
 
 ### Palindrome Partitioning
   + We can use recursion to generate all possible palindrome partitioning of s. When on index i, you incrementally check all substring starting from i for being palindromic. If found, you recursively solve the problem for the remaining string and add it to your solution. Start this recursion from starting position of the string.
- 
+
+### Word Break 2
+  + You start exploring every substring from the start of the string, and check if its in the dictionary. If it is, then you check if it is possible to form rest of the string using the dictionary words. If yes, you append the current substring to all the substring possible from rest of the string. If none of the substrings qualify, then there are no sentences possible from this string. .
+  
 Day55_TwoPointers
 ================
 
