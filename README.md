@@ -5,6 +5,7 @@ Problems
      * Lucky Numbers
   + [Day32_Maths_Combinatorics](#Day32_Maths_Combinatorics)
      * Sorted Permutation Rank with Repeats
+     * Compute nCr % m
   + [Day34_Recursion](#Day34_Recursion)
      * Combinations
      * Letter Phone
@@ -74,6 +75,9 @@ Day32_Maths_Combinatorics
 letter rank += 1 
        * rank += (letter_rank * self.fact(n-i-1) // denominator)
    * return the rank after all pass
+  
+### 2) Compute nCr % m
+  + Use Dp Approach - If we calculate nCr by calculating factorial of each number and then doing n! / (r! * (n-r)!) % m. This will not work as the factorial can be very large and will cause overflow. As we know nCr = n-1Cr-1 + n-1Cr. So we will use Dynamic Programming approach and calculate the value of nCr.
 
 Day34_Recursion
 =================
