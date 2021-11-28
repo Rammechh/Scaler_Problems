@@ -6,6 +6,7 @@ Problems
   + [Day32_Maths_Combinatorics](#Day32_Maths_Combinatorics)
      * Sorted Permutation Rank with Repeats
      * Compute nCr % m
+     * Compute nCr % p
   + [Day34_Recursion](#Day34_Recursion)
      * Combinations
      * Letter Phone
@@ -78,6 +79,12 @@ letter rank += 1
   
 ### 2) Compute nCr % m
   + Use Dp Approach - If we calculate nCr by calculating factorial of each number and then doing n! / (r! * (n-r)!) % m. This will not work as the factorial can be very large and will cause overflow. As we know nCr = n-1Cr-1 + n-1Cr. So we will use Dynamic Programming approach and calculate the value of nCr.
+
+### 3) Compute nCr % p
+  + This problem can be solved using Fermat’s Little theorem. a^p = a (mod p) where p is a prime number. 
+  + a^(p-1) = 1 (mod p) Multiply by a inverse on both sides 
+  + a^(p-2) = a^(-1) (mod p).
+  + Using the above result, nCr can be calulated as ( fact[n]%p ) * inversemodulo( fact[n-r] %p ) * inversemodulo( fact[r] %p ).
 
 Day34_Recursion
 =================
