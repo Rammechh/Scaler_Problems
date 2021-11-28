@@ -7,6 +7,7 @@ Problems
      * Sorted Permutation Rank with Repeats
      * Compute nCr % m
      * Compute nCr % p
+     * Summation
   + [Day34_Recursion](#Day34_Recursion)
      * Combinations
      * Letter Phone
@@ -85,6 +86,19 @@ letter rank += 1
   + a^(p-1) = 1 (mod p) Multiply by a inverse on both sides 
   + a^(p-2) = a^(-1) (mod p).
   + Using the above result, nCr can be calulated as ( fact[n]%p ) * inversemodulo( fact[n-r] %p ) * inversemodulo( fact[r] %p ).
+
+### 4) Summation
+_____________________________________________
+ (1+x)A = 1 + AC1 x + AC2 x2 + AC3 x3 + …. + xA 
+ Differentiating w.r.t x both sides we get:
+ A(1+x)(A-1) = AC1 + 2AC2 x + 3AC3 x2 +…. + AxA-1
+ Differentiating w.r.t x again both sides we get:
+ A(A-1)(1+x)A-2 = 2AC2 + 6 AC3 x + …. + A(A-1)xA-2
+ Putting x=2 we get:
+ A(A-1)3A-2 = 2AC2 + 12AC3+…. + A(A-1)3A-2
+ So the right term is what we have to find so just calculate:
+ A(A-1)3A-2 using modulo exponentiation and multiplication.
+___________________________________________________
 
 Day34_Recursion
 =================
