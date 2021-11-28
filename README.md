@@ -1,6 +1,8 @@
 <!--ts-->
 Problems
 =================
+  + [Day31_Maths_Prime_numbers](#Day31_Maths_Prime_numbers)
+     * Lucky Numbers
   + [Day32_Maths_Combinatorics](#Day32_Maths_Combinatorics)
      * Sorted Permutation Rank with Repeats
   + [Day34_Recursion](#Day34_Recursion)
@@ -55,7 +57,13 @@ Problems
 
 
 <!--te-->
-
+Day31_Maths_Prime_numbers
+==================
+### 2)Lucky Numbers
+  + Store the divisors count using Sieve Algorithm (first calculate for prime or not, again create another array to store divisor count)
+  + Iterate thro it and if divisor count == 2: Count +=1 
+  + return Count T.C = O(n log n) [sieve]
+  
 Day32_Maths_Combinatorics
 =================
 ### 1)Sorted Permutation Rank with Repeats
