@@ -59,6 +59,8 @@ Problems
      * Kth Smallest Element In Tree
      * Valid Binary Search Tree
      * Sorted Array To Balanced BST
+  + [Day72_Tries](#Day72_Tries)
+     * Shortest Unique Prefix
    
 
 
