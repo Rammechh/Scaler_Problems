@@ -291,4 +291,7 @@ Day69_BST
   + else: curr = stack.pop and k-= 1 if k == 0: return curr.val else: curr = curr.right
   + Recursion: 1) set a global variable k = given val, in inorder traversal k-=1 if k==0: return root.val 2) or store in ans array and return kth A[k-1] since inorder is sorted.
 
-
+Day72_Tries
+===============
+### Shortest Unique Prefix
+  + 
