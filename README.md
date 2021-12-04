@@ -59,6 +59,8 @@ Problems
      * Kth Smallest Element In Tree
      * Valid Binary Search Tree
      * Sorted Array To Balanced BST
+  + [Day70_LCA_and_Tree_Problems](#Day70_LCA_and_Tree_Problems)
+     * Invert the Binary Tree
   + [Day72_Tries](#Day72_Tries)
      * Shortest Unique Prefix
      * Spelling Checker
@@ -292,6 +294,11 @@ Day69_BST
   + if curr: add to stack and curr = curr.left
   + else: curr = stack.pop and k-= 1 if k == 0: return curr.val else: curr = curr.right
   + Recursion: 1) set a global variable k = given val, in inorder traversal k-=1 if k==0: return root.val 2) or store in ans array and return kth A[k-1] since inorder is sorted.
+
+Day70_LCA_and_Tree_Problems
+=====================
+### 2) Invert the Binary Tree
+  + Think recursively.On every node, you need to invert the left and right subtree and then swap them
 
 Day72_Tries
 ===============
