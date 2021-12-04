@@ -295,7 +295,7 @@ Day69_BST
 
 Day72_Tries
 ===============
-### Shortest Unique Prefix
+### 1) Shortest Unique Prefix
   + input: ["zebra", "dog", "duck", "dot"]
 __________________________________________________________________________________________________________________________________________
 Now we will build prefix tree and we will also store count of characters
@@ -311,14 +311,14 @@ Now, for every leaf / word , we find the character nearest to the root with freq
 The prefix that the path from root to this character corresponds to, is the representation of the word. 
 __________________________________________________________________________________________________________________________________________
 
-### Spelling Checker
+### 2) Spelling Checker
   + To this in O(n), you will need a different data structure called tries. You can insert all dictionary strings in a trie and then try finding all given strings in the trie, each of those will take O(length) time. Thus you can do this without the additional log factor you get while working with sets.
   + def __init__(self, x):
         self.val = x
         self.map = {}
         self.isTerminated = False
         
-### Maximum XOR
+### 3) Maximum XOR
   + We will find the maximum XOR of ith element with the previous i-1 elements of the array. Do this for all i 1 to N and update the maximum XOR at eact step. First build bitwise trie of i-1 elements which means insert the bit representation(from right to left) of all i-1 elements into the trie.
   + For ex: Given 3 numbers with their bit representation: 6(00110) , 5(00101) and 23(10111) and we need to find the maximum xor of 2(00010) with these numbers. Insert 6(00110), 5(00101) and (10101). After inserting, Our trie will look like this. (using only 5 bits for example)
    + We want to find the maximum xor of 2(00010) with the numbers in the trie. Start traversing in the trie from root, At every node, there can be two possibilites:
