@@ -1,0 +1,224 @@
+Spelling Checker
+Problem Description
+
+Given an array of words A (dictionary) and another array B (which contain some words).
+
+You have to return the binary array (of length |B|) as the answer where 1 denotes that the word is present in the dictionary and 0 denotes it is not present.
+
+Formally, for each word in B, you need to return 1 if it is present in Dictionary and 0 if it is not.
+
+Such problems can be seen in real life when we work on any online editor (like Google Documnet), if the word is not valid it is underlined by a red line.
+
+NOTE: Try to do this in O(n) time complexity.
+
+
+
+Problem Constraints
+1 <= |A| <= 1000
+
+1 <= sum of all strings in A <= 50000
+
+1 <= |B| <= 1000
+
+
+
+Input Format
+First argument is array of strings A.
+
+First argument is array of strings B.
+
+
+
+Output Format
+Return the binary array of integers according to the given format.
+
+
+
+Example Input
+Input 1:
+
+A = [ "hat", "cat", "rat" ]
+B = [ "cat", "ball" ]
+Input 2:
+
+A = [ "tape", "bcci" ]
+B = [ "table", "cci" ]
+
+
+Example Output
+Output 1:
+
+[1, 0]
+Output 2:
+
+[0, 0]
+
+
+Example Explanation
+Explanation 1:
+
+Only "cat" is present in the dictionary.
+Explanation 2:
+
+None of the words are present in the dictionary.
+
+_______________________________________________________________________Solution___________________________________________________________
+class Trie:
+    
+    def __init__(self, x):
+        self.val = x
+        self.map = {}
+        self.isTerminated = False
+        
+class Solution:
+    # @param A : list of strings
+    # @param B : list of strings
+    # @return a list of integers
+    def solve(self, A, B):
+        """hMap = set(A)
+        ans = []
+        for word in B:
+            if word in hMap:
+                ans.append(1)
+            else:
+                ans.append(0)
+        return ans"""
+        head = Trie('0')
+        for i in A:
+            curr = head
+            for j in range(len(i)):
+                if curr.map.get(i[j]):
+                    curr = curr.map[i[j]]
+                else:
+                    curr.map[i[j]] = Trie(i[j])
+                    curr = curr.map[i[j]]
+                if j == len(i) -1:
+                    curr.isTerminated = True
+        ans = []
+        
+        for i in B:
+            isPresent = True
+            curr = head
+            for j in range(len(i)):
+                if curr.map.get(i[j]):
+                    curr = curr.map[i[j]]
+                else:
+                    isPresent = False
+                    break
+            
+            if isPresent and curr.isTerminated:
+                ans.append(1)
+            else:
+                ans.append(0)
+        
+        return ans
+_______________________________________________________________________Given_Solution___________________________________________________________
+
+from collections import defaultdict
+class TrieNode():
+    def __init__(self):
+        self.children = defaultdict()
+        self.terminating = False
+
+class Trie():
+
+    def __init__(self):
+        self.root = self.get_node()
+    def get_node(self):
+        return TrieNode()
+    def get_index(self, ch):
+        return ord(ch) - ord('a')
+    def insert(self, word):
+        root = self.root
+        len1 = len(word)
+        for i in range(len1):
+            index = self.get_index(word[i])
+            if index not in root.children:
+                root.children[index] = self.get_node()
+            root = root.children.get(index)
+        root.terminating = True
+    def search(self, word):
+        root = self.root
+        len1 = len(word)
+        for i in range(len1):
+            index = self.get_index(word[i])
+            if not root:
+                return False
+            root = root.children.get(index)
+        return True if root and root.terminating else False
+
+class Solution:
+    # @param A : list of strings
+    # @param B : list of strings
+    # @return a list of integers
+    def solve(self, A, B):
+        t = Trie()
+        for i in A:
+            t.insert(i)
+        ans = [0 for i in range(len(B)) ]
+        counter = 0
+        for i in B:
+            if(t.search(i) == True):
+                ans[counter]=1
+            counter=counter+1
+        return ans
+
+--Java--
+public class Solution {
+    static final int ALPHABET_SIZE = 26;
+    static TrieNode root;
+    static class TrieNode {
+        TrieNode[] children = new TrieNode[ALPHABET_SIZE];
+        boolean isEndOfWord;
+        TrieNode() {
+            isEndOfWord = false;
+            for (int i = 0; i < ALPHABET_SIZE; i++)
+                children[i] = null;
+        }
+    };
+    public int[] solve(String[] A, String[] B) {
+        root = new TrieNode();
+        for (String temp: A)
+            insert(temp);
+        int[] ans = new int[B.length];
+        for (int i = 0; i < B.length; i++) {
+            if (search(B[i]) == true)
+                ans[i] = 1;
+            else ans[i] = 0;
+        }
+        return ans;
+    }
+    static void insert(String key) {
+        int level;
+        int length = key.length();
+        int index;
+        TrieNode pCrawl = root;
+        for (level = 0; level < length; level++) {
+            index = key.charAt(level) - 'a';
+            if (pCrawl.children[index] == null)
+                pCrawl.children[index] = new TrieNode();
+            pCrawl = pCrawl.children[index];
+        }
+        pCrawl.isEndOfWord = true;
+    }
+    static boolean search(String key) {
+        int level;
+        int length = key.length();
+        int index;
+        TrieNode pCrawl = root;
+        for (level = 0; level < length; level++) {
+            index = key.charAt(level) - 'a';
+            if (pCrawl.children[index] == null)
+                return false;
+            pCrawl = pCrawl.children[index];
+        }
+        return (pCrawl != null && pCrawl.isEndOfWord);
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+To this in O(n), you will need a different data structure called tries.
+You can insert all dictionary strings in a trie and then try finding all
+given strings in the trie, each of those will take O(length) time.
+Thus you can do this without the additional log factor you
+get while working with sets.
+

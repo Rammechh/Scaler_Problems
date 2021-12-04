@@ -1,0 +1,283 @@
+Maximum XOR
+Problem Description
+
+Given an array of integers A, find and return the maximum result of A[i] XOR A[j], where i, j are the indexes of the array.
+
+
+
+Problem Constraints
+1 <= length of the array <= 100000
+0 <= A[i] <= 109
+
+
+
+Input Format
+The only argument given is the integer array A.
+
+
+
+Output Format
+Return an integer denoting the maximum result of A[i] XOR A[j].
+
+
+
+Example Input
+Input 1:
+
+ A = [1, 2, 3, 4, 5]
+Input 2:
+
+ A = [5, 17, 100, 11]
+
+
+Example Output
+Output 1:
+
+ 7
+Output 2:
+
+ 117
+
+
+Example Explanation
+Explanation 1:
+
+ Maximum XOR occurs between element of indicies(0-based) 1 and 4 i.e. 2 ^ 5 = 7.
+Explanation 2:
+
+ Maximum XOR occurs between element of indicies(0-based) 1 and 2 i.e. 17 ^ 100 = 117.
+_______________________________________________________________________Solution___________________________________________________________
+class Trie():
+    def __init__(self):
+        self.zero = False
+        self.one = False
+        
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self, A):
+        """m = max(A)
+        Max = 0
+        for i in A:
+            n = m ^ i
+            Max = max(n,Max)
+        
+        return Max"""
+        
+        """ans = 0
+        for i in range(31,-1,-1):
+            prefixs = set([num>>i for num in A])
+            #to get the first i digits of the num. In the given example [3, 10, 5, 25, 2, 8], 
+            #since the largest number 25 is 11001 in binary, thus while i>=5, the prefix = {0}, ignoring all preceding '0'
+            #prefix ={0,1} when i ==4, 
+            #prefix ={00,01,11} when i ==3, etc.
+            
+            ans <<=1 # 0 -> 00  1 ->10
+            candidate = ans+1 # 0->01 1->11
+            #so ans and candidate basically gives two options (0 or 1) on every new digit added
+            #and candidate is the largest possible number given the length of the digit. It's sort of a greedy algorithm here.
+            #if previous ans == 1, then the new ans and candidate will be 10 and 11
+            #depands on if we could get 1 on the new digit, we choose if we move forward with ans(10) or candidate(11)
+            
+            for pre in prefixs:
+                if candidate ^ pre in prefixs:
+                    ans = candidate
+                    break
+            # the if condition pre^candidate in prefix is based on the fact a^b^a = b
+            # assume a, b in prefix could generate the largest possilbe xor resuglt "candidate". then if we use candidate^a, the result will be b
+            # so if we do find pre^candidate in prefix, candidate will move forward(ans = candidate), meaning we get 1 in the new digit
+            
+        return ans"""
+        
+        head = Trie()
+        ans = -sys.maxsize
+        for i in range(len(A)):
+            A[i] = bin(A[i]).replace('0b','')
+            n = 32 - len(A[i])
+            A[i] = '0'*n +A[i]
+        for i in A:
+            curr = head
+            for j in range(len(i)):
+                if i[j] == '0':
+                    if not curr.zero:
+                        curr.zero = Trie()
+                    curr = curr.zero
+                else:
+                    if not curr.one:
+                        curr.one = Trie()
+                    curr = curr.one
+        for i in A:
+            maxXor = []
+            curr = head
+            for j in range(len(i)):
+                if i[j] == '0':
+                    if curr.one:
+                        maxXor.append('1')
+                        curr = curr.one
+                    else:
+                        maxXor.append('0')
+                        curr = curr.zero
+                else:
+                    if curr.zero:
+                        maxXor.append('0')
+                        curr = curr.zero
+                    else:
+                        maxXor.append('1')
+                        curr = curr.one
+            currMax = int(''.join(maxXor), 2) ^ int(i,2)
+            ans = max(ans, currMax)
+        return ans
+_______________________________________________________________________Given_Solution___________________________________________________________
+class  TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.leaf   = 0
+
+class Trie:
+    def __init__(self):
+        self.root = self.get_node()
+
+    def get_node(self):
+        return TrieNode()
+
+    def insert(self, x):
+        root = self.root
+        for i in range(31, -1, -1):
+            index = self.check(x, i)
+            if index not in root.children:
+                root.children[index] = self.get_node()
+            root = root.children.get(index)
+        root.leaf = True
+
+    def check(self, x, i):
+        if( (x&(1<<i)) != 0 ):
+            return True
+        else:
+            return False
+
+    def findXor(self, x):
+        root = self.root
+        ans = 0
+        for i in range(31, -1, -1):
+            f = self.check(x, i)
+            index = f^1
+            if index not in root.children:
+                root = root.children.get(index^1)
+            else:
+                ans = ans + (1 << i)
+                root = root.children.get(index)
+        return ans
+    
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self, A):
+        global trie
+        assert(1 <= len(A) <= 10**5)
+        trie = Trie()
+        mx = 0
+        trie.insert(A[0])
+        for i in A:
+            mx = max(mx, trie.findXor(i))
+            # insert element into the trie
+            trie.insert(i)
+        return mx
+
+--Java--
+public class Solution {
+    static private class TrieNode {
+        TrieNode left = null; // left points to 0 
+        TrieNode right = null; // right points to 1
+    }
+    public int solve(int[] A) {
+        return findMaximumXOR(A);
+    }
+    public static int findMaximumXOR(int[] nums) {
+        TrieNode root = new TrieNode();
+        // Constructing the Trie
+        for (int num: nums) {
+            TrieNode curr = root;
+            for (int i = 31; i >= 0; i--) {
+                int bit = (num >>> i) & 1;
+                if (bit == 0) {
+                    if (curr.left == null) {
+                        curr.left = new TrieNode();
+                    }
+                    curr = curr.left;
+                } else {
+                    if (curr.right == null) {
+                        curr.right = new TrieNode();
+                    }
+                    curr = curr.right;
+                }
+            }
+        }
+        int max = Integer.MIN_VALUE;
+
+        // Query on Trie
+        for (int num: nums) {
+            TrieNode curr = root;
+            int currSum = 0;
+            for (int i = 31; i >= 0; i--) {
+                int bit = (num >>> i) & 1;
+                if (bit == 0) {
+                    if (curr.right != null) {
+                        currSum += (int)(Math.pow(2, i));
+                        // currSum += (1 >> i);
+                        curr = curr.right;
+                    } else {
+                        curr = curr.left;
+                    }
+                } else {
+                    if (curr.left != null) {
+                        currSum += (int)(Math.pow(2, i));
+                        // currSum += (1 >> i);
+                        curr = curr.left;
+                    } else {
+                        curr = curr.right;
+                    }
+                }
+            }
+            max = Math.max(currSum, max);
+        }
+        return max;
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+As mentioned in the hints, We will find the maximum XOR of ith element with the previous i-1 elements of the array. Do this for all i 1 to N and update the maximum XOR at eact step.
+
+First build bitwise trie of i-1 elements which means insert the bit representation(from right to left) of all i-1 elements into the trie.
+
+For ex: Given 3 numbers with their bit representation: 6(00110) , 5(00101) and 23(10111) and we need to find the maximum xor of 2(00010) with these numbers.
+
+Insert 6(00110), 5(00101) and (10101).
+After inserting, Our trie will look like this. (using only 5 bits for example)
+
+        -1(root)
+       /   \
+      0     1
+     /     /
+    0     0
+     \     \ 
+      1     1
+    /   \    \
+   0     1    1
+    \   /      \
+   (5)1 0(6)      1(23)
+We want to find the maximum xor of 2(00010) with the numbers in the trie.
+Start traversing in the trie from root, At every node, there can be two possibilites:
+
+1) If the 2(00010) has 1 at that bit, move to the left means towards elements having that bit 0.
+2) If the 2(00010) has 0 at that bit, move to the right means towards elements having that bit 1.
+
+Basically move in the direction of opposite bit to set that bit in our answer to one.
+
+Algorithm:
+
+1) Convert numbers into binary form.
+2) Add numbers into the trie one by one and compute the maximum XOR of a number to add with all previously inserted. Update maximum XOR at each step.
+3) Return the maximum XOR calculated.
+
+At every i we are checking the maximum xor with all elements from 0 to i-1. Time complexity of this step is O(log(max_element in the array)).
+
+We are doing this for every i 1 to N. Overall time complexity is O(Nlog(max_element in the array))
