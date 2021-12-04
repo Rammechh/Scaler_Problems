@@ -321,18 +321,6 @@ ________________________________________________________________________________
 ### Maximum XOR
   + We will find the maximum XOR of ith element with the previous i-1 elements of the array. Do this for all i 1 to N and update the maximum XOR at eact step. First build bitwise trie of i-1 elements which means insert the bit representation(from right to left) of all i-1 elements into the trie.
   + For ex: Given 3 numbers with their bit representation: 6(00110) , 5(00101) and 23(10111) and we need to find the maximum xor of 2(00010) with these numbers. Insert 6(00110), 5(00101) and (10101). After inserting, Our trie will look like this. (using only 5 bits for example)
-
-        -1(root)
-       /   \
-      0     1
-     /     /
-    0     0
-     \     \ 
-      1     1
-    /   \    \
-   0     1    1
-    \   /      \
-   (5)1 0(6)      1(23)
    + We want to find the maximum xor of 2(00010) with the numbers in the trie. Start traversing in the trie from root, At every node, there can be two possibilites:
 1) If the 2(00010) has 1 at that bit, move to the left means towards elements having that bit 0.
 2) If the 2(00010) has 0 at that bit, move to the right means towards elements having that bit 1.
