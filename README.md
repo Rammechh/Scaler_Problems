@@ -301,6 +301,11 @@ Day69_BST
 
 Day70_LCA_and_Tree_Problems
 =====================
+### 2) Invert the Binary Tree
+  + Think recursively.On every node, you need to invert the left and right subtree and then swap them
+  
+Day71_Problems_of_Trees_2
+=====================
 ### 1) Recover Binary Search Tree
   + Only if we swap 2 elements it becomes bst, so follow inorder traversal, In 2 places in array A[i] will be greater than A[i+1] that will be the ans
   + for O(1) space 
@@ -321,11 +326,6 @@ def inorder(root):
             inorder(root.right)
 ___________________________________________________________________________________________________________________________
 
-### 2) Invert the Binary Tree
-  + Think recursively.On every node, you need to invert the left and right subtree and then swap them
-  
-Day71_Problems_of_Trees_2
-=====================
 ### 3) Next Pointer Binary Tree
   + Breadth first approach to exploring a tree is based on the concept of the level of a node. The level of a node is its depth or distance from the root node. We process all the nodes on one level before moving on to the next one. We need to link all the nodes together which lie on the same level and the level order or the breadth first traversal gives us access to all such nodes.
   + Follow Level order traversal and point node.next = q[0] if i<n-1
