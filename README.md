@@ -63,6 +63,7 @@ Problems
      * Invert the Binary Tree
   + [Day71_Problems_of_Trees_2](#Day71_Problems_of_Trees_2)
      * Next Pointer Binary Tree
+     * Recover Binary Search Tree
   + [Day72_Tries](#Day72_Tries)
      * Shortest Unique Prefix
      * Spelling Checker
@@ -300,6 +301,26 @@ Day69_BST
 
 Day70_LCA_and_Tree_Problems
 =====================
+### 1) Recover Binary Search Tree
+  + Only if we swap 2 elements it becomes bst, so follow inorder traversal, In 2 places in array A[i] will be greater than A[i+1] that will be the ans
+  + for O(1) space 
+_________________________________________________________________________________________________________________________
+def inorder(root):
+            if not root:
+                return
+            inorder(root.left)
+			      # 2 times in inorder the val will be greater than prev val
+            # so just check and update, if not first update first and second updated with wrong value at first
+            # only left with one value if again same val greater than prev val second will be updated to correct val
+            if self.prev:
+                if self.prev > root.val:
+                    if not self.first:
+                        self.first = self.prev
+                    self.second = root.val
+            self.prev = root.val
+            inorder(root.right)
+___________________________________________________________________________________________________________________________
+
 ### 2) Invert the Binary Tree
   + Think recursively.On every node, you need to invert the left and right subtree and then swap them
   
