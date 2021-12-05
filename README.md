@@ -62,7 +62,7 @@ Problems
   + [Day70_LCA_and_Tree_Problems](#Day70_LCA_and_Tree_Problems)
      * Invert the Binary Tree
   + [Day71_Problems_of_Trees_2](#Day71_Problems_of_Trees_2)
-     * Invert the Binary Tree
+     * Next Pointer Binary Tree
   + [Day72_Tries](#Day72_Tries)
      * Shortest Unique Prefix
      * Spelling Checker
