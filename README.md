@@ -337,6 +337,7 @@ Day72_Tries
   + input: ["zebra", "dog", "duck", "dot"]
 __________________________________________________________________________________________________________________________________________
 Now we will build prefix tree and we will also store count of characters
+<pre>								     
                 root
                 /|
          (d, 3)/ |(z, 1)
@@ -345,6 +346,7 @@ Now we will build prefix tree and we will also store count of characters
            /|        \
      (o,2)/ |(u,1)    \(e,1)
          /  |          \
+</pre>
 Now, for every leaf / word , we find the character nearest to the root with frequency as 1. 
 The prefix that the path from root to this character corresponds to, is the representation of the word. 
 __________________________________________________________________________________________________________________________________________
