@@ -65,7 +65,8 @@ Problems
      * Shortest Unique Prefix
      * Spelling Checker
      * Maximum XOR
-     * 
+  + [Day73_Heaps1](#Day73_Heaps1)
+     * Magician and Chocolates
 
 
 <!--te-->
@@ -338,3 +339,9 @@ Basically move in the direction of opposite bit to set that bit in our answer to
   3) Return the maximum XOR calculated.
 At every i we are checking the maximum xor with all elements from 0 to i-1. Time complexity of this step is O(log(max_element in the array)).
 We are doing this for every i 1 to N. Overall time complexity is O(Nlog(max_element in the array))
+
+Day73_Heaps1
+===============
+### 4) Magician and Chocolates
+  + Brute Force - for each time find max val of A and add it to result also change the max value to floor(max/2)  
+  + Maintain a max heap - we need to maintain the current maximum size among all bags for every time t = 1, … , B and also updating the sizes of the bags.
