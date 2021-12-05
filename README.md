@@ -310,7 +310,7 @@ Day71_Problems_of_Trees_2
   + Only if we swap 2 elements it becomes bst, so follow inorder traversal, In 2 places in array A[i] will be greater than A[i+1] that will be the ans
   + for O(1) space 
 _________________________________________________________________________________________________________________________
-'''def inorder(root):
+<div>def inorder(root):
             if not root:
                 return
             inorder(root.left)
@@ -324,7 +324,7 @@ ________________________________________________________________________________
                     self.second = root.val
             self.prev = root.val
             inorder(root.right)
-'''
+</div>
 ___________________________________________________________________________________________________________________________
 
 ### 3) Next Pointer Binary Tree
