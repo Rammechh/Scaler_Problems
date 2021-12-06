@@ -376,4 +376,4 @@ Day73_Heaps1
 ===============
 ### 4) Magician and Chocolates
   + Brute Force - for each time find max val of A and add it to result also change the max value to floor(max/2)  
-  + Maintain a max heap - we need to maintain the current maximum size among all bags for every time t = 1, … , B and also updating the sizes of the bags.
+  + Maintain a max heap - we need to maintain the current maximum size among all bags for every time t = 1, … , B and also updating the sizes of the bags. 
