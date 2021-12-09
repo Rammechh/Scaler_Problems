@@ -383,6 +383,6 @@ Day73_Heaps1
 Day74_Heaps2
 ================
 ### 5) Running Median
-  + Brute Force: sort the array each time for n elements
+  + Brute Force: sort the array each time for n elements and find the median (TC = O(N2logN))
   + Maintain Max and Min heap and maintain the length of Min and Max heap
   + Get the top element from Max heap for each run
