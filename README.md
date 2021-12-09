@@ -70,6 +70,8 @@ Problems
      * Maximum XOR
   + [Day73_Heaps1](#Day73_Heaps1)
      * Magician and Chocolates
+  + [Day74_Heaps2](#Day74_Heaps2)
+     * Running Median
 
 
 <!--te-->
