@@ -70,6 +70,7 @@ Problems
      * Maximum XOR
   + [Day73_Heaps1](#Day73_Heaps1)
      * Magician and Chocolates
+     * Product of 3
   + [Day74_Heaps2](#Day74_Heaps2)
      * Running Median
 
@@ -376,6 +377,10 @@ We are doing this for every i 1 to N. Overall time complexity is O(Nlog(max_elem
 
 Day73_Heaps1
 ===============
+### 3) Product of 3
+  + Maintain a max heap and popout 3 elements and append the product in ans.
+  + Again pushback the popped element so that we keep track of the max elements encountered till now
+
 ### 4) Magician and Chocolates
   + Brute Force - for each time find max val of A and add it to result also change the max value to floor(max/2)  
   + Maintain a max heap - we need to maintain the current maximum size among all bags for every time t = 1, … , B and also updating the sizes of the bags. 
