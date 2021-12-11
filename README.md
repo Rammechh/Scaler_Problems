@@ -379,7 +379,7 @@ Day73_Heaps1
 ===============
 ### 3) Product of 3
   + Maintain a max heap and popout 3 elements and append the product in ans.
-  + Again pushback the popped element so that we keep track of the max elements encountered till now
+  + Again pushback the popped element so that we keep track of the max elements encountered till now.
 
 ### 4) Magician and Chocolates
   + Brute Force - for each time find max val of A and add it to result also change the max value to floor(max/2)  
