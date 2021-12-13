@@ -114,7 +114,7 @@ _____________________________________________
  Putting x=2 we get:
  A(A-1)3A-2 = 2AC2 + 12AC3+…. + A(A-1)3A-2
  So the right term is what we have to find so just calculate:
- A(A-1)3A-2 using modulo exponentiation and multiplication.
+ A(A-1)3A-2 using modulo exponentiation and multiplication
 ___________________________________________________
 
 Day34_Recursion
