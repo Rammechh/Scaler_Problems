@@ -73,6 +73,7 @@ Problems
      * Product of 3
   + [Day74_Heaps2](#Day74_Heaps2)
      * Running Median
+     * Ath largest element
 
 
 <!--te-->
@@ -387,7 +388,12 @@ Day73_Heaps1
 
 Day74_Heaps2
 ================
+### 4) Ath largest element
+  + One solution is to use Min Heap of size k to store k largest numbers. The Kth highest element is always at root and can be found in O(1) time.
+  + How to process a new number? Compare the new number value, X with root of heap. If X is smaller, then ignore it. Otherwise replace root with X and call heapify for the root of modified heap. Time complexity of adding new element and finding the Kth highest element is O(LogK). STL priority queue can be used to implement a heap directly.
+
 ### 5) Running Median
   + Brute Force: sort the array each time for n elements and find the median (TC = O(N2logN))
   + Maintain Max and Min heap and maintain the length of Min and Max heap
   + Get the top element from Max heap for each run
+
