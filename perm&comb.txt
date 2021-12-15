@@ -14,7 +14,7 @@ def permute(self, A):
 	    return res
 
 Combinations:
-
+______________
 def dfs(temp, idx):
     rslt.append(temp[:])
     for i in range(idx, len(nums)):
@@ -26,3 +26,14 @@ rslt = []
 nums  = [1,2,3]
 dfs([], 0)
 print(rslt)
+_________________
+def comb(nums, i, rslt):
+    if i >= len(nums):
+        ans.append(rslt)
+        return
+
+    comb(nums, i+1, rslt)
+    comb(nums, i+1, rslt+str(nums[i]))
+ans = []
+comb([1,2,3], 0, "")
+print(ans)
