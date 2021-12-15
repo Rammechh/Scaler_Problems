@@ -405,6 +405,7 @@ Day74_Heaps2
 Day80_Intro_to_Dynamic_Programming
 ==================
 ### 1) Fibonacci Number
+  + In python: from functools import lru_cache (@lru_cache(None) add on top of function using dp)
   + <pre> A simple approach is to use the recursive implementation of the recursive relation given.
 For ex: Calculate 4th term.
 
