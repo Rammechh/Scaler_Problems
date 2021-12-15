@@ -74,6 +74,7 @@ Problems
   + [Day74_Heaps2](#Day74_Heaps2)
      * Running Median
      * Ath largest element.
+     * K Places Apart
   + [Day80_Intro_to_Dynamic_Programming](#Day80_Intro_to_Dynamic_Programming)
      * Fibonacci Number
      * Stairs
@@ -393,6 +394,12 @@ Day73_Heaps1
 
 Day74_Heaps2
 ================
+### 3) K Places Apart
+  + Take the first B+1 elements in a list, finding the minimum of the list will give us the first B+1 element in the sorted array. Remove the smallest element from the list and add the (B+2)th element from the given array to the list. 
+  + Now taking the minimum of the list will give us the second element in the sorted array as each element is <= B distance away from it’s sorted position.Proceed in the same way and keep on finding the minimum of B+1 elements. 
+  + We can use priority_queue to implement the above solution. Each time we remove the minimum element from the queue and add the new element to the queue.
+  + Time complexity of removing an element from the priority_queue will be O(log B) as the size of the queue is <= B+1 and we will remove all N elements from the queue one by one. So, overall time complexity will be O(NlogB).
+
 ### 4) Ath largest element
   + One solution is to use Min Heap of size k to store k largest numbers. The Kth highest element is always at root and can be found in O(1) time.
   + How to process a new number? Compare the new number value, X with root of heap. If X is smaller, then ignore it.Otherwise replace root with X and call heapify for the root of modified heap. Time complexity of adding new element and finding the Kth highest element is O(LogK). STL priority queue can be used to implement a heap directly.
