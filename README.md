@@ -433,11 +433,17 @@ Try to write a solution without using any extra memory.
 ### 2) Stairs
   + This is the most basic dynamic programming problem. We know that we can take 1 or 2 step at a time. So, to take n steps, we must have arrived at it immediately from n - 1 or n - 2th step. If we knew the number of ways to reach n-1 and n-2th step, our answer would be the summation of their number of ways.
   + At step 0 -> 1 way. Step 1 -> 1 way. Step 2 can be reached from step 0 or step 2 (since we need to take only 1 or 2 steps) so we can simply add f[n-1] + f[n-2]
+ 
 ### 3) Let's Party
   + Every person can either pair with another person or can remain single. Let us consider the kth person, he can either remain single or he can pair up with someone from [1, k-1]. So here recurrence relation is :
   + Number_of_ways(k-1) + (k-1) * Number_of_ways(k-2) and by using dynamic programming we can solve overlapping subproblems.
   + i.e. dp[i] = dp[i-1] + dp[i-2] * (i-1)
-  
+ 
 ### 5) Max Sum Without Adjacent Elements
-  +
+  + V : 
+1 |  2  |  3  | 4
+2 |  3  |  4  | 5
+  + We know that within a column, we can choose at max 1 element.  And choosing either of those elements is going to rule out choosing anything from the previous or next column.
+  + This means that choosing V[0][i] or V[1][i] has identical bearing on the elements which are ruled out. So, instead we replace each column with a single element which is the max of V[0][i], V[1][i]. Now we have the list as : 2 3 4 5
+  + Now we want to find maximum sum of values where no 2 values are adjacent. Now our recurrence relation will depend only on position i and, a "include_current_element" which will denote whether we picked last element or not.
   
