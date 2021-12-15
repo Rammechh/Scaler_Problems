@@ -405,8 +405,7 @@ Day74_Heaps2
 Day80_Intro_to_Dynamic_Programming
 ==================
 ### 1) Fibonacci Number
-  + <pre>
-A simple approach is to use the recursive implementation of the recursive relation given.
+  + <pre> A simple approach is to use the recursive implementation of the recursive relation given.
 For ex: Calculate 4th term.
 
                fib(4)   
