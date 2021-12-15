@@ -431,8 +431,8 @@ Try to write a solution without using any extra memory.
 </pre>
   
 ### 2) Stairs
-  +
-  
+  + This is the most basic dynamic programming problem. We know that we can take 1 or 2 step at a time. So, to take n steps, we must have arrived at it immediately from n - 1 or n - 2th step. If we knew the number of ways to reach n-1 and n-2th step, our answer would be the summation of their number of ways.
+  + At step 0 -> 1 way. Step 1 -> 1 way. Step 2 can be reached from step 0 or step 2 (since we need to take only 1 or 2 steps) so we can simply add f[n-1] + f[n-2]
 ### 3) Let's Party
   +
   
