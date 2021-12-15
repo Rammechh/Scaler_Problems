@@ -434,7 +434,9 @@ Try to write a solution without using any extra memory.
   + This is the most basic dynamic programming problem. We know that we can take 1 or 2 step at a time. So, to take n steps, we must have arrived at it immediately from n - 1 or n - 2th step. If we knew the number of ways to reach n-1 and n-2th step, our answer would be the summation of their number of ways.
   + At step 0 -> 1 way. Step 1 -> 1 way. Step 2 can be reached from step 0 or step 2 (since we need to take only 1 or 2 steps) so we can simply add f[n-1] + f[n-2]
 ### 3) Let's Party
-  +
+  + Every person can either pair with another person or can remain single. Let us consider the kth person, he can either remain single or he can pair up with someone from [1, k-1]. So here recurrence relation is :
+  + Number_of_ways(k-1) + (k-1) * Number_of_ways(k-2) and by using dynamic programming we can solve overlapping subproblems.
+  + i.e. dp[i] = dp[i-1] + dp[i-2] * (i-1)
   
 ### 5) Max Sum Without Adjacent Elements
   +
