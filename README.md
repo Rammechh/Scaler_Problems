@@ -410,6 +410,13 @@ Day74_Heaps2
   + Brute Force: sort the array each time for n elements and find the median (TC = O(N2logN))
   + Maintain Max and Min heap and maintain the length of Min and Max heap
   + Get the top element from Max heap for each run
+ 
+Day75_Greedy_Algorithms
+====================
+### 1) Distribute Candy
+ + Greedy works here ( Think of a supportive proof as as assignment ). Start with the guy with the least rating. Obviously he will receive 1 candy. If he did recieve more than one candy, we could lower it to 1 as none of the neighbor have higher rating.
+ + Now lets move to the one which is second least. If the least element is its neighbor, then it receives 2 candies, else we can get away with assigning it just one candy. 
+ + We keep repeating the same process to arrive at optimal solution.
 
 Day80_Intro_to_Dynamic_Programming
 ==================
