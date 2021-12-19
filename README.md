@@ -75,6 +75,8 @@ Problems
      * Running Median
      * Ath largest element.
      * K Places Apart
+   + [Day75_Greedy_Algorithms](#Day75_Greedy_Algorithms)
+     * Distribute Candy
   + [Day80_Intro_to_Dynamic_Programming](#Day80_Intro_to_Dynamic_Programming)
      * Fibonacci Number
      * Stairs
