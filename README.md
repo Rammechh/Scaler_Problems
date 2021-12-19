@@ -82,6 +82,8 @@ Problems
      * Stairs
      * Let's Party
      * Max Sum Without Adjacent Elements
+   + [Day81_Dynamic_Programming2](#Day81_Dynamic_Programming2)
+     * Longest Common Subsequence
 
 
 <!--te-->
@@ -463,3 +465,15 @@ Try to write a solution without using any extra memory.
   + This means that choosing V[0][i] or V[1][i] has identical bearing on the elements which are ruled out. So, instead we replace each column with a single element which is the max of V[0][i], V[1][i]. Now we have the list as : 2 3 4 5
   + Now we want to find maximum sum of values where no 2 values are adjacent. Now our recurrence relation will depend only on position i and, a "include_current_element" which will denote whether we picked last element or not.
   
+Day81_Dynamic_Programming2
+======================
+### 1)Longest Common Subsequence
+ + Suppose LCS[i][j] represents the longest common subsequence of A[1..i] and B[1..j]. A[1..i] represents first i characters of string A. A[1..j] represents first j characters of string B. For every i, j we have two conditions A[i] == B[j] or not. Divide the problem based on this condition.
+ + Recursion relation to divide the problem into smaller sub problems can be written as:-
+
+LCS(i, j) = maximum (LCS(i-1, j-1] + 1,       //if(A[i] = B[j])
+                     LCS(A[i-1], B[j],
+                     LCS(A[i], B[j-1] )
+ + LCS[ len(A) ][ len(B) ] will be our answer.
+
+Think about the time complexity of this solution.
