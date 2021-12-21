@@ -82,6 +82,7 @@ Problems
      * Stairs
      * Let's Party
      * Max Sum Without Adjacent Elements
+     * Minimum Number of Squares
    + [Day81_Dynamic_Programming2](#Day81_Dynamic_Programming2)
      * Longest Common Subsequence
 
@@ -456,6 +457,30 @@ Try to write a solution without using any extra memory.
   + Every person can either pair with another person or can remain single. Let us consider the kth person, he can either remain single or he can pair up with someone from [1, k-1]. So here recurrence relation is :
   + Number_of_ways(k-1) + (k-1) * Number_of_ways(k-2) and by using dynamic programming we can solve overlapping subproblems.
   + i.e. dp[i] = dp[i-1] + dp[i-2] * (i-1)
+
+### 4) Minimum Number of Squares
+ + It is always possible to represent a number N as sum of squares i.e.(1^1+1^1+1^1+…..+1^1, N times).
+ + example 12 : List of perfect square numbers ≤12 is 1,4,9. 11+1 = 12, 8+4 = 12, 3+9 = 12. So to reach 12 we have 3 choices i.e. 11,8,3.
++ Similarly we will solve for these subproblems with base case as for N=0, ans=0 and for N=1, ans=1.
+<pre>
+if n <= 1, 
+then return n 
+Else
+   countMinSquares(n) = min {1 + countMinSquares(n - i*i)} 
+                       where i >= 1 and i*i <= n
+We can easily transform this exponential solution to DP as below :
+dp[0]=0,dp[1]=1; // base cases.
+i : [2...N]
+{
+    dp[i]=i;
+    for every x : x>=1 & x*x<=i
+    {
+        dp[i]=min(dp[i],1+dp[i-x*x]);
+    }
+}
+Time Complexity : O(N*sqrt(N))
+Space Complexity : O(N)
+</pre>
  
 ### 5) Max Sum Without Adjacent Elements
   + V : 
