@@ -505,4 +505,20 @@ LCS(i, j) = maximum (LCS(i-1, j-1] + 1,       //if(A[i] = B[j])
 Think about the time complexity of this solution. 
 
 ### 2) Edit Distance
- + 
+ 1) Insert S2’s first character and then solve the problem for remaining part of S2, and S1.
+ 2) Delete S1’s first character and trying to match S1’s remaining string with S2.
+ 3) Replace S1’s first character with S2’s first character in which case we solve the problem for remaining part of S1 and S2.
+<pre>
+int editDistance(string &S1, int index1, string &S2, int index2) {
+// BASE CASES
+
+if (S1[index1] == S2[index2]) {
+     return editDistance(S1, index1 + 1, S2, index2 + 1);
+} else {
+     return min(
+    1 + editDistance(S1, index1 + 1, S2, index2), // Delete S1 char
+            1 + editDistance(S1, index1, S2, index2 + 1), // Insert S2 char
+            1 + editDistance(S1, index1 + 1, S2, index2 + 1) // Replace S1 first char with S2 first char
+     );
+} }
+</pre>
