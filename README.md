@@ -85,6 +85,7 @@ Problems
      * Minimum Number of Squares
    + [Day81_Dynamic_Programming2](#Day81_Dynamic_Programming2)
      * Longest Common Subsequence
+     * Edit Distance
 
 
 <!--te-->
