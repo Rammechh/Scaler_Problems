@@ -50,6 +50,7 @@ Problems
   + [Day66_LinkedList2](#Day66_LinkedList2)
      * Palindrome List
      * Merge Two Sorted Lists
+     * Add Two Numbers as Lists
   + [Day67_Trees](#Day67_Trees)
      * Level Order
      * Inorder Traversal (pending)
@@ -278,6 +279,10 @@ Day66_LinkedList2
 ### Merge Two Sorted Lists
  + only need to do is modify the next pointers.Don't create new nodes. At every step, you choose the minumum of the current head X on the 2 lists, and modify your answer’s next pointer to X. You move the current pointer on the said list and the current answer.
  + Corner case, Make sure that at the end of the loop, when one of the list goes empty, you do include remaining elemnts from the second list into your answer.
+
+### Add Two Numbers as Lists
+ + This problem can be solved exactly like the naive addition is done, using the temporary sum and implementing a value that represent a carry over.
+ + two edge cases, 1) The first list can be shorter than the second list. -> if None consider as 0. 2) It is possible that the answer has more digits than both the given integers. -> run while A or B or carry
 
 Day67_Trees
 ===============
