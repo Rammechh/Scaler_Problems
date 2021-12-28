@@ -46,6 +46,7 @@ Problems
      * Perfect Numbers
    + [Day64_Linked_List](#Day64_Linked_List)
      * Middle element of linked list
+     * Remove Duplicates from Sorted List
   + [Day66_LinkedList2](#Day66_LinkedList2)
      * Palindrome List
   + [Day67_Trees](#Day67_Trees)
@@ -261,6 +262,9 @@ Day64_Linked_List
 =================
 ### 2) Middle element of linked list
  + One way is to traverse the whole linked list and calculate the length and then traverse half the length to find the middle element. We can do it in one traversal by maintaing a slow and fast pointer. Fast pointer moves twice as the slow pointer does. When the fast pointer is at the end of linked list, the slow pointer will point to middle element. Return the element at which the slow pointer points.
+
+### 3) Remove Duplicates from Sorted List
+ + Skip the node where head->next != NULL && head->val == head->next->val.
   
 Day66_LinkedList2
 ================
