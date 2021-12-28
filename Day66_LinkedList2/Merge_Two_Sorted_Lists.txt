@@ -1,0 +1,169 @@
+Merge Two Sorted Lists
+Problem Description
+
+Merge two sorted linked lists A and B and return it as a new list.
+
+The new list should be made by splicing together the nodes of the first two lists, and should also be sorted.
+
+
+
+Problem Constraints
+0 <= |A|, |B| <= 105
+
+
+
+Input Format
+The first argument of input contains a pointer to the head of linked list A.
+
+The second argument of input contains a pointer to the head of linked list B.
+
+
+
+Output Format
+Return a pointer to the head of the merged linked list.
+
+
+
+Example Input
+Input 1:
+
+ A = 5 -> 8 -> 20
+ B = 4 -> 11 -> 15
+Input 2:
+
+ A = 1 -> 2 -> 3
+ B = Null
+
+
+Example Output
+Output 1:
+
+ 4 -> 5 -> 8 -> 11 -> 15 -> 20
+Output 2:
+
+ 1 -> 2 -> 3
+
+
+Example Explanation
+Explanation 1:
+
+ Merging A and B will result in 4 -> 5 -> 8 -> 11 -> 15 -> 20 
+Explanation 2:
+
+ We don't need to merge as B is empty. 
+_______________________________________________________________________Solution___________________________________________________________
+# Definition for singly-linked list.
+# class ListNode:
+#	def __init__(self, x):
+#		self.val = x
+#		self.next = None
+
+class Solution:
+	# @param A : head node of linked list
+	# @param B : head node of linked list
+	# @return the head node in the linked list
+	def mergeTwoLists(self, A, B):
+        head = ans = ListNode(0)
+  
+        while A and B:
+            if A.val < B.val:
+                ans.next = A
+                A = A.next
+            else:
+                ans.next = B
+                B = B.next
+            ans = ans.next
+            
+        while A:
+            ans.next = A
+            A = A.next
+            ans = ans.next
+            
+        while B:
+            ans.next = B
+            B = B.next
+            ans = ans. next
+        
+        ans.next = None
+        
+        return head.next
+_______________________________________________________________________Given_Solution___________________________________________________________
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    # @param A : head node of linked list
+    # @param B : head node of linked list
+    # @return the head node in the linked list
+    def mergeTwoLists(self, A, B):
+        headA = A
+        headB = B
+        dummy = ListNode(0)
+        dummy_head = dummy
+        while (headA is not None) and (headB is not None):
+            if headA.val < headB.val:
+                dummy.next = ListNode(headA.val)
+                headA = headA.next
+                dummy = dummy.next
+            else:
+                dummy.next = ListNode(headB.val)
+                headB = headB.next
+                dummy = dummy.next
+        if headA is not None:
+            dummy.next = headA
+        elif headB is not None:
+            dummy.next = headB
+        return dummy_head.next
+
+--Java--
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode mergeTwoLists(ListNode A, ListNode B) {
+        return solve(A, B);
+    }
+    public ListNode solve(ListNode A, ListNode B) {
+        if (A == null)
+            return B;
+        if (B == null)
+            return A;
+        ListNode head;
+        ListNode node = new ListNode(0);
+        head = node;
+        while (A != null && B != null) {
+            if (A.val <= B.val) {
+                node.next = A;
+                A = A.next;
+                node = node.next;
+            } else {
+                node.next = B;
+                B = B.next;
+                node = node.next;
+            }
+        }
+        if (A == null)
+            node.next = B;
+        else
+            node.next = A;
+        head = head.next;
+        return head;
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+First thing to note is that all you would want to do is modify the next pointers. You don’t need to create new nodes.
+
+At every step, you choose the minumum of the current head X on the 2 lists, and modify your answer’s next pointer to X. You move the current pointer on the said list and the current answer.
+
+Corner case,
+Make sure that at the end of the loop, when one of the list goes empty, you do include remaining elemnts from the second list into your answer.
+
+Test case : 1->2->3 4->5->6
