@@ -49,6 +49,7 @@ Problems
      * Remove Duplicates from Sorted List
   + [Day66_LinkedList2](#Day66_LinkedList2)
      * Palindrome List
+     * Merge Two Sorted Lists
   + [Day67_Trees](#Day67_Trees)
      * Level Order
      * Inorder Traversal (pending)
@@ -273,6 +274,10 @@ Day66_LinkedList2
   + from mid to end reverse the linked list (rev)
   + if head.val != rev.val return -1 
   + else 1 (palindrome)
+
+### Merge Two Sorted Lists
+ + only need to do is modify the next pointers.Don't create new nodes. At every step, you choose the minumum of the current head X on the 2 lists, and modify your answer’s next pointer to X. You move the current pointer on the said list and the current answer.
+ + Corner case, Make sure that at the end of the loop, when one of the list goes empty, you do include remaining elemnts from the second list into your answer.
 
 Day67_Trees
 ===============
