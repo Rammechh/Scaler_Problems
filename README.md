@@ -245,6 +245,7 @@ Day63_Queues
 
 ### 3) First non-repeating character
   + You need to maintain map for each character of the stream. After that you can also maintain a queue for extraction of information. Each character is inserted and removed from queue atmost 1 time hence time complexity is O(n).
+
 <pre>
 for (auto c : A)
 {
@@ -255,8 +256,12 @@ if (!q.empty()) ans.push_back(q.front());
 else ans.push_back(‘#’);
 }
 </pre>
-### Day64_Linked_List)
-  + Middle element of linked list
+
+Day64_Linked_List
+=================
+### 2) Middle element of linked list
+ + One way is to traverse the whole linked list and calculate the length and then traverse half the length to find the middle element. We can do it in one traversal by maintaing a slow and fast pointer. Fast pointer moves twice as the slow pointer does. When the fast pointer is at the end of linked list, the slow pointer will point to middle element. Return the element at which the slow pointer points.
+  
 Day66_LinkedList2
 ================
 ### 1) Palindrome List
