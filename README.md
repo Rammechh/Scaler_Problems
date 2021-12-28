@@ -245,7 +245,7 @@ Day63_Queues
 
 ### 3) First non-repeating character
   + You need to maintain map for each character of the stream. After that you can also maintain a queue for extraction of information. Each character is inserted and removed from queue atmost 1 time hence time complexity is O(n).
-___________________________________________
+<pre>
 for (auto c : A)
 {
 mp[c]++;
@@ -254,8 +254,9 @@ while (!q.empty() && mp[q.front()] > 1) q.pop();
 if (!q.empty()) ans.push_back(q.front());
 else ans.push_back(‘#’);
 }
-____________________________________________
-
+</pre>
+### Day64_Linked_List)
+  + Middle element of linked list
 Day66_LinkedList2
 ================
 ### 1) Palindrome List
