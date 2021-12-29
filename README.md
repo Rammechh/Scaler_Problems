@@ -218,7 +218,8 @@ Day61_Stacks
 ### 4) Passing game
   + Push the new id in the stack to keep track of the latest player who has the ball. Now you should pass the ball to the previous player who forwarded you the ball, so you can easily pop the last player from the stack.
 ### Balanced Paranthesis
- + Store the opening brackets ('(', '{', '[') in stack
+ + Store the opening brackets ('(', '{', '[') in stack. ]
+ + whenever you find the closing bracket check if it matches stack[-1] else return 0
 
 Day62_Stacks2
 ================
