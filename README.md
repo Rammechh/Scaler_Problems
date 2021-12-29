@@ -36,6 +36,7 @@ Problems
      * Task Scheduling
      * Double Character Trouble
      * Balanced Paranthesis
+     * Redundant Braces
   + [Day62_Stacks2](#Day62_Stacks2)
      * Double Character Trouble
      * Evaluate Expression
@@ -220,6 +221,10 @@ Day61_Stacks
 ### Balanced Paranthesis
  + Store the opening brackets ('(', '{', '[') in stack. ]
  + whenever you find the closing bracket check if it matches stack[-1] else return 0
+
+### Redundant Braces
+ + If i get a opening bracket or any operator(+, -, /, *) append it to stack.
+ + If any closing bracket encountered, check if stack[-1] euql to opening bracket return 1. since it don't contain an operator (reduntant brackets)
 
 Day62_Stacks2
 ================
