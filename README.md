@@ -50,6 +50,7 @@ Problems
      * Middle element of linked list
      * Remove Duplicates from Sorted List
      * Swap List Nodes in pairs
+     * Reverse Link List II
   + [Day66_LinkedList2](#Day66_LinkedList2)
      * Palindrome List
      * Merge Two Sorted Lists
@@ -281,7 +282,13 @@ Day64_Linked_List
 ### Swap List Nodes in pairs
  + Method 1: Just swap the values in the 2 nodes. In most cases, this won’t be a permissible solution. Method 2: Move around the pointers.
  + curr.next = swap(curr.next, curr.next.next)
-  
+
+### Reverse Link List II
+ + Traverse thro the given linked list and have First(before start <B), From(==B start point), To(==C end point), Last(To.next)
+ + reverse from B->C (From -> To) and join
+ + First.next = to, From.next = last
+ + return head
+
 Day66_LinkedList2
 ================
 ### 1) Palindrome List
