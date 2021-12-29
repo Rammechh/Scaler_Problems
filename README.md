@@ -35,6 +35,7 @@ Problems
      * Passing game
      * Task Scheduling
      * Double Character Trouble
+     * Balanced Paranthesis
   + [Day62_Stacks2](#Day62_Stacks2)
      * Double Character Trouble
      * Evaluate Expression
@@ -216,6 +217,8 @@ Day61_Stacks
   + Create a temporary stack say B. While input stack is not empty: 1. pop an element from input stack calls it x. 2. while the temporary stack is not empty and top of the temporary stack is greater than x pop from the temporary stack and push it into input stack. 3. push x in the temporary stack. The sorted numbers are in the temporary stack.
 ### 4) Passing game
   + Push the new id in the stack to keep track of the latest player who has the ball. Now you should pass the ball to the previous player who forwarded you the ball, so you can easily pop the last player from the stack.
+### Balanced Paranthesis
+ + Store the opening brackets ('(', '{', '[') in stack
 
 Day62_Stacks2
 ================
