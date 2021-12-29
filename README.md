@@ -49,6 +49,7 @@ Problems
    + [Day64_Linked_List](#Day64_Linked_List)
      * Middle element of linked list
      * Remove Duplicates from Sorted List
+     * Swap List Nodes in pairs
   + [Day66_LinkedList2](#Day66_LinkedList2)
      * Palindrome List
      * Merge Two Sorted Lists
@@ -276,6 +277,10 @@ Day64_Linked_List
 
 ### 3) Remove Duplicates from Sorted List
  + Skip the node where head->next != NULL && head->val == head->next->val.
+
+### Swap List Nodes in pairs
+ + Method 1: Just swap the values in the 2 nodes. In most cases, this won’t be a permissible solution. Method 2: Move around the pointers.
+ + curr.next = swap(curr.next, curr.next.next)
   
 Day66_LinkedList2
 ================
