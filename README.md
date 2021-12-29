@@ -86,6 +86,7 @@ Problems
      * K Places Apart
    + [Day75_Greedy_Algorithms](#Day75_Greedy_Algorithms)
      * Distribute Candy
+     * Assign Mice to Holes
   + [Day80_Intro_to_Dynamic_Programming](#Day80_Intro_to_Dynamic_Programming)
      * Fibonacci Number
      * Stairs
@@ -464,6 +465,9 @@ Day75_Greedy_Algorithms
  + Greedy works here ( Think of a supportive proof as as assignment ). Start with the guy with the least rating. Obviously he will receive 1 candy. If he did recieve more than one candy, we could lower it to 1 as none of the neighbor have higher rating.
  + Now lets move to the one which is second least. If the least element is its neighbor, then it receives 2 candies, else we can get away with assigning it just one candy. 
  + We keep repeating the same process to arrive at optimal solution.
+
+### Assign Mice to Holes
+ + Sort both arrays and find the max difference each time and retur the max value
 
 Day80_Intro_to_Dynamic_Programming
 ==================
