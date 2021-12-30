@@ -27,6 +27,7 @@ Problems
      * Replicating Substring
      * Count Right Triangles
      * Points on same line
+     * Permutations of A in B
   + [Day59_String_Algorithms](#day59_String_Algorithms)
      * Boring substring
   + [Day61_Stacks](#Day61_Stacks)
@@ -201,6 +202,10 @@ Day58_Hashing2
  + Suppose we have two diagonally opposite points: (x1, y1) and (x2, y2). Then the other two points of the rectangle must be (x1, y2) and (x2, y1).
  + We just have to check if these two points (x1, y2) and (x2, y1) are given or not. If present increment the answer.
  + For every rectangle, we have incremented the answer twice because every rectangle has two diagonals. So, our real answer will be half of the answer obtained after running two loops.
+
+### Permutations of A in B
+ + first we can create a hash map of size 26 to count the frequency of each character in A.
+ + create another hash map of size 26 to count the frequency of each character in the first window of size N (length of A) in B, then slide through all windows and when both hashes will be same we can say we found a permutation of A in B as a substring.
 
 Day59_String_Algorithms
 ================
