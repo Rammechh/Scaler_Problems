@@ -223,6 +223,10 @@ Day59_String_Algorithms
   + Sort both of them and check if placing them together doesn’t make a boring substring at their join point.
   + For example: A = “abcdefg” So , odd = “aceg” even= “bdf”
   + Check the string s= odd+even or s=even+odd doesn’t contain any boring substring. Time Complexity : O(A)
+ 
+### Count A
+ + The number of all substrings is the number of all pairs of (not necessary distinct) characters.  There are n*(n-1)/2 pairs of distinct characters.  You also need to add the non-distinct pairs, which are n. 
+ + So the total number is n * (n-1) / 2 + n = n * (n+1) / 2. Therefore calculate the number of a (n) in the given string
 
 Day61_Stacks
 ================
