@@ -28,6 +28,7 @@ Problems
      * Count Right Triangles
      * Points on same line
      * Permutations of A in B
+     * Anagrams
   + [Day59_String_Algorithms](#day59_String_Algorithms)
      * Boring substring
   + [Day61_Stacks](#Day61_Stacks)
@@ -206,6 +207,10 @@ Day58_Hashing2
 ### Permutations of A in B
  + first we can create a hash map of size 26 to count the frequency of each character in A.
  + create another hash map of size 26 to count the frequency of each character in the first window of size N (length of A) in B, then slide through all windows and when both hashes will be same we can say we found a permutation of A in B as a substring.
+
+### Anagrams
+ + Can mainitain a freq Array and store it in hMap as str(freq Aray) = [index] since list cant be used as key in dict.
+ + or can sort each word and maintain in hash map (
 
 Day59_String_Algorithms
 ================
