@@ -44,6 +44,7 @@ Problems
      * Evaluate Expression
      * Nearest Smaller Element
      * Largest Rectangle in Histogram
+     * Next Greater
   + [Day63_Queues](#Day63_Queues)
      * Task Scheduling
      * First non-repeating character
@@ -258,6 +259,9 @@ We keep pushing the characters in a stack, if the current character is equal to 
   + To find the nearest smallest element on the left, create a stack and check the curr element with the top of the stack. 
   + If top element of stack is larger pop out till you find smallest and store in ans. when we go right, if curr element small no need of tracking all elements to left of it.
   + return ans list
+ 
+### Next Greater
+ + Store the index in the stack while you encounter greater element pop it from stack and add new greater index in stack
 
 Day63_Queues
 ===============
