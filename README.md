@@ -33,6 +33,7 @@ Problems
      * Boring substring
      * Count A
      * Closest Palindrome
+     * Smallest Prefix String
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
      * Sort stack using another stack
@@ -233,6 +234,9 @@ Day59_String_Algorithms
 ### Closest Palindrome
  + We apply our regular palindrome checking algorithm and keep counting the number of times a set of mirror indices has different characters.If at the end of processing, this count is greater than 1, then it can never be possible since we will have to change more than 1 characters to make it a palindrome. If the count is 1, answer is always yes.
  + A corner case that needs to be considered is the case when count is 0. If the count is 0 and the length of palindrome is even, then we cannot change exactly one character to make it a palindrome, we will have to change 2 mirror indices. But if the count is 0 and length is odd, then it is possible as we can change the middlemost character to anything.
+
+### Smallest Prefix String
+ + Adding to the hint, we keep appending characters from the first string till the current character is less than the first character of second string. After that, we just add the first character of second string and we have our answer.
 
 Day61_Stacks
 ================
