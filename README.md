@@ -31,6 +31,7 @@ Problems
      * Anagrams
   + [Day59_String_Algorithms](#day59_String_Algorithms)
      * Boring substring
+     * Count A
      * Closest Palindrome
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
