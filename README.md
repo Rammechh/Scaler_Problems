@@ -31,6 +31,7 @@ Problems
      * Anagrams
   + [Day59_String_Algorithms](#day59_String_Algorithms)
      * Boring substring
+     * Closest Palindrome
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
      * Sort stack using another stack
@@ -227,6 +228,10 @@ Day59_String_Algorithms
 ### Count A
  + The number of all substrings is the number of all pairs of (not necessary distinct) characters.  There are n*(n-1)/2 pairs of distinct characters.  You also need to add the non-distinct pairs, which are n. 
  + So the total number is n * (n-1) / 2 + n = n * (n+1) / 2. Therefore calculate the number of a (n) in the given string
+
+### Closest Palindrome
+ + We apply our regular palindrome checking algorithm and keep counting the number of times a set of mirror indices has different characters.If at the end of processing, this count is greater than 1, then it can never be possible since we will have to change more than 1 characters to make it a palindrome. If the count is 1, answer is always yes.
+ + A corner case that needs to be considered is the case when count is 0. If the count is 0 and the length of palindrome is even, then we cannot change exactly one character to make it a palindrome, we will have to change 2 mirror indices. But if the count is 0 and length is odd, then it is possible as we can change the middlemost character to anything.
 
 Day61_Stacks
 ================
