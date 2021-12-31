@@ -1,0 +1,149 @@
+
+Closest Palindrome
+Problem Description
+
+Groot has a profound love for palindrome which is why he keeps fooling around with strings.
+A palindrome string is one that reads the same backward as well as forward.
+
+Given a string A of size N consisting of lowercase alphabets, he wants to know if it is possible to make the given string a palindrome by changing exactly one of its character.
+
+
+
+Problem Constraints
+1 <= N <= 105
+
+
+
+Input Format
+First and only argument is a string A.
+
+
+
+Output Format
+Return the string YES if it is possible to make the given string a palindrome by changing exactly 1 character. Else, it should return the string NO.
+
+
+
+Example Input
+Input 1:
+
+ A = "abbba"
+Input 2:
+
+ A = "adaddb"
+
+
+Example Output
+Output 1:
+
+ "YES"
+Output 2:
+
+ "NO"
+
+
+Example Explanation
+Explanation 1:
+
+ We can change the character at index 3(1-based) to any other character. The string will be palindromic.
+Explanation 2:
+
+ To make the string palindromic we need to change 2 characters. 
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+    # @param A : string
+    # @return a strings
+    def solve(self, A):
+        ln = len(A)
+        cnt = 0
+
+        for i in range(int(ln/2)):
+            if A[i] != A[ln - i - 1]:
+                cnt += 1
+
+        if ln % 2 == 0:
+            if cnt == 0 or cnt > 1:
+                return "NO"
+            else:
+                return "YES"
+        else:
+            if cnt == 1 or cnt == 0:
+                return "YES"
+            else:
+                return "NO"
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+    # @param A : string
+    # @return a strings
+    def solve(self, A):
+        s = A
+        j = len(s)
+        l = j
+        j = j - 1
+        count = 0
+        i = 0
+        ans = ""
+        sr = ""
+        for x in s:
+            sr = x + sr
+        if s == sr:
+            if l % 2 == 1:
+                ans = "YES"
+            else:
+                ans = "NO"
+        else:
+            while i <= j:
+                if s[i] != s[j]:
+                    count += 1
+                i += 1
+                j -= 1
+            if count > 1:
+                ans = "NO"
+            else:
+                ans = "YES"
+
+        return ans
+
+--Java--
+public class Solution {
+    public String solve(String A) {
+        String s = new String(A);
+        int j = s.length(), len = j, i = 0;
+        j = j - 1;
+        int count = 0;
+        String ans = new String();
+        if (checkPalindrome(s)) {
+            if (len % 2 == 1)
+                ans = "YES";
+            else
+                ans = "NO";
+        } else {
+            while (i <= j) {
+                if (s.charAt(i) != s.charAt(j))
+                    count++;
+                i++;
+                j--;
+            }
+            if (count > 1)
+                ans = "NO";
+            else
+                ans = "YES";
+        }
+        return ans;
+    }
+    Boolean checkPalindrome(String s) {
+        int l = s.length();
+        for (int i = 0; i < l; i++) {
+            if (s.charAt(i) != s.charAt(l - 1 - i))
+                return false;
+        }
+        return true;
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+We apply our regular palindrome checking algorithm and keep counting the number of times a set of mirror indices has different characters.
+If at the end of processing, this count is greater than 1, then it can never be possible since we will have to change more than 1 characters to make it a palindrome.
+If the count is 1, answer is always yes.
+A corner case that needs to be considered is the case when count is 0.
+If the count is 0 and the length of palindrome is even, then we cannot change exactly one character to make it a palindrome, we will have to change 2 mirror indices.
+But if the count is 0 and length is odd, then it is possible as we can change the middlemost character to anything.
