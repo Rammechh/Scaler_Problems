@@ -66,6 +66,7 @@ Problems
      * Inorder Traversal (pending)
      * Vertical Order traversal (pending)
      * Binary Tree From Inorder And Postorder (pending)
+     * Postorder Traversal (Iterative)
   + [Day68_Trees2](#Day68_Trees2)
      * TOP VIEW
      * Balanced Binary Tree
@@ -346,6 +347,10 @@ Day67_Trees
   + Add node to Queue, While Queue: n = len(Queue) ans.append(Queue.get(0)) for i in range(n) add left and right childs. return ans
   
 ### 4) Vertical Order traversal (pending)
+
+### Postorder Traversal
+ + postorderprint(root->left); postorderprint(root->right);
+ + Instead of calling the functions, can you put the nodes on a stack and process them and reverse to get ans 
  
 Day68_Trees2
 ==================
