@@ -96,6 +96,7 @@ Problems
      * Distribute Candy
      * Assign Mice to Holes
      * The ship company
+     * Another Coin Problem
   + [Day80_Intro_to_Dynamic_Programming](#Day80_Intro_to_Dynamic_Programming)
      * Fibonacci Number
      * Stairs
@@ -513,6 +514,9 @@ Day75_Greedy_Algorithms
 ### The ship company
  + Make 2 priority queues one for taking maximum cost tickets till now and other for the minimum.
  + Now for A passengers pop these 2 queues separately and take the sum of maximum and minimum answers.
+
+### Another Coin Problem
+ + Will use Greedy solution. Start from largest possible denomination and keep adding denominations while remaining value is greater than 0. The number of the chosen coin is determined by the A/(coin value).
 
 Day80_Intro_to_Dynamic_Programming
 ==================
