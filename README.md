@@ -29,6 +29,7 @@ Problems
      * Points on same line
      * Permutations of A in B
      * Anagrams
+     * Compare Sorted Subarrays
   + [Day59_String_Algorithms](#day59_String_Algorithms)
      * Boring substring
      * Count A
@@ -216,7 +217,13 @@ Day58_Hashing2
 
 ### Anagrams
  + Can mainitain a freq Array and store it in hMap as str(freq Aray) = [index] since list cant be used as key in dict.
- + or can sort each word and maintain in hash map (
+ + or can sort each word and maintain in hash map 
+
+### Compare Sorted Subarrays
+ + If both sub-arrays are exactly same after sorting then their sum of values will be same. So, we can just find the sum in range [l1, r1] and sum in range[l2, r2]. If they are different then we are sure that ans is 0. But, if they equal then? Consider two sub-arrays [3 5] and [4 4]. Both have sum 8 but still they are different. Actually above approach fails because input can be carefully chosen.
+ + Now, still we can use same idea but let first assign each value a unique random label from very big range like from 0 to 10^13. Now, probability of failure will be very less that can be neglected with given constraints.
+ + Note: Any solution with random hashing is not 100% correct, possibility of failure exists. But with wide range of numbers probability of failure will be too small.
+ + Note: Make sure that you are assign same label to all the occurrences. If value 5 comes 3 times then each 3 occurrences should be assigned same random label. Make sure you are using appropriate data type. Also, choosing big range like from 0 to 10^15 can overflow long long int.
 
 Day59_String_Algorithms
 ================
