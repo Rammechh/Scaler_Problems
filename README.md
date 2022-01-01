@@ -94,6 +94,7 @@ Problems
    + [Day75_Greedy_Algorithms](#Day75_Greedy_Algorithms)
      * Distribute Candy
      * Assign Mice to Holes
+     * The ship company
   + [Day80_Intro_to_Dynamic_Programming](#Day80_Intro_to_Dynamic_Programming)
      * Fibonacci Number
      * Stairs
@@ -501,6 +502,10 @@ Day75_Greedy_Algorithms
 
 ### Assign Mice to Holes
  + Sort both arrays and find the max difference each time and retur the max value
+
+### The ship company
+ + Make 2 priority queues one for taking maximum cost tickets till now and other for the minimum.
+ + Now for A passengers pop these 2 queues separately and take the sum of maximum and minimum answers.
 
 Day80_Intro_to_Dynamic_Programming
 ==================
