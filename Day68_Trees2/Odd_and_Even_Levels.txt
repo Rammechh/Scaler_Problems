@@ -1,0 +1,220 @@
+Odd and Even Levels
+Problem Description
+
+Given a binary tree of integers. Find the difference between the sum of nodes at odd level and sum of nodes at even level.
+
+NOTE: Consider the level of root node as 1.
+
+
+
+Problem Constraints
+1 <= Number of nodes in binary tree <= 100000
+
+0 <= node values <= 109
+
+
+
+Input Format
+First and only argument is a root node of the binary tree, A
+
+
+
+Output Format
+Return an integer denoting the difference between the sum of nodes at odd level and sum of nodes at even level.
+
+
+
+Example Input
+Input 1:
+
+        1
+      /   \
+     2     3
+    / \   / \
+   4   5 6   7
+  /
+ 8 
+Input 2:
+
+        1
+       / \
+      2   10
+       \
+        4
+
+
+Example Output
+Output 1:
+
+ 10
+Output 2:
+
+ -7
+
+
+Example Explanation
+Explanation 1:
+
+ Sum of nodes at odd level = 23
+ Sum of ndoes at even level = 13
+Explanation 2:
+
+ Sum of nodes at odd level = 5
+ Sum of ndoes at even level = 12
+ 
+_______________________________________________________________________Solution___________________________________________________________
+# Definition for a  binary tree node
+# class TreeNode:
+#    def __init__(self, x):
+#        self.val = x
+#        self.left = None
+#        self.right = None
+
+class Solution:
+    # @param A : root node of tree
+    # @return an integer
+    def solve(self, A):
+        '''q = [A]
+        ans = []
+        while q:
+            n = len(q)
+            temp = []
+            for i in range(n):
+                root = q.pop(0)
+                temp.append(root.val)
+                if root.left:
+                    q.append(root.left)
+                if root.right:
+                    q.append(root.right)
+            ans.append(temp)
+        
+        odd = 0
+        even = 0
+
+        for i in range(len(ans)):
+            if i % 2 == 0:
+                even += sum(ans[i])
+            else:
+                odd += sum(ans[i])
+        
+        return even - odd'''
+        
+        Count = 0
+        odd = 0
+        even = 0
+        def dfs(root, l):
+            nonlocal odd, even,Count
+            if not root:
+                return
+            if l % 2 == 0:
+                odd += root.val
+            else:
+                even += root.val
+            
+            dfs(root.left, l+1)
+            dfs(root.right, l+1)
+            
+            Count = odd - even
+            return Count
+        
+        dfs(A, 0)
+        return Count
+            
+_______________________________________________________________________Given_Solution___________________________________________________________
+# Definition for a  binary tree node
+# class TreeNode:
+#    def __init__(self, x):
+#        self.val = x
+#        self.left = None
+#        self.right = None
+
+from collections import deque
+
+
+def differencebetweenoddandevenlevels(root):
+    q = deque()
+    if root == None:
+        return 0
+    oddsum = 0
+    evensum = 0
+    level = 0
+    q.append(root)
+    while len(q) != 0:
+        n = len(q)
+        level ^= 1
+        while n:
+            temp = q.popleft()
+
+            if temp.left:
+                q.append(temp.left)
+            if temp.right:
+                q.append(temp.right)
+            if level:
+                oddsum += temp.val
+            else:
+                evensum += temp.val
+            n -= 1
+    return oddsum - evensum
+
+
+class Solution:
+    # @param A : root node of tree
+    # @return an integer
+    def solve(self, A):
+        return differencebetweenoddandevenlevels(A)
+		
+--Java--
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public int solve(TreeNode A) {
+
+        Queue < TreeNode > q = new LinkedList < TreeNode > ();
+
+        if (A == null)
+            return 0;
+
+        int oddsum = 0;
+        int evensum = 0;
+        int level = 0;
+        q.add(A);
+
+        while (q.size() > 0) {
+            int n = q.size();
+            level ^= 1;
+            while (n--> 0) {
+                TreeNode temp = q.peek();
+                q.remove();
+                if (temp.left != null)
+                    q.add(temp.left);
+                if (temp.right != null)
+                    q.add(temp.right);
+
+                if (level != 0)
+                    oddsum += temp.val;
+                else
+                    evensum += temp.val;
+            }
+        }
+        return (oddsum - evensum);
+
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+Use level Order traversal to calculate the sum of nodes at odd level and even level.
+
+If the level is odd add the node value in the odd variable,
+Else, add it in variable storing the sum of even levels.
+
+After completing the traversal, return odd - even.
