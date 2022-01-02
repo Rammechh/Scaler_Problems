@@ -72,6 +72,7 @@ Problems
      * TOP VIEW
      * Balanced Binary Tree
      * Right view of Binary tree
+     * Odd and Even Levels
   + [Day69_BST](#Day69_BST)
      * Kth Smallest Element In Tree
      * Valid Binary Search Tree
@@ -384,6 +385,9 @@ Day68_Trees2
   + For each level whenever you encounters the last node on that level append it to the answer. try to Modify the level order traversal of tree for this problem. You should finally append the rightmost node for each level of the given binary tree and return the vector of the same.
   + same as level order traversal but append only the right elements to ans
  
+### Odd and Even Levels
+ + Use level Order traversal to calculate the sum of nodes at odd level and even level. If the level is odd add the node value in the odd variable, Else, add it in variable storing the sum of even levels. After completing the traversal, return odd - even.
+
 Day69_BST
 ==============
 ### 1) Sorted Array To Balanced BST
