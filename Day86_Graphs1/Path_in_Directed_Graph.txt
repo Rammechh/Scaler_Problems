@@ -1,0 +1,213 @@
+#https://leetcode.com/problems/find-if-path-exists-in-graph/
+class Solution:
+    # @param A : integer
+    # @param B : list of list of integers
+    # @return an integer
+    def solve(self, A, B):
+        hMap = {}
+        for node1, node2 in B:
+            if node1 in hMap:
+                hMap[node1].append(node2)
+            else:
+                hMap[node1] = [node2]
+                
+            '''if node2 in hMap:
+                hMap[node2].append(node1)
+            else:
+                hMap[node2] = [node1]'''
+                
+        '''graph = [[] for i in range(100009)]
+        for edge in B:
+            graph[edge[0]].append(edge[1])
+     
+        visited = [0] * 100009
+        
+        q = [1] 
+        visited[1] = 1
+        while q:
+            n = q.pop(0)
+            
+            if n == A:
+                return 1
+            else:
+                for node in graph[n]:
+                    if visited[node] == 0:
+                        visited[node] = 1
+                        q.append(node)
+        return 0'''
+        visited = [0] * 100009
+        q = [1] 
+        visited[1] = 1
+        while q:
+            n = q.pop(0)
+            if n == A:
+                return 1
+            else:
+                if n in hMap:
+                    for node in hMap[n]:
+                        if visited[node] == 0:
+                            visited[node] = 1
+                            q.append(node)
+        return 0
+            
+			
+_______________________________________________________________________Solution___________________________________________________________
+#https://leetcode.com/problems/find-if-path-exists-in-graph/
+class Solution:
+    # @param A : integer
+    # @param B : list of list of integers
+    # @return an integer
+    def solve(self, A, B):
+        hMap = {}
+        for node1, node2 in B:
+            if node1 in hMap:
+                hMap[node1].append(node2)
+            else:
+                hMap[node1] = [node2]
+                
+            '''if node2 in hMap:
+                hMap[node2].append(node1)
+            else:
+                hMap[node2] = [node1]'''
+                
+        '''graph = [[] for i in range(100009)]
+        for edge in B:
+            graph[edge[0]].append(edge[1])
+     
+        visited = [0] * 100009
+        
+        q = [1] 
+        visited[1] = 1
+        while q:
+            n = q.pop(0)
+            
+            if n == A:
+                return 1
+            else:
+                for node in graph[n]:
+                    if visited[node] == 0:
+                        visited[node] = 1
+                        q.append(node)
+        return 0'''
+        visited = [0] * 100009
+        q = [1] 
+        visited[1] = 1
+        while q:
+            n = q.pop(0)
+            if n == A:
+                return 1
+            else:
+                if n in hMap:
+                    for node in hMap[n]:
+                        if visited[node] == 0:
+                            visited[node] = 1
+                            q.append(node)
+        return 0
+            
+_______________________________________________________________________Given_Solution___________________________________________________________
+maxn = 100009
+graph = []
+visited = []
+
+
+def ini():
+    global maxn, graph, visited
+    graph = [[] for i in range(maxn)]
+    visited = [0]*maxn
+
+
+def isReachable(s, d):
+    global graph, visited
+    # Mark all the vertices as not visited
+    # Create a queue for BFS
+    queue = []
+    # Mark the source node as visited and enqueue it
+    queue.append(s)
+    visited[s] = True
+    while queue:
+        # Dequeue a vertex from queue
+        n = queue.pop(0)
+        # If this adjacent node is the destination node,
+        # then return true
+        if n == d:
+            return True
+        #  Else, continue to do BFS
+        for i in graph[n]:
+            if visited[i] == False:
+                queue.append(i)
+                visited[i] = True
+    # If BFS is complete without visited d
+    return False
+
+
+class Solution:
+    # @param A : integer
+    # @param B : list of list of integers
+    # @return an integer
+    def solve(self, A, B):
+        global visited, maxn, graph
+        ini()
+        for edge in B:
+            graph[edge[0]].append(edge[1])
+        if(isReachable(1, A) == True):
+            return 1
+        return 0
+
+
+--Java--
+public class Solution {
+  static int maxn = 100009;
+  static int[] visited = new int[maxn];
+  static ArrayList < ArrayList < Integer > > adj;
+  public int solve(int A, int[][] B) {
+    adj = new ArrayList < ArrayList < Integer > > (maxn);
+    for (int i = 0; i < maxn; i++) {
+      visited[i] = 0;
+      adj.add(new ArrayList < Integer > ());
+    }
+    for (int[] edge: B)
+      adj.get(edge[0]).add(edge[1]);
+    if (isReachable(1, A) == true)
+      return 1;
+    return 0;
+  }
+  public static boolean isReachable(int s, int d) {
+    if (s == d)
+      return true;
+    Queue < Integer > q = new ArrayDeque < > ();
+    q.offer(s);
+    visited[s] = 1;
+    while (q.size() > 0) {
+      s = q.poll();
+      for (int v: adj.get(s)) {
+        if (v == d) return true;
+        if (visited[v] == 0) {
+          visited[v] = 1;
+          q.offer(v);
+        }
+      }
+    }
+    return false;
+  }
+}
+
+_______________________________________________________________________Approach___________________________________________________________
+Approach:
+Either Breadth First Search (BFS) or Depth First Search (DFS) can be used to find path between two vertices.
+Take the first vertex as source in BFS (or DFS), follow the standard BFS (or DFS). If the second vertex is found in our traversal, then return 1 else return 0.
+
+Algorithm:
+The author implementation iss using BFS.
+
+Create a queue and a visited array initially filled with 0, of size V where V is number of vertices.
+Insert the starting node in the queue, i.e. push u in the queue and mark u as visited.
+Run a loop until the queue is not empty.
+Dequeue the front element of the queue. Iterate all its adjacent elements. If any of the adjacent element is the destination return 1. Push all the adjacent and unvisted vertices in the queue and mark them as visited.
+Return 0 as the destination is not reached in BFS.
+Complexity Analysis:
+
+Time Complexity: O(A + M) where A is number of vertices in the graph and M is number of edges in the graph.
+Space Compelxity: O(A).
+There can be atmost A elements in the queue. So the space needed is O(A).
+
+Trade-offs between BFS and DFS: Breadth-First search can be useful to find the shortest path between nodes, and depth-first search may traverse one adjacent node very deeply before ever going into immediate neighbours.
