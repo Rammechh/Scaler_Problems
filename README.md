@@ -107,7 +107,9 @@ Problems
    + [Day81_Dynamic_Programming2](#Day81_Dynamic_Programming2)
      * Longest Common Subsequence
      * Edit Distance
-
+     * Path in Directed Graph
+   + [Day86_Graphs1](#Day86_Graphs1)
+     * Path in Directed Graph
 
 <!--te-->
 Day31_Maths_Prime_numbers
@@ -622,3 +624,11 @@ if (S1[index1] == S2[index2]) {
      );
 } }
 </pre>
+
+Day86_Graphs1
+=================
+### 1) Path in Directed Graph
+ + Create a queue and a visited array initially filled with 0, of size V where V is number of vertices. Insert the starting node in the queue, i.e. push u in the queue and mark u as visited.Run a loop until the queue is not empty.
+ + Dequeue the front element of the queue. Iterate all its adjacent elements. 
+ + If any of the adjacent element is the destination return 1. Push all the adjacent and unvisted vertices in the queue and mark them as visited. Return 0 as the destination is not reached in BFS.
+  + Complexity Analysis: Time Complexity: O(A + M) where A is number of vertices in the graph and M is number of edges in the graph. Space Compelxity: O(A).
