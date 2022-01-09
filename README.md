@@ -110,6 +110,7 @@ Problems
      * Path in Directed Graph
    + [Day86_Graphs1](#Day86_Graphs1)
      * Path in Directed Graph
+     * Number of islands
 
 <!--te-->
 Day31_Maths_Prime_numbers
@@ -632,3 +633,7 @@ Day86_Graphs1
  + Dequeue the front element of the queue. Iterate all its adjacent elements. 
  + If any of the adjacent element is the destination return 1. Push all the adjacent and unvisted vertices in the queue and mark them as visited. Return 0 as the destination is not reached in BFS.
   + Complexity Analysis: Time Complexity: O(A + M) where A is number of vertices in the graph and M is number of edges in the graph. Space Compelxity: O(A). 
+  
+### 2) Number of islands
+ + Whenever a cell with unvisited value ‘1’ is encountered we explore all the nodes that are reachable from it and continue exploring until no more nodes are left to explore.While exploring we mark them visited so that no nodes can be explored twice. 
+ + After completion of traversal increament the count of islands. Find for the 1 which is not visited yet
