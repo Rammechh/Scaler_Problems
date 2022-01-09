@@ -112,6 +112,7 @@ Problems
      * Path in Directed Graph
      * Number of islands
      * Rotten Oranges
+     * First Depth First Search
 
 <!--te-->
 Day31_Maths_Prime_numbers
@@ -643,3 +644,6 @@ Day86_Graphs1
  + Every turn, the rotting spreads from each rotting orange to other adjacent oranges. Initially, the rotten oranges have ‘depth’ 0, and every time they rot a neighbor,
 the neighbors have 1 more depth. We want to know the largest possible depth.
  + Use multi-source BFS to achieve this with all cells containing rotten oranges as starting nodes. At the end check if there are fresh oranges left or not
+
+### First Depth First Search
+ + Since you have to start from town number 1 , start your traversal from 1 (root) and use depth first search to reach the second town i.e. y. Let the query be 6 3, then first search 3 starting from 1. Now apply depth first search considering root as y ( 3 in this case ) ( move away from 1 ) and search whether x ( i.e. 6 ) is one of its successor. If yes return 1 else return 0. OR Consider parent of i as a[i] and start depth first search from ““y”” to search for x.
