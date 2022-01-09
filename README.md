@@ -111,6 +111,7 @@ Problems
    + [Day86_Graphs1](#Day86_Graphs1)
      * Path in Directed Graph
      * Number of islands
+     * Rotten Oranges
 
 <!--te-->
 Day31_Maths_Prime_numbers
@@ -637,3 +638,8 @@ Day86_Graphs1
 ### 2) Number of islands
  + Whenever a cell with unvisited value ‘1’ is encountered we explore all the nodes that are reachable from it and continue exploring until no more nodes are left to explore.While exploring we mark them visited so that no nodes can be explored twice. 
  + After completion of traversal increament the count of islands. Find for the 1 which is not visited yet
+
+### 3) Rotten Oranges
+ + Every turn, the rotting spreads from each rotting orange to other adjacent oranges. Initially, the rotten oranges have ‘depth’ 0, and every time they rot a neighbor,
+the neighbors have 1 more depth. We want to know the largest possible depth.
+ + Use multi-source BFS to achieve this with all cells containing rotten oranges as starting nodes. At the end check if there are fresh oranges left or not
