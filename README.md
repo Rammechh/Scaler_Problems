@@ -113,6 +113,7 @@ Problems
      * Number of islands
      * Rotten Oranges
      * First Depth First Search
+     * Clone Graph
 
 <!--te-->
 Day31_Maths_Prime_numbers
@@ -647,3 +648,7 @@ the neighbors have 1 more depth. We want to know the largest possible depth.
 
 ### First Depth First Search
  + Since you have to start from town number 1 , start your traversal from 1 (root) and use depth first search to reach the second town i.e. y. Let the query be 6 3, then first search 3 starting from 1. Now apply depth first search considering root as y ( 3 in this case ) ( move away from 1 ) and search whether x ( i.e. 6 ) is one of its successor. If yes return 1 else return 0. OR Consider parent of i as a[i] and start depth first search from ““y”” to search for x.
+ 
+### Clone Graph
+ + dfs: create newNode and for n in node.neighbors add to newNode.neighbors.append(dfs(n))
+ + bfs: create newNode and add each node to q and proceed.
