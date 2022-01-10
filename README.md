@@ -114,6 +114,7 @@ Problems
      * Rotten Oranges
      * First Depth First Search
      * Clone Graph
+     * Black Shapes
 
 <!--te-->
 Day31_Maths_Prime_numbers
@@ -652,3 +653,18 @@ the neighbors have 1 more depth. We want to know the largest possible depth.
 ### Clone Graph
  + dfs: create newNode and for n in node.neighbors add to newNode.neighbors.append(dfs(n))
  + bfs: create newNode and add each node to q and proceed.
+
+### Black Shapes
+ + You can always use both DFS and BFS to see the working of both of these traversal algorithms. They will always help you solve such type of problems.
+<pre>
+Answer := 0
+Loop i = 1 to N :
+    Loop j = 1 to M:
+          IF MATRIX at i, j equal to 'X' and not visited:
+                 BFS/DFS to mark the connected area as visited
+                 update Answer
+    EndLoop
+EndLoop
+return Answer
+</pre>
+
