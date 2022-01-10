@@ -1,0 +1,171 @@
+
+Black Shapes
+Problem Description
+
+Given character matrix A of O's and X's, where O = white, X = black.
+
+Return the number of black shapes. A black shape consists of one or more adjacent X's (diagonals not included)
+
+
+
+Problem Constraints
+1 <= |A|,|A[0]| <= 1000
+
+A[i][j] = 'X' or 'O'
+
+
+
+Input Format
+The First and only argument is character matrix A.
+
+
+
+Output Format
+Return a single integer denoting number of black shapes.
+
+
+
+Example Input
+Input 1:
+
+ A = [ [X, X, X], [X, X, X], [X, X, X] ]
+Input 2:
+
+ A = [ [X, O], [O, X] ]
+
+
+Example Output
+Output 1:
+
+ 1
+Output 2:
+
+ 2
+
+
+Example Explanation
+Explanation 1:
+
+ All X's belong to single shapes
+Explanation 2:
+
+ Both X's belong to different shapes
+_______________________________________________________________________Solution___________________________________________________________
+class Solution:
+	# @param A : list of strings
+	# @return an integer
+	def black(self, A):
+	    
+	    def dfs(i, j):
+	        if i<0 or j <0 or i>=len(A) or j>=len(A[0]) or A[i][j] == 'O' or (i,j) in visited:
+	            return False
+	        visited.add((i,j))
+	        dfs(i+1, j)
+	        dfs(i-1, j)
+	        dfs(i, j-1)
+	        dfs(i, j+1)
+	    
+	    ans = 0
+	    visited = set()
+        for i in range(len(A)):
+            for j in range(len(A[0])):
+                if A[i][j] == 'X' and (i,j) not in visited:
+                    ans += 1
+                    dfs(i,j)
+        return ans
+_______________________________________________________________________Given_Solution___________________________________________________________
+    # @param A : list of strings
+    # @return an integer
+    def black(self, A):
+        A = [list(row) for row in A]
+        # Sounds like flood fill..
+        def fill(row, col):
+            if row < 0 or row >= len(A) or col < 0 or col >= len(A[row]) or A[row][col] != 'X':
+                return
+            A[row][col] = '-'
+            fill(row-1, col)
+            fill(row+1, col)
+            fill(row, col-1)
+            fill(row, col+1)
+        count = 0
+        for row in range(len(A)):
+            for col in range(len(A[row])):
+                char = A[row][col]
+                if char == 'X':
+                    count += 1
+                    fill(row, col)
+        return count
+--java--
+public class Solution {
+  private int count = 0;
+  private boolean marked[][];
+  private int di[] = new int[] {1, -1, 0, 0};
+  private int dj[] = new int[] {0, 0, 1, -1};
+  private ArrayList < String > A;
+
+  public int black(ArrayList < String > A) {
+    int m, n;
+
+    if (A == null)
+      return 0;
+
+    m = A.size();
+    n = A.get(0).length();
+
+    marked = new boolean[m][n];
+    count = 0;
+    this.A = A;
+
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
+        if (!marked[i][j] && A.get(i).charAt(j) == 'X') {
+          dfs(i, j, m, n);
+          count++;
+        }
+      }
+    }
+
+    return count;
+  }
+
+  public void dfs(int i, int j, int m, int n) {
+
+    marked[i][j] = true;
+
+    for (int k = 0; k < 4; k++) {
+
+      int ii = i + di[k];
+      int jj = j + dj[k];
+
+      if (isValid(ii, jj, m, n) && !marked[ii][jj]) {
+        dfs(ii, jj, m, n);
+      }
+
+    }
+  }
+
+  public boolean isValid(int i, int j, int m, int n) {
+
+    if (i < 0 || i >= m || j < 0 || j >= n)
+      return false;
+
+    if (A.get(i).charAt(j) != 'X')
+      return false;
+
+    return true;
+  }
+
+}
+_______________________________________________________________________Approach___________________________________________________________
+Answer := 0
+Loop i = 1 to N :
+    Loop j = 1 to M:
+          IF MATRIX at i, j equal to 'X' and not visited:
+                 BFS/DFS to mark the connected area as visited
+                 update Answer
+    EndLoop
+EndLoop
+
+return Answer
+You can always use both DFS and BFS to see the working of both of these traversal algorithms.
+They will always help you solve such type of problems.
