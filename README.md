@@ -115,7 +115,8 @@ Problems
      * First Depth First Search
      * Clone Graph
      * Black Shapes
-
+   + [Day87_Graphs2](#Day87_Graphs2)
+     * Cycle in Directed Graph
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -668,3 +669,8 @@ EndLoop
 return Answer
 </pre>
 
+Day87_Graphs2
+=====================
+### 1) Cycle in Directed Graph
+ + bfs: for every origin start a fresh visited array and travel thro all it's neighbour nodes and if neigh = origin return True
+ + dfs: for every origin chk iscyclic -> create a visited array each time check if neighbour nodes in visited return True else remove all node in visited and continue for next origin
