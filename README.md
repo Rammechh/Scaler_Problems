@@ -680,3 +680,11 @@ Day87_Graphs2
  + Cycle:- cycle is a path of edges and vertices wherein a vertex is reachable from itself. or in other words, it is a Closed walk. Even Cycle:- In which Even number of vertices is present is known as Even Cycle. Odd Cycle:- In which Odd number of Vertices is present is known as Odd Cycle.
  + If the no. of vertices is Even then it is Even Cycle and to color such graph we require 2 colors.
  + If the no. of vertices is Odd then it is Odd Cycle and to color such graph we require 3 colors.
+ 
+### 3) Check whether the graph is bipartite or not
+ + You can use and approach either BFS or DFS to check whether the graph can be colored using two colors or not. Start from any node that hase not been colored yet:
+ + Assign color1 to this nodes 
+ + check its adjacent nodes 
+	a. if this is colored in color1 then the graph can’t be bipartite ,return 0.
+	b. else if this is colored in color1 do nothing.
+	c. else color it with color 2 and push it into queue. Repet step1 until no nodes is left for coloring.
