@@ -1,0 +1,389 @@
+
+
+_______________________________________________________________________Solution___________________________________________________________
+import sys
+sys.setrecursionlimit(10**6)
+from collections import deque
+class Solution:
+    # @param A : list of list of integers
+    # @param B : list of integers
+    # @param C : list of integers
+    # @return an integer
+    def solve(self, A, B, C):
+        
+        # All commented not working
+        '''visited = set()
+        
+        def chkPath(i,j):
+            if i<0 or j<0 or i>C[0] or j>C[1] or A[i][j] == 1 or (i, j) in visited:
+                return False
+            return True
+            
+        def dfs(i,j):
+            
+            nonlocal l, short
+            
+            if i== C[0] and j == C[1]:
+                path = True
+                short = min(short, l)
+                return 
+            
+            visited.add((i,j))
+            l += 1
+            
+            if chkPath(i-1,j):
+                dfs(i-1,j)
+            if chkPath(i+1,j):
+                dfs(i+1,j)
+            if chkPath(i,j-1):
+                dfs(i,j-1)
+            if chkPath(i,j+1):
+                dfs(i,j+1)
+
+            visited.remove((i,j))
+            l -= 1
+        
+        short = sys.maxsize
+        l = 0
+        path = False   
+        dfs(B[0], B[1])
+        return short'''
+        
+        '''def dfs(i,j):
+            
+            nonlocal l, short
+            
+            if i<0 or j<0 or i>=len(A) or j>=len(A[0]) or A[i][j] == 1 or (i, j) in visited:
+                return 
+            
+            elif i== C[0] and j == C[1]:
+                path = True
+                short = min(short, l)
+                return 
+            
+            visited.add((i,j))
+            l += 1
+            
+            dfs(i-1,j)
+            dfs(i+1,j)
+            dfs(i,j-1)
+            dfs(i,j+1)
+            
+            visited.remove((i,j))
+            l -=1
+        
+        visited = set()
+        short = sys.maxsize
+        l = 0
+        path = False   
+        dfs(B[0], B[1])
+        if not path:
+            return -1
+        return short'''
+        '''row = [-1, 0, 0, 1]
+        col = [0, -1, 1, 0]
+         
+         
+        # Function to check if it is possible to go to position (row, col)
+        # from the current position. The function returns false if row, col
+        # is not a valid position or has a value 0 or already visited.
+        def isValid(mat, visited, row, col):
+            return (row >= 0) and (row < len(mat)) and (col >= 0) and (col < len(mat[0])) \
+                   and mat[row][col] == 0 and not visited[row][col]
+         
+         
+        # Find the shortest possible route in a matrix `mat` from source `src` to
+        # destination `dest`
+        def findShortestPathLength(mat, src, dest):
+         
+            # get source cell (i, j)
+            i, j = src
+         
+            # get destination cell (x, y)
+            x, y = dest
+         
+            # base case: invalid input
+            if not mat or len(mat) == 0 or mat[i][j] == 1 or mat[x][y] == 1:
+                return -1
+         
+            # `M × N` matrix
+            (M, N) = (len(mat), len(mat[0]))
+         
+            # construct a matrix to keep track of visited cells
+            visited = [[False for x in range(N)] for y in range(M)]
+         
+            # create an empty queue
+            q = deque()
+         
+            # mark the source cell as visited and enqueue the source node
+            visited[i][j] = True
+         
+            # (i, j, dist) represents matrix cell coordinates, and their
+            # minimum distance from the source
+            q.append((i, j, 0))
+         
+            # stores length of the longest path from source to destination
+            min_dist = sys.maxsize
+         
+            # loop till queue is empty
+            while q:
+         
+                # dequeue front node and process it
+                (i, j, dist) = q.popleft()
+         
+                # (i, j) represents a current cell, and `dist` stores its
+                # minimum distance from the source
+         
+                # if the destination is found, update `min_dist` and stop
+                if i == x and j == y:
+                    min_dist = dist
+                    break
+         
+                # check for all four possible movements from the current cell
+                # and enqueue each valid movement
+                for k in range(4):
+                    # check if it is possible to go to position
+                    # (i + row[k], j + col[k]) from current position
+                    if isValid(mat, visited, i + row[k], j + col[k]):
+                        # mark next cell as visited and enqueue it
+                        visited[i + row[k]][j + col[k]] = True
+                        q.append((i + row[k], j + col[k], dist + 1))
+         
+            if min_dist != sys.maxsize:
+                return min_dist
+            else:
+                return -1
+        min_dist = findShortestPathLength(A, B, C)
+ 
+        if min_dist != -1:
+            return min_dist
+        else:
+            return -1'''
+            
+        '''def chkPath(row,col):
+            return (row >= 0) and (row < len(A)) and (col >= 0) and (col < len(A[0])) and A[row][col] == 0 and not visited[row][col]
+            if (i,j) in visited:
+                return True
+            if i<0 or j<0 or i>= len(A) or j>=len(B) or A[i][j] == 1:
+                return False
+            visited.add((i,j))
+            return True
+            
+        mind = -1    
+        visited = set()
+        i, j = B
+        x, y = C
+        q = deque()
+        q.append((i,j, 0))
+ 
+        
+        visited = [[False for x in range(len(A[0]))] for y in range(len(A))]
+        path = False
+        if not A or len(A) == 0 or A[i][j] == 1 or A[x][y] == 1:
+                return -1
+        
+        while q:
+            i, j, d = q.popleft()
+            
+            if i == x and j == y:
+                mind = d
+                path = True
+                break
+            
+            #left
+            if chkPath(i-1,j):
+                visited[i-1][j] = True
+                q.append((i-1, j, d+1))
+          
+            #right
+            if chkPath(i+1,j):
+                visited[i+1][j] = True
+                q.append((i+1, j, d+1))
+         
+            #top
+            if chkPath(i,j-1):
+                visited[i][j-1] = True
+                q.append((i, j-1, d+1))
+    
+            #bottom    
+            if chkPath(i,j+1):
+                visited[i][j+1] = True
+                q.append((i, j+1, d+1))
+            
+                
+
+        if path:
+            return mind
+        else:
+            return -1'''
+    
+        
+        visited = set()
+        q = deque()
+        q.append((B[0], B[1], 0))
+        r = len(A)
+        c = len(A[0])
+        while q:
+            
+            x, y, d = q.popleft()
+            if [x, y] == C:
+                return d
+            dist = d
+            
+            #down
+            for i in range(x+1, r):
+                dist += 1
+                if (i,y) in visited:
+                    break
+                else:
+                    if A[i][y] == 1:
+                        break
+                    elif i == r-1:
+                        visited.add((i,y))
+                        q.append((i, y, dist))
+                        break
+                    elif A[i+1][y] == 1:
+                        visited.add((i,y))
+                        q.append((i, y, dist))
+                        break
+            dist = d    
+            
+            #top
+            for i in range(x-1, -1, -1):
+                dist += 1
+                if (i,y) in visited:
+                    break
+                else:
+                    if A[i][y] == 1:
+                        break
+                    elif i == 0:
+                        visited.add((i,y))
+                        q.append((i, y, dist))
+                        break
+                    elif A[i-1][y] == 1:
+                        visited.add((i,y))
+                        q.append((i, y, dist))
+                        break
+            dist = d
+        
+            #right
+            for i in range(y+1, c):
+                dist += 1
+                if (x, i) in visited:
+                    break
+                else:
+                    if A[x][i] == 1:
+                        break
+                    elif i == c-1:
+                        visited.add((x, i))
+                        q.append((x, i, dist))
+                        break
+                    elif A[x][i+1] == 1:
+                        visited.add((x,i))
+                        q.append((x, i, dist))
+                        break
+            dist = d
+            
+            #left
+            for i in range(y-1, -1, -1):
+                dist += 1
+                if (x, i) in visited:
+                    break
+                else:
+                    if A[x][i] == 1:
+                        break
+                    elif i == 0:
+                        visited.add((x, i))
+                        q.append((x, i, dist))
+                        break
+                    elif A[x][i-1] == 1:
+                        visited.add((x, i))
+                        q.append((x, i, dist))
+                        break
+        return -1
+        
+        
+        
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+    # @param A : list of list of integers
+    # @param B : list of integers
+    # @param C : list of integers
+    # @return an integer
+    def solve(self, A, B, C):
+        visited = {}
+        queue = [[B[0], B[1], 0]]
+        visited[(B[0], B[1])] = 1
+        while queue:
+            x, y, dis = queue.pop(0)
+            if [x, y] == C:
+                return dis
+            distance = dis
+            for X in range(x + 1, A.__len__()):
+                distance += 1
+                if visited.get((X, y), 0) == 1:
+                    break
+                else:
+                    if A[X][y] == 1:
+                        break
+                    elif X == A.__len__() - 1:
+                        visited[(X, y)] = 1
+                        queue.append([X, y, distance])
+                        break
+                    elif A[X + 1][y] == 1:
+                        visited[(X, y)] = 1
+                        queue.append([X, y, distance])
+                        break
+            distance = dis
+            for X in range(x - 1, -1, -1):
+                distance += 1
+                if visited.get((X, y), 0) == 1:
+                    break
+                else:
+                    if A[X][y] == 1:
+                        break
+                    elif X == 0:
+                        visited[(X, y)] = 1
+                        queue.append([X, y, distance])
+                        break
+                    elif A[X - 1][y] == 1:
+                        visited[(X, y)] = 1
+                        queue.append([X, y, distance])
+                        break
+            distance = dis
+            for Y in range(y + 1, A[0].__len__()):
+                distance += 1
+                if visited.get((x, Y), 0) == 1:
+                    break
+                else:
+                    if A[x][Y] == 1:
+                        break
+                    elif Y == A[0].__len__() - 1:
+                        visited[(x, Y)] = 1
+                        queue.append([x, Y, distance])
+                        break
+                    elif A[x][Y + 1] == 1:
+                        visited[(x, Y)] = 1
+                        queue.append([x, Y, distance])
+                        break
+            distance = dis
+            for Y in range(y - 1, -1, -1):
+                distance += 1
+                if visited.get((x, Y), 0) == 1:
+                    break
+                else:
+                    if A[x][Y] == 1:
+                        break
+                    elif Y == 0:
+                        visited[(x, Y)] = 1
+                        queue.append([x, Y, distance])
+                        break
+                    elif A[x][Y - 1] == 1:
+                        visited[(x, Y)] = 1
+                        queue.append([x, Y, distance])
+                        break
+        return -1
+_______________________________________________________________________Approach___________________________________________________________
+We can definitely say that ball will roll only in one of 4 directions, this gives us only 4 options for each place.
+This points towards a BFS based solution. This can be written easily using starting point as source and running bfs until
+queue gets empty or we reach our destiniation.
