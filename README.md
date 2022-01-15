@@ -117,6 +117,7 @@ Problems
      * Black Shapes
    + [Day87_Graphs2](#Day87_Graphs2)
      * Cycle in Directed Graph
+     * Coloring a Cycle Graph
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -674,3 +675,8 @@ Day87_Graphs2
 ### 1) Cycle in Directed Graph
  + bfs: for every origin start a fresh visited array and travel thro all it's neighbour nodes and if neigh = origin return True
  + dfs: for every origin chk iscyclic -> create a visited array each time check if neighbour nodes in visited return True else remove all node in visited and continue for next origin
+
+### 2) Coloring a Cycle Graph
+ + Cycle:- cycle is a path of edges and vertices wherein a vertex is reachable from itself. or in other words, it is a Closed walk. Even Cycle:- In which Even number of vertices is present is known as Even Cycle. Odd Cycle:- In which Odd number of Vertices is present is known as Odd Cycle.
+ + If the no. of vertices is Even then it is Even Cycle and to color such graph we require 2 colors.
+ + If the no. of vertices is Odd then it is Odd Cycle and to color such graph we require 3 colors.
