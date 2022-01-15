@@ -118,6 +118,8 @@ Problems
    + [Day87_Graphs2](#Day87_Graphs2)
      * Cycle in Directed Graph
      * Coloring a Cycle Graph
+     * Check whether the graph is bipartite or not
+     * Construct Roads
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -688,3 +690,6 @@ Day87_Graphs2
 	a. if this is colored in color1 then the graph can’t be bipartite ,return 0.
 	b. else if this is colored in color1 do nothing.
 	c. else color it with color 2 and push it into queue. Repet step1 until no nodes is left for coloring.
+
+### 4) Construct Roads
+ + chk if bipartite or not. If yes separate into two halves x and y. The maximum number of edges that can exist is x * y, but N - 1 edges already exist so the maximum number of edges to be added is x * y - (N - 1).
