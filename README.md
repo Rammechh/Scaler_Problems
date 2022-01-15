@@ -120,6 +120,8 @@ Problems
      * Coloring a Cycle Graph
      * Check whether the graph is bipartite or not
      * Construct Roads
+   + [Day88_Graphs3](#Day87_Graphs3)
+     * Shortest Distance in a Maze
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -693,3 +695,8 @@ Day87_Graphs2
 
 ### 4) Construct Roads
  + chk if bipartite or not. If yes separate into two halves x and y. The maximum number of edges that can exist is x * y, but N - 1 edges already exist so the maximum number of edges to be added is x * y - (N - 1).
+ 
+Day87_Graphs3
+==================
+### Shortest Distance in a Maze
+ + We can definitely say that ball will roll only in one of 4 directions, this gives us only 4 options for each place. This points towards a BFS based solution. This can be written easily using starting point as source and running bfs until queue gets empty or we reach our destiniation.
