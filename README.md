@@ -716,7 +716,7 @@ insert this node alongwith weight into minheap.
  + Add the source to min heap and for each node traverse and add the distance in minheap, then take min node acc to weight from min heap if node == D, return the distance
 
 ### Floyd Warshall Algorithm
- + <pre>
+<pre>
  For all possible i, j and k
     if ( A[i][j] + A[j][k] < A[i][k] )
     { 
