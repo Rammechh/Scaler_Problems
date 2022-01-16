@@ -1,0 +1,316 @@
+Dijsktra
+Problem Description
+
+Given a weighted undirected graph having A nodes and M weighted edges, and a source node C.
+
+You have to find an integer array D of size A such that:
+
+=> D[i] : Shortest distance form the C node to node i.
+
+=> If node i is not reachable from C then -1.
+
+Note:
+
+There are no self-loops in the graph.
+
+No multiple edges between two pair of vertices.
+
+The graph may or may not be connected.
+
+Nodes are numbered from 0 to A-1.
+
+Your solution will run on multiple testcases. If you are using global variables make sure to clear them.
+
+
+
+Problem Constraints
+1 <= A <= 1e5
+
+0 <= B[i][0],B[i][1] < A
+
+0 <= B[i][2] <= 1e3
+
+0 <= C < A
+
+
+
+Input Format
+The first argument given is an integer A, representing the number of nodes.
+
+The second argument given is the matrix B of size M x 3, where nodes B[i][0] and B[i][1] are connected with an edge of weight B[i][2].
+
+The third argument given is an integer C.
+
+
+
+Output Format
+Return the integer array D.
+
+
+
+Example Input
+Input 1:
+
+A = 6
+B = [   [0, 4, 9]
+        [3, 4, 6] 
+        [1, 2, 1] 
+        [2, 5, 1] 
+        [2, 4, 5] 
+        [0, 3, 7] 
+        [0, 1, 1] 
+        [4, 5, 7] 
+        [0, 5, 1] ] 
+C = 4
+Input 2:
+
+A = 5
+B = [   [0, 3, 4]
+        [2, 3, 3] 
+        [0, 1, 9] 
+        [3, 4, 10] 
+        [1, 3, 8]  ] 
+C = 4
+
+
+Example Output
+Output 1:
+
+D = [7, 6, 5, 6, 0, 6]
+Output 2:
+
+D = [14, 18, 13, 10, 0]
+
+
+Example Explanation
+Explanation 1:
+
+ All Paths can be considered from the node C to get shortest path
+Explanation 2:
+
+ All Paths can be considered from the node C to get shortest path
+
+_______________________________________________________________________Solution___________________________________________________________
+import heapq
+from collections import defaultdict
+class Solution:
+    # @param A : integer
+    # @param B : list of list of integers
+    # @param C : integer
+    # @return a list of integers
+    def solve(self, A, B, C):
+        
+        adj = defaultdict(list)
+        
+        for n1, n2, w in B:
+            adj[n1].append([w, n2])
+            adj[n2].append([w, n1])
+            
+        h = []
+        heapq.heappush(h, (0, C))
+        visited = set()
+        ans = [1000000000] * A
+        
+        while h:
+
+            w, node = heapq.heappop(h)
+            #since we take accd to small weight no need to check again for same node
+            if node in visited:
+                continue
+            
+            visited.add(node)
+            ans[node] = min(w, ans[node])
+            
+            for nw, nNode in adj[node]:
+                if nNode not in visited:
+                    heapq.heappush(h, (w+nw, nNode))
+            
+        for i in range(len(ans)):
+            if ans[i] == 1000000000:
+                ans[i] = -1
+        
+        return ans
+        
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Node:
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
+
+class HeapMap:
+    def __init__(self):
+        self.arr = []
+        self.d = {}
+
+    def heappush(self, key, val):
+        node = Node(key, val)
+        self.arr.append(node)
+        i = len(self.arr) - 1
+        self.d[key] = i
+        self.move_node_up(i)
+
+    def move_node_up(self, i):
+        while i > 0:
+            p = self.parent(i)
+            if self.arr[i].val < self.arr[p].val:
+                self.swap(i, p)
+                i = p
+            else:
+                break
+
+    def swap(self, i, p):
+        keyi = self.arr[i].key
+        keyp = self.arr[p].key
+        self.arr[i], self.arr[p] = self.arr[p], self.arr[i]
+        self.d[keyi] = p
+        self.d[keyp] = i
+
+    def heappop(self):
+        self.swap(0, len(self.arr) - 1)
+        result = self.arr.pop()
+        self.heapify(0)
+        del self.d[result.key]
+        return result.key, result.val
+
+    def heapify(self, i):
+        smaller = i
+        left = self.left(i)
+        right = self.right(i)
+        if left < len(self.arr) and self.arr[left].val < self.arr[i].val:
+            smaller = left
+        if right < len(self.arr) and self.arr[right].val < self.arr[smaller].val:
+            smaller = right
+        if smaller != i:
+            self.swap(smaller, i)
+            self.heapify(smaller)
+
+    def left(self, i):
+        return 2 * i + 1
+
+    def right(self, i):
+        return 2 * i + 2
+
+    def parent(self, i):
+        return (i - 1) / 2
+
+    def decrease_key(self, key, new_val):
+        # print self.arr, self.d, key, new_val
+        if key not in self.d:
+            self.heappush(key, new_val)
+            return
+        idx = self.d[key]
+        if self.arr[idx].val > new_val:
+            self.arr[idx].val = new_val
+            self.move_node_up(idx)
+
+
+from collections import defaultdict
+
+class Solution:
+    # @param A : integer
+    # @param B : list of list of integers
+    # @param C : integer
+    # @return a list of integers
+    def solve(self, A, B, src):
+        if A <= 0:
+            return []
+        dist = [float("inf") for _ in range(A)]
+        g = defaultdict(list)
+
+        for start, end, wgt in B:
+            g[start].append((end, wgt))
+            g[end].append((start, wgt))
+
+        h = HeapMap()
+        h.decrease_key(src, 0)
+        visited = [False for _ in range(A)]
+
+        while h.arr:
+            key, val = h.heappop()
+            dist[key] = val
+            visited[key] = True
+
+            if key in g:
+                for neigh, dd in g[key]:
+                    if not visited[neigh]:
+                        h.decrease_key(neigh, val + dd)
+
+        for i in range(len(dist)):
+            if dist[i] == float("inf"):
+                dist[i] = -1
+
+        return dist
+--Java--
+public class Solution {
+    static int maxn = 100009;
+    static int[] vis = new int[maxn];
+    static ArrayList < ArrayList < Pair > > adj;
+    public static void graph() {
+        adj = new ArrayList < ArrayList < Pair > > (maxn);
+        for (int i = 0; i < maxn; i++) {
+            vis[i] = 0;
+            adj.add(new ArrayList < Pair > ());
+        }
+    }
+    public int[] solve(int A, int[][] B, int C) {
+        graph();
+        for (int[] edge: B) {
+            adj.get(edge[0]).add(new Pair(edge[2], edge[1]));
+            adj.get(edge[1]).add(new Pair(edge[2], edge[0]));
+        }
+        return dijkstra(A, C);
+    }
+
+    public static int[] dijkstra(int n, int source) {
+        PriorityQueue < Pair > pq = new PriorityQueue < Pair > (new CustomComp());
+        int[] dist = new int[n];
+        for (int i = 0; i < n; i++) {
+            dist[i] = Integer.MAX_VALUE;
+        }
+        dist[source] = 0;
+        pq.offer(new Pair(0, source));
+
+        while (pq.size() != 0) {
+            Pair temp = pq.poll();
+            int u = temp.b;
+            if (vis[u] == 1)
+                continue;
+            vis[u] = 1;
+            for (int i = 0; i < adj.get(u).size(); i++) {
+                int v = adj.get(u).get(i).b, w = adj.get(u).get(i).a;
+                if (dist[u] + w < dist[v]) {
+                    dist[v] = dist[u] + w;
+                    pq.offer(new Pair(dist[v], v));
+                }
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (dist[i] == Integer.MAX_VALUE)
+                dist[i] = -1;
+        }
+        return dist;
+    }
+}
+class Pair {
+    int a, b;
+    public Pair(int u, int v) {
+        this.a = u;
+        this.b = v;
+    }
+}
+class CustomComp implements Comparator < Pair > {
+    @Override
+    public int compare(Pair aa, Pair bb) {
+        return aa.a - bb.a;
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+Initialize a distance array of integers(denoting distance of source to node i) with infinity.
+Initialize d[source]=0 (distance from source to source is 0).
+Insert {d[source],source} into a min heap based on distance.
+extract first element from the heap:
+if this element is mark visited then again start extract top element fro heap
+else mark this as vis and expore adjacent nodes of the top node of the heap:
+if distance[adjacentnode]>distance[curr]+weight of the edge between curr and adjacent node
+update distacne[adjacentnode] = distance[curr]+weight of the edge between curr and adjacent node
+insert this node alongwith weight into minheap.
