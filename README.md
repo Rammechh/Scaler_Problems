@@ -122,6 +122,7 @@ Problems
      * Construct Roads
    + [Day88_Graphs3](#Day88_Graphs3)
      * Shortest Distance in a Maze
+     * Dijsktra
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -700,3 +701,10 @@ Day88_Graphs3
 ==================
 ### Shortest Distance in a Maze
  + We can definitely say that ball will roll only in one of 4 directions, this gives us only 4 options for each place. This points towards a BFS based solution. This can be written easily using starting point as source and running bfs until queue gets empty or we reach our destiniation.
+
+### Dijsktra
+ + Initialize a distance array of integers(denoting distance of source to node i) with infinity. Initialize d[source]=0 (distance from source to source is 0).
+ + Insert {d[source],source} into a min heap based on distance. 
+ + extract first element from the heap: if this element is mark visited then again start extract top element fro heap else mark this as vis and expore adjacent nodes of the top node of the heap: 
+ + if distance[adjacentnode]>distance[curr]+weight of the edge between curr and adjacent node, update distacne[adjacentnode] = distance[curr]+weight of the edge between curr and adjacent node
+insert this node alongwith weight into minheap.
