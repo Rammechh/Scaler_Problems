@@ -125,6 +125,8 @@ Problems
      * Dijsktra
      * Another BFS
      * Floyd Warshall Algorithm
+   + [Day89_Graphs4](#Day89_Graphs4)
+     * Commutable Islands
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -724,3 +726,11 @@ insert this node alongwith weight into minheap.
     }
 This is known as the Floyd Warshall algorithm. This algorithm is all pair shortest path algortithm.
 </pre>
+
+Day89_Graphs4
+==============
+### Commutable Islands
+ + We can assume islands as the vertex points and bridges as the edges and can construct a graph with the the help of them. After constructing the graph, the problem boils down to finding a subset of edges which helps in connecting vertices in a single connected component such that the sum of their edge weights is as minimum as possible.
+ + The answer to this problem is the classic minimum spanning tree algorithm. In this algorithm we aim at finding subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.
+ + There are many algorithms for finding minimum spanning tree of a graph. Some of them are Kruskal’s algorithm, Prim’s algorithm etc.
+  + Kruskal’s algorithm in detail can be found at https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
