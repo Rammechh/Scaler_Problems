@@ -123,6 +123,7 @@ Problems
    + [Day88_Graphs3](#Day88_Graphs3)
      * Shortest Distance in a Maze
      * Dijsktra
+     * Another BFS
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -708,3 +709,7 @@ Day88_Graphs3
  + extract first element from the heap: if this element is mark visited then again start extract top element fro heap else mark this as vis and expore adjacent nodes of the top node of the heap: 
  + if distance[adjacentnode]>distance[curr]+weight of the edge between curr and adjacent node, update distacne[adjacentnode] = distance[curr]+weight of the edge between curr and adjacent node
 insert this node alongwith weight into minheap.
+
+### Another BFS
+ + BFS can be use for finding shortest path between destination and source. 
+ + Add the source to min heap and for each node traverse and add the distance in minheap, then take min node acc to weight from min heap if node == D, return the distance
