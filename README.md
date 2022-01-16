@@ -124,6 +124,7 @@ Problems
      * Shortest Distance in a Maze
      * Dijsktra
      * Another BFS
+     * Floyd Warshall Algorithm
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -713,3 +714,25 @@ insert this node alongwith weight into minheap.
 ### Another BFS
  + BFS can be use for finding shortest path between destination and source. 
  + Add the source to min heap and for each node traverse and add the distance in minheap, then take min node acc to weight from min heap if node == D, return the distance
+
+### Floyd Warshall Algorithm
+ + <pre>
+ For all possible i, j and k
+    if ( A[i][j] + A[j][k] < A[i][k] )
+    { 
+        A[i][k]=A[i][j]+A[j][k]  // Update A[i][k]
+    }
+This is known as the Floyd Warshall algorithm. This algorithm is all pair shortest path algortithm.
+Its initialization looks something like this
+int n=A.size();
+for(int i=0;i<n;i++)
+{
+for(int j=0;j<n;j++)
+{
+if(A[i][j]==-1)
+{
+A[i][j]=100000005;
+}
+}
+}
+</pre>
