@@ -127,6 +127,7 @@ Problems
      * Floyd Warshall Algorithm
    + [Day89_Graphs4](#Day89_Graphs4)
      * Commutable Islands
+     * Matrix and Absolute Difference
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -734,3 +735,8 @@ Day89_Graphs4
  + The answer to this problem is the classic minimum spanning tree algorithm. In this algorithm we aim at finding subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.
  + There are many algorithms for finding minimum spanning tree of a graph. Some of them are Kruskal’s algorithm, Prim’s algorithm etc.
   + Kruskal’s algorithm in detail can be found at https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+  
+### Matrix and Absolute Difference
+ + Think matrix as a graph with A*B nodes and Each node has an edge to its four neighbouring cells with weight as absolute difference of values between them. Apply any MST algorithm on it and find the maximum weighted edge in that MST.
+ + Why we have to apply MST? Because in MST we always consider smallest weighted edge as to minimize the total cost so just find mst and find the maximum weighted edge in that MST.
+ + You can use any of Kruskal or Prims Implementation of MST to solve this question.
