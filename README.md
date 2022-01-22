@@ -108,6 +108,7 @@ Problems
      * Longest Common Subsequence
      * Edit Distance
      * Path in Directed Graph
+     * Min Sum Path in Matrix
    + [Graphs](https://felipethome.github.io/coding-interview-solutions/)
    + [Day86_Graphs1](#Day86_Graphs1)
      * Path in Directed Graph
@@ -642,6 +643,9 @@ if (S1[index1] == S2[index2]) {
      );
 } }
 </pre>
+
+### Min Sum Path in Matrix
+ + Let DP[i][j] store the minimum sum of numbers along the path from top left to (i,j). Basically, DP[i][j] = A[i][j] + min(DP[i-1][j],DP[i][j-1]).
 
 Day86_Graphs1
 =================
