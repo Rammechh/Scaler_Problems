@@ -1,0 +1,153 @@
+
+Min Sum Path in Matrix
+Problem Description
+
+Given a M x N grid A of integers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+
+Return the minimum sum of the path.
+
+NOTE: You can only move either down or right at any point in time.
+
+
+
+Problem Constraints
+1 <= M, N <= 2000
+
+-1000 <= A[i][j] <= 1000
+
+
+
+Input Format
+First and only argument is a 2-D grid A.
+
+
+
+Output Format
+Return an integer denoting the minimum sum of the path.
+
+
+
+Example Input
+Input 1:
+
+ A = [
+       [1, 3, 2]
+       [4, 3, 1]
+       [5, 6, 1]
+     ]
+Input 2:
+
+ A = [
+       [1, -3, 2]
+       [2, 5, 10]
+       [5, -5, 1]
+     ]
+
+
+Example Output
+Output 1:
+
+ 8
+Output 2:
+
+ -1
+
+
+Example Explanation
+Explanation 1:
+
+ The path will be: 1 -> 3 -> 2 -> 1 -> 1.
+Input 2:
+
+ The path will be: 1 -> -3 -> 5 -> -5 -> 1.
+_______________________________________________________________________Solution___________________________________________________________
+import sys
+sys.setrecursionlimit(10**6)
+class Solution:
+	# @param A : list of list of integers
+	# @return an integer
+	def minPathSum(self, A):
+        '''def dfs(i, j):
+            if i==len(A)-1 and j == len(A[0])-1:
+                return A[i][j]
+            if i> len(A)-1 or j> len(A[0])-1:
+                return 9999999999
+            if (i, j) in v:
+                return v[(i,j)]
+            
+            res = A[i][j] + min(dfs(i+1,j), dfs(i, j+1))
+            v[(i,j)] = res
+            return res
+        v ={}
+        if len(A) == 1 and len(A[0]) == 1:
+            return A[0][0]
+        return dfs(0, 0)'''
+        
+    	n, m = len(A), len(A[0])
+    	
+    	#left col
+    	for i in range(1, n):
+    	    A[i][0] += A[i-1][0]
+    	#right col
+    	for i in range(1, m):
+    	    A[0][i] += A[0][i-1]
+    	
+    	for i in range(1, n):
+    	    for j in range(1, m):
+    	        A[i][j] += min(A[i-1][j], A[i][j-1])
+    	
+    	return A[n-1][m-1]
+            
+_______________________________________________________________________Given_Solution___________________________________________________________
+class Solution:
+    # @param A : list of list of integers
+    # @return an integer
+    def minPathSum(self, A):
+        for i in range(len(A)):
+            for j in range(len(A[0])):
+                if i == 0 and j == 0:
+                    continue
+                elif i == 0:
+                    A[i][j] += A[i][j - 1]
+                elif j == 0:
+                    A[i][j] += A[i - 1][j]
+                else:
+                    A[i][j] += min(A[i][j - 1], A[i - 1][j])
+        return A[i][j]
+
+--Java--
+public class Solution {
+    private int mem[][];
+    private ArrayList < ArrayList < Integer >> A;
+    public int minPathSum(ArrayList < ArrayList < Integer >> A) {
+        int m, n;
+        if (A == null || A.size() == 0 || A.get(0).size() == 0)
+            return 0;
+        m = A.size();
+        n = A.get(0).size();
+        mem = new int[m][n];
+        for (int i = 0; i < m; i++)
+            Arrays.fill(mem[i], Integer.MAX_VALUE);
+        mem[0][0] = A.get(0).get(0);
+        this.A = A;
+        rec(m - 1, n - 1);
+        return mem[m - 1][n - 1];
+    }
+
+    public int rec(int i, int j) {
+        if (i < 0 || j < 0)
+            return Integer.MAX_VALUE;
+        if (mem[i][j] != Integer.MAX_VALUE)
+            return mem[i][j];
+        int res = rec(i - 1, j);
+        res = Math.min(rec(i, j - 1), res);
+        mem[i][j] = res + A.get(i).get(j);
+        return mem[i][j];
+    }
+}
+_______________________________________________________________________Approach___________________________________________________________
+Let DP[i][j] store the minimum sum of numbers along the path from top left to (i,j).
+
+Basically, DP[i][j] = A[i][j] + min(DP[i-1][j],DP[i][j-1]).
+
+You only need to figure out the base conditions and boundary conditions now.
