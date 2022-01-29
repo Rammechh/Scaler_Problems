@@ -35,6 +35,7 @@ Problems
      * Count A
      * Closest Palindrome
      * Smallest Prefix String
+     * Period of a string
   + [Day61_Stacks](#Day61_Stacks)
      * Count Rectangles
      * Sort stack using another stack
@@ -269,6 +270,12 @@ Day59_String_Algorithms
 
 ### Smallest Prefix String
  + Adding to the hint, we keep appending characters from the first string till the current character is less than the first character of second string. After that, we just add the first character of second string and we have our answer.
+
+### Period of a string
+ + A simple approach is to check for all value of K from 1 to n-1, but this will take O(N2).
+ + We can do this in linear time using pattern matching algorithm (Z algorithm).
+ + First we will construct the Z array, i.e. for a string str[0..n-1], Z array is of same length as string. An element Z[i] of Z array stores length of the longest substring starting from str[i] which is also a prefix of str[0..n-1]. The first entry of Z array is meaning less as complete string is always prefix of itself.
+ + This can be used, for any i (1 <= i < n), if i + Z[i] == N , then the period of the string is i. If there is no such period, then N will be the period.
 
 Day61_Stacks
 ================
