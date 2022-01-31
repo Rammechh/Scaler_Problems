@@ -1,0 +1,123 @@
+'''class Solution:
+    # @param A : integer
+    # @param B : list of integers
+    # @param C : list of list of integers
+    # @param D : integer
+    # @return an integer
+    def solve(self, A, B, C, D):
+        parentarr=[i for i in range(A+1)]
+        hirachystren=[0]*(A+1)
+        'def findroot(k):
+            i=k
+            while i!=parentarr[i]:
+                i=parentarr[i]
+            return i'
+        def findroot(k):
+            if k==parentarr[k]:
+                return k
+            parentarr[k]=findroot(parentarr[k])
+            return parentarr[k]
+        for i in range(len(C)):
+            p1=findroot(C[i][0])
+            p2=findroot(C[i][1])
+            parentarr[p1]=p2
+        for i in range(len(parentarr)):
+            findroot(i)
+        for i in range(1,len(parentarr)):
+            p=parentarr[i]
+            hirachystren[p]+=B[i-1]
+        cnt=0
+        for i in range(len(parentarr)):
+            if hirachystren[i]>=D:
+                cnt+=1
+        return cnt'''
+
+import sys
+sys.setrecursionlimit(10 ** 6)
+
+'''N = 100005
+g = [[] for i in range(N)]
+a = [0] * N
+vis = [0] * N
+sm = 0
+
+def make_graph(n, edges, strength):
+    global g, a, vis
+    g = [[] for i in range(n + 1)]
+    a = [0] * (n + 1)
+    vis = [0] * (n + 1)
+    for it in edges:
+        g[it[0]].append(it[1])
+        g[it[1]].append(it[0])
+    for i in range(len(strength)):
+        a[i + 1] = strength[i]
+
+
+def dfs(x):
+    global sm, a, vis, g
+    sm += a[x]
+    vis[x] = 1
+    for it in g[x]:
+        if vis[it] == 0:
+            dfs(it)
+            
+class Solution:
+    # @param A : integer
+    # @param B : list of integers
+    # @param C : list of list of integers
+    # @param D : integer
+    # @return an integer
+    def solve(self, A, B, C, D):
+        global sm, vis
+        make_graph(A, C, B)
+        ans = 0
+        for i in range(1, A + 1):
+            if vis[i] == 0:
+                sm = 0
+                dfs(i)
+                if sm >= D:
+                    ans += 1
+        return ans'''
+ 
+from collections import defaultdict       
+class Solution:
+    # @param A : integer
+    # @param B : list of integers
+    # @param C : list of list of integers
+    # @param D : integer
+    # @return an integer
+    def solve(self, A, B, C, D):
+        
+        def dfs(i):
+            nonlocal sm
+            sm += strength[i]
+            visited.add(i)
+            for n in adj[i]:
+                if n not in visited:
+                    dfs(n)
+                    
+        adj = defaultdict(list)
+        
+        for n1, n2 in C:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
+            
+        n = len(B)
+        strength = [0] * (n+1)
+        
+        for i in range(n):
+            strength[i+1] = B[i]
+            
+        ans = 0
+        visited = set()
+        
+        for i in range(1, A+1):
+            if i not in visited:
+                visited.add(i)
+                sm = 0
+                
+                dfs(i)
+                if sm >= D:
+                    ans += 1
+        return ans
+                
