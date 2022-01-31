@@ -131,6 +131,7 @@ Problems
    + [Day89_Graphs4](#Day89_Graphs4)
      * Commutable Islands
      * Matrix and Absolute Difference
+     * Batches
 <!--te-->
 Day31_Maths_Prime_numbers
 ==================
@@ -752,3 +753,9 @@ Day89_Graphs4
  + Think matrix as a graph with A*B nodes and Each node has an edge to its four neighbouring cells with weight as absolute difference of values between them. Apply any MST algorithm on it and find the maximum weighted edge in that MST.
  + Why we have to apply MST? Because in MST we always consider smallest weighted edge as to minimize the total cost so just find mst and find the maximum weighted edge in that MST.
  + You can use any of Kruskal or Prims Implementation of MST to solve this question.
+
+### Batches
+ + Modify the above problem in the form of an undirected weighted graph. Consider students as nodes and relations as edges between them. All connected components come under one batch. Strength of a batch is the sum of the weight of nodes of connected components of the graph(batch).
+ + After Modifying the problem statement to graph perspective, It is easy to see find the solution. Initiaize ans = 0
+ + Pick any unvisited node and find the sum of all the weights of nodes which are reachable from this node and mark all such nodes as visited. if this sum is greater than equal to D then increment ans.
+ + If N is the number of students and M is the number of relations then Time Complexity : O (N+M)
