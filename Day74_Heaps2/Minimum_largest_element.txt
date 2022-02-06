@@ -1,0 +1,168 @@
+Minimum largest element
+Problem Description
+
+Given an array A of N numbers, you have to perform B operations. In each operation, you have to pick any one of the N elements and add original value(value stored at index before we did any operations) to it's current value. You can choose any of the N elements in each operation.
+
+Perform B operations in such a way that the largest element of the modified array(after B operations) is minimised. Find the minimum possible largest element after B operations.
+
+
+
+Problem Constraints
+1 <= N <= 106
+0 <= B <= 105
+-105 <= A[i] <= 105
+
+
+
+Input Format
+First argument is an integer array A.
+Second argument is an integer B.
+
+
+
+Output Format
+Return an integer denoting the minimum possible largest element after B operations.
+
+
+
+Example Input
+Input 1:
+
+ A = [1, 2, 3, 4] 
+ B = 3
+Input 2:
+
+ A = [5, 1, 4, 2] 
+ B = 5
+
+
+Example Output
+Output 1:
+
+ 4
+Output 2:
+
+ 5
+
+
+Example Explanation
+Explanation 1:
+
+ Apply operation on element at index 0, the array would change to [2, 2, 3, 4]
+ Apply operation on element at index 0, the array would change to [3, 2, 3, 4]
+ Apply operation on element at index 0, the array would change to [4, 2, 3, 4]
+ Minimum possible largest element after 3 operations is 4.
+Explanation 2:
+
+ Apply operation on element at index 1, the array would change to [5, 2, 4, 2]
+ Apply operation on element at index 1, the array would change to [5, 3, 4, 2]
+ Apply operation on element at index 1, the array would change to [5, 4, 4, 2]
+ Apply operation on element at index 1, the array would change to [5, 5, 4, 2]
+ Apply operation on element at index 3, the array would change to [5, 5, 4, 4]
+ Minimum possible largest element after 5 operations is 5.
+ 
+_______________________________________________________________________Solution_____________________________________________________________________________
+import heapq
+class Solution:
+	# @param A : list of integers
+	# @param B : integer
+	# @return an integer
+	def solve(self, A, B):
+        h = []
+        x = A
+        maxx = A[0]
+        for i in range(len(A)):
+            heapq.heappush(h, [2*A[i],i])
+            maxx = max(maxx, A[i])
+        
+        for i in range(B):
+            small, ind = heapq.heappop(h)
+            heapq.heappush(h, [small+A[ind], ind])
+            maxx = max(maxx, small)    
+
+        return maxx
+        
+_______________________________________________________________________Given_Solution_____________________________________________________________________________
+import heapq
+
+
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+
+        pq = []
+        n = len(A)
+        maxx = A[0]
+
+        # Consider a min heap. And initially push the next state of every element in the heap.
+    # Note that you need to keep track of the indices of every element in the heap, present in the initial array.
+        for i in range(0, n):
+            heapq.heappush(pq, [2*A[i], i])
+            maxx = max(maxx, A[i])
+
+        while(B > 0):
+
+            # Pick the top element, and change the state of that element, in the state array.
+            val, index = heapq.heappop(pq)
+            maxx = max(maxx, val)
+            new_val = val + A[index]
+
+            # push the next state in the heap.
+            heapq.heappush(pq, [new_val, index])
+            B -= 1
+
+        return maxx
+		
+--Java--
+public class Solution {
+  public int solve(int[] A, int B) {
+    PriorityQueue < Pair > pq = new PriorityQueue(new CustomComp());
+    int s = A.length;
+    int[] state = new int[s];
+    for (int i = 0; i < s; i++)
+      state[i] = A[i];
+    for (int i = 0; i < s; i++)
+      pq.offer(new Pair(2 * A[i], i));
+    for (; B > 0; B--) {
+      Pair top = pq.poll();
+
+      //Pick the top element, and change the state of that element, in the state array. 
+      state[top.ss] = top.ff;
+      pq.offer(new Pair(A[top.ss] + top.ff, top.ss));
+    }
+    int mx = state[0];
+    for (int i = 0; i < s; i++) mx = Math.max(mx, state[i]);
+    return mx;
+  }
+}
+class Pair {
+  int ff;
+  int ss;
+  public Pair(int c, int d) {
+    this.ff = c;
+    this.ss = d;
+  }
+}
+class CustomComp implements Comparator < Pair > {
+  @Override
+  public int compare(Pair a, Pair b) {
+    return a.ff - b.ff;
+  }
+}
+
+_______________________________________________________________________Approach_____________________________________________________________________________
+Let’s keep a state array to keep track of the value of every element in the array after K operations.
+Maintain a state array, which tells about the state of the array after every operation.
+Initially state array will be the same as the inital array.
+
+We need to consider the next state of every element in the array.
+Consider a min heap. And initially push the next state of every element in the heap.
+Note that you need to keep track of the indices of every element in the heap, present in the initial array.
+Pick the top element, and change the state of that element, in the state array. Pop this element and push the next state in the heap.
+At every operation we are choosing the element who’s next state is minimum, hence there are only two possibilities:
+1) Either the maximum element remains same, and we return that element directly.
+2) The next state of popped element is the maximum.
+We made sure changing the state of this element is the best option, as the next state of this element is the minimum.
+Hence the maximum will be the least using this approach.
