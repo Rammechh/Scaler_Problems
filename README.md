@@ -94,6 +94,7 @@ Problems
      * Running Median
      * Ath largest element.
      * K Places Apart
+     * Minimum largest element
    + [Day75_Greedy_Algorithms](#Day75_Greedy_Algorithms)
      * Distribute Candy
      * Assign Mice to Holes
@@ -533,6 +534,14 @@ Day74_Heaps2
   + Brute Force: sort the array each time for n elements and find the median (TC = O(N2logN))
   + Maintain Max and Min heap and maintain the length of Min and Max heap
   + Get the top element from Max heap for each run
+
+### Minimum largest element
+ + Let’s keep a state array to keep track of the value of every element in the array after K operations. Maintain a state array, which tells about the state of the array after every operation. Initially state array will be the same as the inital array. We need to consider the next state of every element in the array.
+ + Note that you need to keep track of the indices of every element in the heap, present in the initial array.
+ + Pick the top element, and change the state of that element, in the state array. Pop this element and push the next state in the heap.
+ + At every operation we are choosing the element who’s next state is minimum, hence there are only two possibilities:
+1) Either the maximum element remains same, and we return that element directly.
+2) The next state of popped element is the maximum.
  
 Day75_Greedy_Algorithms
 ====================
