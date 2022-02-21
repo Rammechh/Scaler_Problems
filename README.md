@@ -1,5 +1,5 @@
 <!--ts-->
-Problems 
+Problems
 =================
   + [Day31_Maths_Prime_numbers](#Day31_Maths_Prime_numbers)
      * Lucky Numbers
