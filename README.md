@@ -107,6 +107,7 @@ Problems
      * Let's Party
      * Max Sum Without Adjacent Elements
      * Minimum Number of Squares
+     * Ways to Decode
    + [Day81_Dynamic_Programming2](#Day81_Dynamic_Programming2)
      * Longest Common Subsequence
      * Edit Distance
@@ -632,6 +633,22 @@ Space Complexity : O(N)
   + We know that within a column, we can choose at max 1 element.  And choosing either of those elements is going to rule out choosing anything from the previous or next column.
   + This means that choosing V[0][i] or V[1][i] has identical bearing on the elements which are ruled out. So, instead we replace each column with a single element which is the max of V[0][i], V[1][i]. Now we have the list as : 2 3 4 5
   + Now we want to find maximum sum of values where no 2 values are adjacent. Now our recurrence relation will depend only on position i and, a "include_current_element" which will denote whether we picked last element or not.
+
+### Ways to Decode
+ + Lets first look at the bruteforce solution. It only makes sense to look at 1 digit or 2 digit pairs ( as 3 digit sequence will be greater than 26 ).
+ + So, when looking at the start of the string, we can either form a one digit code, and then look at the ways of forming the rest of the string of length L - 1, or we can form 2 digit code if its valid and add up the ways of decoding rest of the string of length L - 2.
+This obviously is exponential.
+
+<pre>
+ int ways(string &s, int startIndex) {
+    // BASE CASES
+
+    int answer = 0;
+if (isValid(s[startIndex])) answer += ways(s, startIndex + 1);
+    if (isValid(s[startIndex] + s[startIndex + 1])) answer += ways(s, startIndex + 2);
+    return answer;
+ }
+</pre>
   
 Day81_Dynamic_Programming2
 ======================
