@@ -1,4 +1,4 @@
-Permuatation:
+Permuatation: 
 
 def permute(self, A):
 	    #return list(permutations(A))
